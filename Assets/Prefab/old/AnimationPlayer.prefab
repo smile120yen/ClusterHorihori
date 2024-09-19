@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6933274241125780998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6933274241125780997}
+  - component: {fileID: 6933274241125781002}
+  - component: {fileID: 6933274241125781003}
+  - component: {fileID: 6933274241125780996}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6933274241125780997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241125780998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6933274241921742813}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6933274241125781002
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241125780998}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6933274241125781003
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241125780998}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6933274241125780996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241125780998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6933274241921742808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6933274241921742813}
+  - component: {fileID: 6933274241921742814}
+  - component: {fileID: 6933274241921742815}
+  - component: {fileID: 6933274241921742812}
+  m_Layer: 0
+  m_Name: AnimationPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6933274241921742813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241921742808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6933274241125780997}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6933274241921742814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241921742808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3977a5e65e72f4db4b85ddba10d48dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id:
+    value: 5849714802219528852
+  itemName: AnimationPlayer
+  size: {x: 0, y: 0, z: 0}
+--- !u!114 &6933274241921742815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241921742808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61061896c654489a41575fc291bf4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceCodeAsset: {fileID: 0}
+  sourceCode: "// \u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u30AF\u30EA\u30C3\u30D7\u3092\u53D6\u5F97\r\nconst
+    animation = $.humanoidAnimation(\"Animation1\");\r\n\r\n\r\n// \u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u30AF\u30EA\u30C3\u30D7\u306E\u9577\u3055\u3092\u53D6\u5F97\r\nconst
+    animationLength = animation.getLength();\r\n\r\n\r\n// \u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u9069\u7528\u9593\u9694\u3092\u8A2D\u5B9A\uFF08\u30D7\u30EC\u30A4\u30E4\u30FC\u3078\u306E\u64CD\u4F5C\u306E\u983B\u5EA6\u5236\u9650\uFF09\r\nconst
+    interval = 0.1;\r\n\r\n\r\n// \u30AF\u30EA\u30C3\u30AF\u3057\u305F\u3068\u304D\u306E\u51E6\u7406\r\n$.onInteract(player
+    => {\r\n    // \u65E2\u306B\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u518D\u751F\u4E2D\u306E\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u3044\u308B\u5834\u5408\u306F\u30EA\u30BB\u30C3\u30C8\r\n   
+    if ($.state.player) {\r\n        $.state.player.setHumanoidPose(null);\r\n   
+    }\r\n\r\n\r\n    // \u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u306E\u6642\u9593\u3092\u30EA\u30BB\u30C3\u30C8\r\n   
+    $.state.animationTime = 0;\r\n\r\n\r\n    // \u30AF\u30EA\u30C3\u30AF\u3057\u305F\u4EBA\u3092\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u306E\u5BFE\u8C61\u306B\u3059\u308B\r\n   
+    $.state.player = player;\r\n});\r\n\r\n\r\n// \u6BCE\u30D5\u30EC\u30FC\u30E0\u5B9F\u884C\u3055\u308C\u308B\u51E6\u7406\r\n$.onUpdate(deltaTime
+    => {\r\n    // \u521D\u671F\u5316\r\n    if (!$.state.initialized) {\r\n       
+    $.state.initialized = true;\r\n        $.state.player = null;\r\n        $.state.animationTime
+    = 0;\r\n        $.state.waitingTime = 0;\r\n    }\r\n\r\n\r\n    // \u5BFE\u8C61\u306E\u30D7\u30EC\u30A4\u30E4\u30FC\u3092\u53D6\u5F97\u3002\u5BFE\u8C61\u304C\u306A\u3044\u3001\u307E\u305F\u306F\u9000\u5BA4\u6E08\u307F\u306A\u3069\u306E\u5834\u5408\u306F\u7D42\u4E86\r\n   
+    let player = $.state.player;\r\n    if (!player || !player.exists()) return;   
+    \r\n\r\n\r\n    // \u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u306E\u518D\u751F\u6642\u9593\u3092\u66F4\u65B0\r\n   
+    let animationTime = $.state.animationTime + deltaTime;\r\n\r\n\r\n    // \u518D\u751F\u6642\u9593\u304C\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u306E\u9577\u3055\u3092\u8D85\u3048\u3066\u3044\u305F\u3089\u30EA\u30BB\u30C3\u30C8\u3057\u3066\u7D42\u4E86\r\n   
+    if (animationTime > animationLength) {\r\n        if (player) {\r\n           
+    player.setHumanoidPose(null);\r\n        }\r\n       \r\n        $.state.player
+    = null;\r\n        return;\r\n    }\r\n\r\n\r\n    // \u524D\u56DE\u30DD\u30FC\u30BA\u3092\u8A2D\u5B9A\u3057\u3066\u304B\u3089\u306E\u6642\u9593\u3092\u66F4\u65B0\r\n   
+    let waitingTime = $.state.waitingTime + deltaTime;\r\n\r\n\r\n    // \u524D\u56DE\u30DD\u30FC\u30BA\u3092\u8A2D\u5B9A\u3057\u3066\u304B\u3089\u4E00\u5B9A\u6642\u9593\u304C\u7D4C\u904E\u3057\u3066\u3044\u305F\u5834\u5408\u306B\u30DD\u30FC\u30BA\u3092\u66F4\u65B0\r\n   
+    if (waitingTime >= interval) {\r\n        // \u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u30AF\u30EA\u30C3\u30D7\u304B\u3089\u73FE\u5728\u306E\u518D\u751F\u6642\u9593\u3067\u306E\u30DD\u30FC\u30BA\u3092\u53D6\u5F97\r\n       
+    let pose = animation.getSample(animationTime);\r\n\r\n\r\n        // \u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u30DD\u30FC\u30BA\u3092\u9069\u7528\r\n       
+    player.setHumanoidPose(pose);\r\n\r\n\r\n        // \u7D4C\u904E\u6642\u9593\u3092\u30EA\u30BB\u30C3\u30C8\r\n       
+    waitingTime = 0;\r\n    }\r\n\r\n\r\n    $.state.animationTime = animationTime;\r\n   
+    $.state.waitingTime = waitingTime;\r\n});"
+--- !u!114 &6933274241921742812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933274241921742808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff21d610f06941bd98a6fc9217c79607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humanoidAnimations:
+  - id: Animation1
+    animation: {fileID: -203655887218126122, guid: 0a7a6563a0ece5849a3120e62da6935a, type: 3}
+    humanoidAnimation: {fileID: 11400000, guid: 41fa4fe915d513245b7ece9b0ab44ef8, type: 2}
