@@ -17,6 +17,12 @@ const specialEffect = [];
 const count = 1;
 // @field(int)
 const price = 0;
+// @field(int)
+const enchantPower = 0;
+// @field(int)
+const durationPower = 0;
+// @field(int)
+const craftDifficulty = 0;
 // @field(bool)
 const useableAnvil = false;
 
@@ -32,6 +38,9 @@ $.onInteract(player => {
         specialEffect : specialEffect,
         count : count,
         price : price,
-        useableAnvil :useableAnvil
+        useableAnvil :useableAnvil,
+        enchantPower : enchantPower,
+        durationPower : durationPower,
+        craftDifficulty : craftDifficulty
     });
 });

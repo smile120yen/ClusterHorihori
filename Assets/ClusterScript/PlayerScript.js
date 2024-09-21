@@ -20,6 +20,15 @@ const CantUseItemText = _.playerLocalObject("CantUseItemText");
 const GoldUI = _.playerLocalObject("GoldUI");
 
 const updateInventory = () => {
+
+    if(savedData&&followItem){
+        if(savedData.inventoryData[savedData.currentSelectIndex] && savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed){
+            _.sendTo(followItem,"SetDefaultMovementSpeed",savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed);
+        }else{
+            _.sendTo(followItem,"SetDefaultMovementSpeed",1);
+        }
+    }
+
     updateInventoryView();
 }
 
@@ -280,6 +289,40 @@ const Initialize = () => {
     _.hideButton(2);
 }
 
+const AddItem = (arg)=>{
+    const isStackable = getStackable(arg.itemName);
+    const targetIndex = savedData.inventoryData.findIndex(inventoryData =>{
+        return inventoryData.itemName === arg.itemName && inventoryData.rarity === arg.rarity;
+    });
+    
+    if(savedData.inventoryData.length>=savedData.kabanSize && 
+        ( (targetIndex == -1 && isStackable ) || !isStackable)){
+        KabanMaxWarningText.setEnabled(false);
+        KabanMaxWarningText.setEnabled(true);
+        _.sendTo(followItem, "PlaySound", "Cancel");
+        return false;
+    }
+
+    if(!arg.duration || !arg.maxDuration){
+        arg.duration = getDefaultDuration(arg.itemName);
+        arg.maxDuration = getDefaultDuration(arg.itemName);
+    }
+
+    if(!arg.uuid){
+        arg.uuid = generateUUID();
+    }
+
+    arg.isStackable = isStackable;
+    
+    if(targetIndex == -1 || !isStackable){
+        savedData.inventoryData.push(arg);
+    }else{
+        savedData.inventoryData[targetIndex].count += arg.count;
+    }
+
+    return true;
+}
+
 
 _.onStart(() => {
     savedData = _.getPlayerStorageData();
@@ -308,39 +351,18 @@ _.onReceive((messageType, arg, sender) => {
 
     if(messageType === "getItem"){
         _.log("receve:getItem");
-
-        const isStackable = getStackable(arg.itemName);
-        const targetIndex = savedData.inventoryData.findIndex(inventoryData =>{
-            return inventoryData.itemName === arg.itemName && inventoryData.rarity === arg.rarity;
-        });
-        
-        if(savedData.inventoryData.length>=savedData.kabanSize && 
-            ( (targetIndex == -1 && isStackable ) || !isStackable)){
-            KabanMaxWarningText.setEnabled(false);
-            KabanMaxWarningText.setEnabled(true);
-            _.sendTo(followItem, "PlaySound", "Cancel");
-            return;
+        const success = AddItem(arg);
+        if(success){
+            _.sendTo(sender,"GetItemReceived",null);
         }
+        updateInventory();
+    }
 
-        if(!arg.duration || !arg.maxDuration){
-            arg.duration = getDefaultDuration(arg.itemName);
-            arg.maxDuration = getDefaultDuration(arg.itemName);
+    if(messageType === "getItemList"){
+        for(var itemData of arg){
+            AddItem(itemData);
         }
-
-        if(!arg.uuid){
-            arg.uuid = generateUUID();
-        }
-
-        arg.isStackable = isStackable;
-        
-        if(targetIndex == -1 || !isStackable){
-            savedData.inventoryData.push(arg);
-        }else{
-            savedData.inventoryData[targetIndex].count += arg.count;
-        }
-
         _.sendTo(sender,"GetItemReceived",null);
-
         updateInventory();
     }
 
@@ -445,6 +467,10 @@ _.onReceive((messageType, arg, sender) => {
         _.sendTo(sender,"itemChecked",itemData);
     }
 
+    if(messageType === "CheckHasItem"){
+        _.sendTo(sender,"CheckHasItemReceved",HasTargetItemName(arg));
+    }
+
     if(messageType === "AddMoney"){
         if(savedData.money){
             savedData.money += arg.count;
@@ -474,6 +500,16 @@ _.onReceive((messageType, arg, sender) => {
     }
 
 }, {item: true, player:true});
+
+
+const HasTargetItemName = (targetItemName) => {
+    for(itemData of savedData.inventoryData){
+        if(itemData.itemName == targetItemName){
+            return true;
+        }
+    }
+    return false;
+}
 
 const AttackCurrentItem = (target) => {
     if (!isCancelableMotion) return;
@@ -506,11 +542,6 @@ _.onButton(1, (isDown) => {
     if (isDown) {
         savedData.currentSelectIndex++;
         savedData.currentSelectIndex%=savedData.kabanSize;
-
-        if("baseMovementSpeed" in savedData.inventoryData[savedData.currentSelectIndex]){
-            _.sendTo(followItem,"SetDefaultMovementSpeed",savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed);
-        }
-
         _.log(JSON.stringify(savedData));
         updateInventory();
     }
@@ -541,7 +572,9 @@ _.onFrame(deltaTime => {
     dropCoolTime -= deltaTime;
 
     if(saveTime<=0){
-        _.setPlayerStorageData(savedData);
+        if(savedData){
+            _.setPlayerStorageData(savedData);
+        }
         saveTime = 5.0;
     }
 
@@ -550,7 +583,7 @@ _.onFrame(deltaTime => {
         const targetItem = savedData.inventoryData[savedData.currentSelectIndex];
         
         let motionMultiple = 1;
-        if(targetItem.motionMultiple)motionMultiple *= targetItem.motionMultiple;
+        if(targetItem && targetItem.motionMultiple)motionMultiple *= targetItem.motionMultiple;
 
         motionTime += deltaTime * motionMultiple;
         isPlayingMotion = playMotion(animation1, motionTime);

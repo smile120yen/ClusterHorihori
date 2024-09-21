@@ -10,7 +10,7 @@ const itemName = "cupperOre";
 //@field(string)
 const itemDisplayName = "銅鉱石";
 //@field(int)
-const comsumeDuration = 1;
+const consumeDuration = 1;
 //@field(int)
 const price = 10;
 //@field(int)
@@ -20,9 +20,11 @@ const respawnTime = 120;
 //@field(float)
 const dropChance = 0.2;
 //@field(int)
-const durationPower = 1;
+const durationPower = 2;
 //@field(int)
 const enchantPower = 1;
+//@field(int)
+const craftDifficulty = 1;
 
 $.onStart(() => {
     RespawnItem();
@@ -45,7 +47,9 @@ $.onReceive((requestName, arg, sender) => {
 
         let isDroped = false;
         const rand = Math.random();
-        if( rand < dropChance+arg.bonusDropChance || hp <= 0){
+        let newDropChance = dropChance;
+        if(arg.bonusDropChance) newDropChance += arg.bonusDropChance;
+        if( rand < newDropChance || hp <= 0){
             isDroped= true;
         }
 
@@ -84,7 +88,8 @@ $.onReceive((requestName, arg, sender) => {
                 useableAnvil : true,
                 rarity: newRarity,
                 durationPower : durationPower,
-                enchantPower : enchantPower
+                enchantPower : enchantPower,
+                craftDifficulty : craftDifficulty
             });
             
             let random_x = Math.random()*2-1;
@@ -100,15 +105,18 @@ $.onReceive((requestName, arg, sender) => {
             subNodeVisual.setEnabled(false);
             $.createItem(oreBreakedItem, $.getPosition(), $.getRotation());
             $.state.enable = false;
-            $.state.respawnTime = respawnTime;
+            $.state.respawnTime = respawnTime / $.getPlayersNear($.getPosition(),Infinity).length;
         }
-
+        
         $.state.hp = hp;
-
-        const newComsumeDuration = comsumeDuration-arg.durationReduce;
-        if(newComsumeDuration<1)newComsumeDuration=1;
-
-        sender.send("ReceiveDamage",newComsumeDuration);
+        
+        let newConsumeDuration = consumeDuration;
+        if(arg.durationReduce) {
+            newConsumeDuration -= arg.durationReduce;
+        }
+        if(newConsumeDuration<1)newConsumeDuration=1;
+        
+        sender.send("ReceiveDamage",newConsumeDuration);
     }
 });
 

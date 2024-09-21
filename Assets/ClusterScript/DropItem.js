@@ -27,6 +27,11 @@ $.onReceive((messageType, arg, sender) => {
     if(messageType === "ForceDestory"){
         $.Destroy();
     }
+
+    if(messageType === "FreezePosition"){
+        $.getUnityComponent("Rigidbody").unityProp.isKinematic = arg;
+        $.getUnityComponent("Rigidbody").unityProp.useGravity = !arg;
+    }
     
 }, {item: true, player:true});
 

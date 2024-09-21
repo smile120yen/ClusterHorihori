@@ -19,35 +19,61 @@ const allItemList =["cupperOre","clystal","ironOre","goldOre",
     "turuhashiNormal","turuhashiGold","turuhashiIron","turuhashiCupper","turuhashiClystal",
     "trophyRabbitCupper","trophyRabbitIron","trophyRabbitGold","trophyRabbitClystal"];
 
-const getRandomItem = (usedItemList) => {
+const defaultCraftProgressMax = 2;
+const extracterUI = $.worldItemReference("ExtracterUI");
 
-    $.log(JSON.stringify(usedItemList));
-
-    const newItem = {
-        count :1,
-        motionMultiple : 1
-    }
-
-    //使用したアイテムの個数に応じてランダムで完成品の見た目が決まる
-    let usedItemCount = 0;
+const getPriorityItemName = (usedItemList) => {
+    //usedItemListから一番多く使っているアイテムの名前を返す
+    let usedItemCountList = [];
     for(item of usedItemList){
-        usedItemCount += item.count;
+        if(usedItemCountList[item.itemName]){
+            usedItemCountList[item.itemName].count+=item.count;
+        }else{
+            usedItemCountList[item.itemName] = { count: item.count };
+        }
     }
-
-    let randCount = Math.floor(Math.random() * usedItemCount)+1;
     
     let priorityItemName = "";
-    for(item of usedItemList){
-        randCount -= item.count;
-        if(randCount<=0){
-            priorityItemName = item.itemName;
+    let maxCount = 0;
+    for (let itemName in usedItemCountList) {
+        if (usedItemCountList[itemName].count > maxCount) {
+            maxCount = usedItemCountList[itemName].count;
+            priorityItemName = itemName;
         }
     }
 
+    return priorityItemName;
+}
+
+const getBasePrice = (usedItemList) =>{
     let basePrice = 0;
     for(item of usedItemList){
         basePrice += item.price;
     }
+    return basePrice;
+}
+
+const getItemTotalCount = (usedItemList) =>{
+    let usedItemCount =0;
+    for(item of usedItemList){
+        usedItemCount += item.count;
+    }
+    return usedItemCount;
+}
+
+const getRandomItem = (usedItemList) => {
+
+    $.log(JSON.stringify(usedItemList));
+
+    let newItem = {
+        count :1,
+        motionMultiple : 1
+    }
+
+    let priorityItemName = getPriorityItemName(usedItemList);
+    let usedItemCount =getItemTotalCount(usedItemList);
+    let basePrice = getBasePrice(usedItemList);
+    let enchantPower = $.state.enchantPower;
     
     if(usedItemCount>=10){
         newItem.itemName = "turuhashi";
@@ -58,7 +84,7 @@ const getRandomItem = (usedItemList) => {
         newItem.baseMovementSpeed = 1;
         newItem.bonusDropChance = 0;
         newItem.luck = 1;
-        newItem.craftSpeed = 1;
+        newItem.craftSpeed = 0;
         newItem.durationReduce = 0;
         newItem.motionMultiple = 1;
     }else{
@@ -118,6 +144,7 @@ const getRandomItem = (usedItemList) => {
             if(newItem.maxDuration!=-1){   
                 newItem.duration *= 1.3;
                 newItem.maxDuration *= 1.3;
+                enchantPower *= 1.3;
             }
             newItem.price *= 1.3;
             break;
@@ -125,6 +152,7 @@ const getRandomItem = (usedItemList) => {
             if(newItem.maxDuration!=-1){   
                 newItem.duration *= 1.6;
                 newItem.maxDuration *= 1.6;
+                enchantPower *= 1.6;
             }
             newItem.price *= 1.6;
             break;
@@ -132,6 +160,7 @@ const getRandomItem = (usedItemList) => {
             if(newItem.maxDuration!=-1){   
                 newItem.duration *= 2;
                 newItem.maxDuration *= 2;
+                enchantPower *= 2;
             }
             newItem.price *= 2;
             break;
@@ -139,6 +168,7 @@ const getRandomItem = (usedItemList) => {
             if(newItem.maxDuration!=-1){   
                 newItem.duration *= 3;
                 newItem.maxDuration *= 3;
+                enchantPower *= 3;
             }
             newItem.price *= 3;
             break;
@@ -167,29 +197,15 @@ const getRandomItem = (usedItemList) => {
             }
             break;
     }
-
-    const randSpecialEffect = Math.floor(Math.random()*5);
-    switch(randSpecialEffect){
-        case 0:
-            newItem.specialEffect.push({effectName:"ドロップ鉱石強化",power:1});
-            newItem.luck = 2;
-            break;
-        case 1:
-            newItem.specialEffect.push({effectName:"移動速度アップ",power:1});
-            newItem.baseMovementSpeed = 1.3;
-            break;
-        case 2:
-            newItem.specialEffect.push({effectName:"ドロップ確率アップ",power:1});
-            newItem.bonusDropChance = 0.2;
-            break;
-        case 3:
-            newItem.specialEffect.push({effectName:"クラフト速度アップ",power:1});
-            newItem.craftSpeed = 1;
-            break;
-        case 4:
-            newItem.specialEffect.push({effectName:"耐久力消費軽減",power:1});
-            newItem.durationReduce = 1;
-            break;
+    
+    if(newItem.maxDuration!=-1){
+        while(enchantPower>0){
+            const randEnchant = Math.random()*100;
+            if(randEnchant<=enchantPower){
+                newItem = AddRandomSpecialEffect(newItem);
+            }
+            enchantPower -= 100;
+        }
     }
 
     newItem.price = Math.floor(newItem.price);
@@ -202,45 +218,119 @@ const getRandomItem = (usedItemList) => {
     return newItem;
 }
 
+const AddRandomSpecialEffect = (itemData) =>{
+    let newItemData = itemData;
+
+    let specialEffectList = ["ドロップ鉱石強化","移動速度アップ","ドロップ確率アップ","クラフト速度アップ","耐久力消費軽減","採掘速度アップ"];
+
+    for(specialEffectData of itemData.specialEffect){
+        if(specialEffectData.power>=5){
+            specialEffectList = specialEffectList.filter(n => n != specialEffectData.effectName);
+        }
+    }
+    
+    if(specialEffectList.length<=0) return newItemData;
+    const randSpecialEffect = Math.floor(Math.random()*specialEffectList.length);
+    const targetSpecialEffectName = specialEffectList[randSpecialEffect];
+
+
+    switch(targetSpecialEffectName){
+        case "ドロップ鉱石強化":
+            newItemData = AddSpecialEffectText(newItemData,targetSpecialEffectName);
+            newItemData.luck += 1;
+            break;
+        case "移動速度アップ":
+            newItemData = AddSpecialEffectText(newItemData,targetSpecialEffectName);
+            newItemData.baseMovementSpeed += 0.4;
+            break;
+        case "ドロップ確率アップ":
+            newItemData = AddSpecialEffectText(newItemData,targetSpecialEffectName);
+            newItemData.bonusDropChance += 0.1;
+            break;
+        case "クラフト速度アップ":
+            newItemData = AddSpecialEffectText(newItemData,targetSpecialEffectName);
+            newItemData.craftSpeed += 1;
+            break;
+        case "耐久力消費軽減":
+            newItemData = AddSpecialEffectText(newItemData,targetSpecialEffectName);
+            newItemData.durationReduce += 1;
+            break;
+        case "採掘速度アップ":
+            newItemData = AddSpecialEffectText(newItemData,targetSpecialEffectName);
+            newItemData.motionMultiple += 0.2;
+            break;
+    }
+
+    return newItemData;
+}
+
+const AddSpecialEffectText = (itemData,effectName) => {
+    const newItemData = JSON.parse(JSON.stringify(itemData));
+    const index = newItemData.specialEffect.findIndex(item => item.effectName == effectName);
+
+    if(index == -1){
+        newItemData.specialEffect.push({effectName:effectName,power:1});
+    }else{
+        newItemData.specialEffect[index].power++;
+    }
+
+    return newItemData;
+}
+
 
 const updateUsedItemText = () => {
-    const itemList = $.state.usedItemList;
+    const usedItemList = $.state.usedItemList;
+    const itemCountList = GetItemCountList(usedItemList);
+    const itemTotalCount = getItemTotalCount(usedItemList);
+
+    let text = "使用済みの素材アイテム:\n";
+    for(const itemCountData of itemCountList){
+        text += itemCountData.itemDisplayName + " " + itemCountData.count+"コ\n";
+    }
+    if(itemCountList.length<=0){
+        text += "なし"
+    }
+
+    ItemText.unityProp.text = text;
+
+    let newExpectationText = "";
+    if(0<itemTotalCount){
+        if(itemTotalCount<10){
+            newExpectationText +="素材が10個以下のため、装飾品を制作します\n";
+        }else{        
+            newExpectationText +="ツルハシを制作します\n";   
+        }
+
+        let basePrice = getBasePrice(usedItemList);
+        newExpectationText +="ベース価格："+basePrice +"\n";
+        newExpectationText +="ベース耐久力："+$.state.durationPower +"\n";
+
+        let rarityPower = 0;
+        if(itemTotalCount>0){
+            rarityPower = ($.state.rarityPower/itemTotalCount).toFixed(1);
+        }
+        newExpectationText +="レアリティパワー："+ rarityPower +"\n";
+        newExpectationText +="エンチャント追加確率："+$.state.enchantPower +"%";
+    }else{
+        //アイテムが1個も入っていないとき
+        newExpectationText = "";
+    }
+
+    ExpectationItemText.unityProp.text = newExpectationText;
+}
+
+const GetItemCountList = (usedItemList) => {
     const itemCountList = [];
-    let itemTotalCount = 0;
-    for(const itemData of itemList){
+
+    for(const itemData of usedItemList){
         const index = itemCountList.findIndex(({itemName})=> itemName === itemData.itemName);
         if(index == -1){
             itemCountList.push({itemName:itemData.itemName,itemDisplayName:itemData.itemDisplayName,count:itemData.count});
         }else{
             itemCountList[index].count += itemData.count;
         }
-        itemTotalCount += itemData.count;
     }
-
-    let text = "素材アイテム\n";
-    for(const itemCountData of itemCountList){
-        text += itemCountData.itemDisplayName + " " + itemCountData.count+"コ\n";
-    }
-
-    ItemText.unityProp.text = text;
-
-    let newExpectationText = "";
-    if(itemTotalCount<10){
-        newExpectationText +="素材が10個以下のため、装飾品を制作します\n";
-    }else{        
-        newExpectationText +="ツルハシを制作します\n";
-    }
-
-    newExpectationText +="耐久性："+$.state.durationPower +"\n";
-
-    let rarityPower = 0;
-    if(itemTotalCount>0){
-        rarityPower = ($.state.rarityPower/itemTotalCount).toFixed(1);
-    }
-    newExpectationText +="レアリティパワー："+ rarityPower +"\n";
-    newExpectationText +="エンチャント追加確率："+$.state.enchantPower +"%";
-
-    ExpectationItemText.unityProp.text = newExpectationText;
+    return itemCountList;
 }
 
 const updateProgressView = () => {
@@ -260,30 +350,10 @@ const updateCompleteView = (finishingProductItem) =>{
     }
 
     itemIcon = $.subNode(finishingProductItem.itemName);
-    itemIcon.setEnabled(true);
-
-    let rarityText = "";
-            
-    for(var i=0; i<5; i++){
-        if(finishingProductItem.rarity>i){
-            rarityText += "★";
-        }else{
-            rarityText += "☆";
-        }
-    }
-
-    let specialEffectText = "";
-
-    if(finishingProductItem.specialEffect.length>0){
-        for(const[index,specialEffect] of finishingProductItem.specialEffect.entries()){
-            specialEffectText += specialEffect.effectName+RomanNum(specialEffect.power);
-            if(index < finishingProductItem.specialEffect.length-1){
-                specialEffectText += ",";
-            }
-        }
-    }else{
-        specialEffectText = "なし";
-    }
+    itemIcon.setEnabled(true);            
+    
+    let rarityText = GetRarityText(finishingProductItem);
+    let specialEffectText = GetSpecialEffectText(finishingProductItem);
 
     if(finishingProductItem.maxDuration!=-1){
         completeItemText.unityProp.text = finishingProductItem.itemDisplayName + "　" + rarityText+"\n"
@@ -294,6 +364,34 @@ const updateCompleteView = (finishingProductItem) =>{
         +"売値："+finishingProductItem.price;
     }
 } 
+
+const GetRarityText = (itemData) => {
+    let rarityText = "";
+    for(var i=0; i<5; i++){
+        if(itemData.rarity>i){
+            rarityText += "★";
+        }else{
+            rarityText += "☆";
+        }
+    }
+    return rarityText;
+}
+
+const GetSpecialEffectText= (itemData) => {    
+    let specialEffectText = "";
+    if(itemData.specialEffect && itemData.specialEffect.length>0){
+        for(const[index,specialEffect] of itemData.specialEffect.entries()){
+            specialEffectText += specialEffect.effectName+RomanNum(specialEffect.power);
+            if(index < itemData.specialEffect.length-1){
+                specialEffectText += ",";
+            }
+        }
+    }else{
+        specialEffectText = "なし";
+    }
+
+    return specialEffectText;
+}
 
 
 const RomanNum = (num) =>{
@@ -311,17 +409,41 @@ const RomanNum = (num) =>{
     }
 }
 
+const UpdateCraftPowers =()=>{
+    let usedItemList = $.state.usedItemList;
+    let durationPower = 0;
+    let rarityPower = 0;
+    let enchantPower = 100;
+    let craftProgressMax = defaultCraftProgressMax;
+
+    for(itemData of usedItemList){
+        durationPower += itemData.durationPower??1;
+        enchantPower += itemData.enchantPower??1;
+        rarityPower += itemData.rarity??1;
+        craftProgressMax += itemData.craftDifficulty??1;
+    }
+
+    if(enchantPower<100) enchantPower = 100;
+
+    $.state.durationPower = durationPower;
+    $.state.rarityPower = rarityPower;
+    $.state.enchantPower = enchantPower;
+    $.state.craftProgressMax = craftProgressMax;
+}
+
 $.onStart(()=>{
     $.state.interactCoolTime = 0;
     $.state.usedItemList = [];
     $.state.spawnDummyItemList = [];
-    $.state.craftProgressMax = 10;
-    $.state.currentCraftProgress = 0;
     $.state.usingPlayer = null;
     $.state.removeAllDummyItem = false;
     $.state.removeAllDummyItemWaitTime = 0;
     $.state.contentWarningEnableTime = 0;
     $.state.nothingItemWarningEnableTime = 0;
+    $.state.enableCanvas = false;
+    
+    $.state.currentCraftProgress = 0;
+    $.state.craftProgressMax = defaultCraftProgressMax;
     
     $.state.durationPower = 0;
     $.state.rarityPower = 0;
@@ -348,7 +470,10 @@ $.onReceive((requestName, arg, sender) => {
         damagedSound.play();
         sender.send("ReceiveDamage",1);
 
-        $.state.currentCraftProgress++;
+        let craftSpeed = 1;
+        if(arg.craftSpeed) craftSpeed += arg.craftSpeed;
+
+        $.state.currentCraftProgress+= craftSpeed;
         if($.state.currentCraftProgress>= $.state.craftProgressMax){
             completeSound.play();
             ProgressWaku.setEnabled(false);
@@ -361,17 +486,19 @@ $.onReceive((requestName, arg, sender) => {
 
             updateCompleteView($.state.finishingProductItem);
                     
+            /*
             $.state.durationPower = 0;
             $.state.rarityPower = 0;
             $.state.enchantPower = 0;
+            */
             
-            spawnDummyItemList = $.state.spawnDummyItemList;
+            //spawnDummyItemList = $.state.spawnDummyItemList;
             $.state.removeAllDummyItem = true;
-
             $.state.usedItemList = [];
         }
+        UpdateCraftPowers();
         updateProgressView();
-        updateUsedItemText();        
+        updateUsedItemText();
     }
 
     if(requestName == "itemRemoved"){
@@ -379,10 +506,13 @@ $.onReceive((requestName, arg, sender) => {
         
         $.log("Receve itemRemoved:"+JSON.stringify(arg));
         
-        $.state.durationPower += arg.durationPower;
-        $.state.enchantPower += arg.enchantPower;
+        /*
+        $.state.durationPower += arg.durationPower??1;
+        $.state.enchantPower += arg.enchantPower??0;
+        $.state.rarityPower += arg.rarity??1;
+        $.state.craftProgressMax += arg.craftDifficulty??1;
         if($.state.enchantPower<100) $.state.enchantPower = 100;
-        $.state.rarityPower += arg.rarity;
+        */
 
         itemList.push(arg);
 
@@ -390,29 +520,13 @@ $.onReceive((requestName, arg, sender) => {
 
         $.state.usedItemList = itemList;
 
-
-        let addPositon = new Vector3(0,1.5,0);
-        let spawnPosition = $.getPosition().clone().Add(addPositon);
-
-        const usedItem = new WorldItemTemplateId(arg.itemName);
-        let followingItem = $.createItem(usedItem, spawnPosition, $.getRotation());
-
-        const spawnDummyItemList = $.state.spawnDummyItemList;
-        spawnDummyItemList.push(followingItem);
-        $.state.spawnDummyItemList = spawnDummyItemList;
-
-        $.log("spawnDummyItemList:"+spawnDummyItemList.length+","+JSON.stringify(spawnDummyItemList));
+        SpawnDummyOreItem(arg);
 
         putonSound.play();
 
+        UpdateCraftPowers();
         updateProgressView();
         updateUsedItemText();
-
-    }
-
-    if(requestName == "GetItemReceived"){
-        getItemSound.play();
-        removeUsingPlayer();
     }
 
     if(requestName === "itemChecked"){
@@ -438,13 +552,65 @@ $.onReceive((requestName, arg, sender) => {
         }           
     }
 
+    if(requestName === "Extract"){        
+        const usingPlayer = $.state.usingPlayer;
+        const usedItemList = $.state.usedItemList;
+
+        const targetItemData = usedItemList.pop();
+        if(targetItemData){
+            try{
+                usingPlayer.send("getItem",targetItemData);
+                RemoveDummyItemToName(targetItemData.itemName);
+                getItemSound.play();
+            }catch{
+                usedItemList.push(targetItemData);
+            }
+        }
+
+        $.log(JSON.stringify(usedItemList)+","+JSON.stringify(usingPlayer));
+        if(usedItemList.length<=0){
+            removeUsingPlayer();
+        }
+        
+        $.state.usedItemList = usedItemList;
+        UpdateCraftPowers();
+        updateUsedItemText();
+        updateProgressView();
+    }
+
 }, {item: true, player:true});
 
 
+const SpawnDummyOreItem = (itemData) =>{    
+    let addPositon = new Vector3(0,1.5,0);
+    let spawnPosition = $.getPosition().clone().Add(addPositon);
+
+    const usedItem = new WorldItemTemplateId(itemData.itemName);
+    let followingItem = $.createItem(usedItem, spawnPosition, $.getRotation());
+
+    const spawnDummyItemList = $.state.spawnDummyItemList;
+    spawnDummyItemList.push({itemName:itemData.itemName,itemHandle:followingItem});
+    $.state.spawnDummyItemList = spawnDummyItemList;
+}
+
+const RemoveDummyItemToName = (itemName) =>{
+    const dummyItemList = $.state.spawnDummyItemList;
+    let index = dummyItemList.findIndex(item => item.itemName == itemName);
+
+    if(index != -1){
+        dummyItemList[index].itemHandle.send("ForceDestory",null);
+        dummyItemList.splice(index,1);
+    }
+
+    $.state.spawnDummyItemList = dummyItemList;
+}
+
 const removeUsingPlayer = () =>{
+    $.log("removeUsingPlayer");
     $.state.usingPlayer = null;
     $.state.removeAllDummyItem = true;
     $.state.currentCraftProgress = 0;
+    $.state.craftProgressMax = defaultCraftProgressMax;
     $.state.finishingProductItem = null;
     $.state.usedItemList = [];
     ProgressWaku.setEnabled(true);
@@ -454,8 +620,8 @@ const removeUsingPlayer = () =>{
 }
 
 $.onUpdate((deltaTime) => {    
-    $.state.contentWarningEnableTime = $.state.contentWarningEnableTime - deltaTime;
-    $.state.nothingItemWarningEnableTime = $.state.nothingItemWarningEnableTime - deltaTime;
+    $.state.contentWarningEnableTime -= deltaTime;
+    $.state.nothingItemWarningEnableTime -= deltaTime;
     $.state.interactCoolTime -= deltaTime;
     $.state.removeAllDummyItemWaitTime -= deltaTime;
 
@@ -467,10 +633,14 @@ $.onUpdate((deltaTime) => {
         nothingItemWarning.setEnabled(false);
     }
 
-    if($.getPlayersNear($.getPosition(), 3).length>=1){
+    if($.getPlayersNear($.getPosition(), 3).length>=1 && !$.state.enableCanvas){
         canvas.setEnabled(true);
-    }else{
+        extracterUI.send("SetEnable",true);
+        $.state.enableCanvas = true;
+    }else if($.getPlayersNear($.getPosition(), 3).length<=0 && $.state.enableCanvas){
         canvas.setEnabled(false);
+        extracterUI.send("SetEnable",false);
+        $.state.enableCanvas = false;
     }
 
     if($.state.usingPlayer && !$.state.usingPlayer.exists()){
@@ -495,22 +665,20 @@ $.onUpdate((deltaTime) => {
         const spawnDummyItemList = $.state.spawnDummyItemList;
 
         if(spawnDummyItemList.length>0){
-            const targetItemHandle = spawnDummyItemList.pop();
-            if(targetItemHandle){
+            const dummyItemData = spawnDummyItemList.pop();
+            if(dummyItemData){
                 try{
-                    targetItemHandle.send("ForceDestory",null);
+                    dummyItemData.itemHandle.send("ForceDestory",null);
                 }catch{
-                    spawnDummyItemList.push(targetItemHandle);
+                    spawnDummyItemList.push(dummyItemData);
                 }
             }
+        }else{            
+            $.state.removeAllDummyItem = false;
         }
 
         $.state.spawnDummyItemList = spawnDummyItemList;
         $.state.removeAllDummyItemWaitTime = 0.01;
-
-        if(spawnDummyItemList.length<=0){
-            $.state.removeAllDummyItem = false;
-        }
     }
 
     if($.state.usingPlayer && $.state.usingPlayer != null && $.state.usingPlayer.exists()){
@@ -530,7 +698,13 @@ $.onInteract(player => {
     if($.state.usingPlayer != null && $.state.usingPlayer.id != player.id && $.state.usingPlayer.exists())return;
 
     if($.state.currentCraftProgress>= $.state.craftProgressMax) {
-        player.send("getItem",$.state.finishingProductItem);
+        try{            
+            player.send("getItem",$.state.finishingProductItem);
+            getItemSound.play();
+            removeUsingPlayer();
+        }catch{
+
+        }
         return;
     }
 

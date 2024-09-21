@@ -41,6 +41,13 @@ namespace Baxter.ClusterScriptExtensions.Editor.Inspector
                 ResetValues(serializedObject);
                 Apply(serializedObject);
             }
+
+            if (GUILayout.Button("Force Reload"))
+            {
+                serializedObject.ApplyModifiedProperties();
+                ReloadFields(serializedObject, false);
+                Apply(serializedObject);
+            }
         }
 
         private static void ResetValues(SerializedObject obj)

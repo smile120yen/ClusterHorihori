@@ -1,5 +1,107 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &257685576789702075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2936233850859176117}
+  - component: {fileID: 8189276998261058792}
+  - component: {fileID: 4936606325302647937}
+  - component: {fileID: 8014937293874323939}
+  m_Layer: 14
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2936233850859176117
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257685576789702075}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3357829888896442338}
+  - {fileID: 6329007335257312044}
+  m_Father: {fileID: 4412907405099125890}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.929}
+  m_SizeDelta: {x: 700, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &8189276998261058792
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257685576789702075}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &4936606325302647937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257685576789702075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!114 &8014937293874323939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257685576789702075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4412907405099125918
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +117,6 @@ GameObject:
   - component: {fileID: 4412907405099125892}
   - component: {fileID: 4412907405099125893}
   - component: {fileID: 4412907405099125895}
-  - component: {fileID: 4412907405099125894}
   m_Layer: 14
   m_Name: GetTuruhashiDummyCube
   m_TagString: Untagged
@@ -36,6 +137,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4412907406391767691}
+  - {fileID: 2936233850859176117}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61061896c654489a41575fc291bf4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceCodeAsset: {fileID: 0}
+  sourceCodeAsset: {fileID: 5022602860645237092, guid: 797c8c7e85fbbbf428d651cde8b5a322, type: 3}
   sourceCode: "const pickupSound = $.audio(\"Pickup\");\r\n\r\n// @field(string)\r\nconst
     itemName = \"turuhashiNormal\";;\r\n// @field(string)\r\nconst itemDisplayName
     = \"\u3059\u3070\u3084\u3044\u3064\u308B\u306F\u3057\";;\r\n// @field(int)\r\nconst
@@ -158,196 +260,9 @@ MonoBehaviour:
   - id: Pickup
     audioClip: {fileID: 8300000, guid: 188756bdaa77d8847a4ba2c4462616b3, type: 3}
     loop: 0
---- !u!114 &4412907405099125894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4412907405099125918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b823bd601c25d6643a680126a20d89c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateCode: {fileID: 5022602860645237092, guid: 93cdc8beb3f28624fba03d9ae1ab660c, type: 3}
-  extensionFields:
-  - fieldName: itemName
-    type: 3
-    fieldDefinedLocation:
-      startLine: 4
-      startColumn: 6
-      endLine: 4
-      endColumn: 34
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: turuhashiNormal
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: turuhashiNormal
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: itemDisplayName
-    type: 3
-    fieldDefinedLocation:
-      startLine: 6
-      startColumn: 6
-      endLine: 6
-      endColumn: 34
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: "\u3059\u3070\u3084\u3044\u3064\u308B\u306F\u3057"
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: "\u3059\u3070\u3084\u3044\u3064\u308B\u306F\u3057"
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: duration
-    type: 1
-    fieldDefinedLocation:
-      startLine: 8
-      startColumn: 6
-      endLine: 8
-      endColumn: 19
-    boolInitialValue: 0
-    intInitialValue: 15
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 15
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: maxDuration
-    type: 1
-    fieldDefinedLocation:
-      startLine: 10
-      startColumn: 6
-      endLine: 10
-      endColumn: 22
-    boolInitialValue: 0
-    intInitialValue: 15
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 15
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: motionMultiple
-    type: 2
-    fieldDefinedLocation:
-      startLine: 12
-      startColumn: 6
-      endLine: 12
-      endColumn: 24
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 2
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 2
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: rarity
-    type: 1
-    fieldDefinedLocation:
-      startLine: 14
-      startColumn: 6
-      endLine: 14
-      endColumn: 17
-    boolInitialValue: 0
-    intInitialValue: 1
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 1
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: count
-    type: 1
-    fieldDefinedLocation:
-      startLine: 17
-      startColumn: 6
-      endLine: 17
-      endColumn: 15
-    boolInitialValue: 0
-    intInitialValue: 1
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 1
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: price
-    type: 1
-    fieldDefinedLocation:
-      startLine: 19
-      startColumn: 6
-      endLine: 19
-      endColumn: 15
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
+  - id: Cancel
+    audioClip: {fileID: 8300000, guid: b86c413e68c9a9d41b109f6f8c3ac282, type: 3}
+    loop: 0
 --- !u!1 &4412907406391767688
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,3 +435,159 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 4412907406391767693}
   m_maskType: 0
+--- !u!1 &5684015741204668423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3357829888896442338}
+  - component: {fileID: 868966151021498882}
+  - component: {fileID: 2614015000390295598}
+  m_Layer: 14
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3357829888896442338
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684015741204668423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2936233850859176117}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &868966151021498882
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684015741204668423}
+  m_CullTransparentMesh: 1
+--- !u!114 &2614015000390295598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684015741204668423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8734047284110421372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6329007335257312044}
+  - component: {fileID: 6608859883128410891}
+  - component: {fileID: 1633681384586701442}
+  m_Layer: 14
+  m_Name: FukidashiText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6329007335257312044
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734047284110421372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2936233850859176117}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6608859883128410891
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734047284110421372}
+  m_CullTransparentMesh: 1
+--- !u!114 &1633681384586701442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734047284110421372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u65B0\u5165\u308A\u304B\u3044\uFF1F\n\u30DC\u30ED\u3067\u3088\u3051\u308A\u3083\u30C4\u30EB\u30CF\u30B7\u3092\u3084\u308B\u305C"

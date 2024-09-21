@@ -38,8 +38,10 @@ $.onGrab((isGrab,isLeftHand,player) => {
 
 $.onReceive((messageType, arg, sender) => {
     if(messageType === "SetDefaultMovementSpeed"){
+        $.log("SetDefaultMovementSpeed:"+arg);
+        let followingPlayer = $.state.followingPlayer;
         $.state.defaultMovementSpeed = arg;
-        player.setMoveSpeedRate($.state.defaultMovementSpeed);
+        followingPlayer.setMoveSpeedRate($.state.defaultMovementSpeed);
     }
 
     if (messageType === "DropItem") {
@@ -120,7 +122,7 @@ $.onUpdate((deltaTime) => {
         const damageMessageCashe =$.state.damageMessageCashe;
         if(damageMessageCashe.length>0){
             const damageMessageTarget =  damageMessageCashe.shift();
-            $.log("damage送信");
+            $.log("send:damage");
             try{
                 damageMessageTarget.send("damage", $.state.damagedItem);
             }catch{

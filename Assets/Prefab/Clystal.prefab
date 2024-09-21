@@ -5014,37 +5014,42 @@ MonoBehaviour:
     = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual
     = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\n\r\n//@field(string)\r\nconst
     itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-    comsumeDuration = 5;;\r\n//@field(int)\r\nconst price = 50;;\r\n//@field(int)\r\nconst
+    consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
     maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-    dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 1;;\r\n//@field(int)\r\nconst
-    enchantPower = 3;;\r\n\r\n$.onStart(() => {\r\n    RespawnItem();\r\n    $.state.itemUsePlayers
-    = [];\r\n});\r\n\r\n\r\n$.onInteract(player => {\r\n    player.send(\"AttackCurrentItem\",null);\r\n});\r\n\r\n\r\n$.onReceive((requestName,
+    dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
+    enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
+    => {\r\n    RespawnItem();\r\n    $.state.itemUsePlayers = [];\r\n});\r\n\r\n\r\n$.onInteract(player
+    => {\r\n    player.send(\"AttackCurrentItem\",null);\r\n});\r\n\r\n\r\n$.onReceive((requestName,
     arg, sender) => {\r\n    if (requestName == \"damage\") {\r\n        $.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n       
     $.sendSignalCompat(\"this\", \"damage\");\r\n\r\n        let hp = $.state.hp;\r\n       
     hp -= 1;\r\n\r\n        let isDroped = false;\r\n        const rand = Math.random();\r\n       
-    if( rand < dropChance || hp <= 0){\r\n            isDroped= true;\r\n       
-    }\r\n\r\n        let luck = 1;\r\n        if(arg.luck)luck = arg.luck;\r\n\r\n       
-    const rarityRand = Math.floor(Math.random()*100);\r\n\r\n        let newRarity
-    = 1;\r\n        if(rarityRand<55){\r\n            newRarity = 1;\r\n        }\r\n       
-    else if(rarityRand<75){\r\n            newRarity = 2;\r\n        }\r\n       
-    else if(rarityRand<85){\r\n            newRarity = 3;\r\n        }\r\n       
-    else if(rarityRand<95){\r\n            newRarity = 4;\r\n        }else{\r\n           
-    newRarity = 5;\r\n        }\r\n\r\n        if(luck<newRarity)newRarity = luck;\r\n\r\n\r\n       
-    if(isDroped){\r\n            let spawnPosition = $.getPosition().clone().add(new
+    let newDropChance = dropChance;\r\n        if(arg.bonusDropChance) newDropChance
+    += arg.bonusDropChance;\r\n        if( rand < newDropChance || hp <= 0){\r\n           
+    isDroped= true;\r\n        }\r\n\r\n        let luck = 1;\r\n        if(arg.luck)luck
+    = arg.luck;\r\n\r\n        const rarityRand = Math.floor(Math.random()*100);\r\n\r\n       
+    let newRarity = 1;\r\n        if(rarityRand<55){\r\n            newRarity = 1;\r\n       
+    }\r\n        else if(rarityRand<75){\r\n            newRarity = 2;\r\n       
+    }\r\n        else if(rarityRand<85){\r\n            newRarity = 3;\r\n       
+    }\r\n        else if(rarityRand<95){\r\n            newRarity = 4;\r\n       
+    }else{\r\n            newRarity = 5;\r\n        }\r\n\r\n        if(luck<newRarity)newRarity
+    = luck;\r\n\r\n\r\n        if(isDroped){\r\n            let spawnPosition = $.getPosition().clone().add(new
     Vector3(0,0.7,0));\r\n            let followingItem = $.createItem(dropKousekiItem,
     spawnPosition, $.getRotation());\r\n            followingItem.send(\"setStatus\",{\r\n               
     itemName: itemName,\r\n                itemDisplayName: itemDisplayName,\r\n               
     price : price,\r\n                count : 1,\r\n                useableAnvil
     : true,\r\n                rarity: newRarity,\r\n                durationPower
-    : durationPower,\r\n                enchantPower : enchantPower\r\n           
-    });\r\n            \r\n            let random_x = Math.random()*2-1;\r\n           
-    let random_z = Math.random()*2-1;\r\n            followingItem.addImpulsiveForce(new
-    Vector3(random_x,4,random_z));\r\n        }\r\n        \r\n\r\n        if(hp>0){\r\n           
-    damagedSound.play();\r\n        }else{\r\n            breakedSound.play();\r\n           
-    subNodeVisual.setEnabled(false);\r\n            $.createItem(oreBreakedItem,
-    $.getPosition(), $.getRotation());\r\n            $.state.enable = false;\r\n           
-    $.state.respawnTime = respawnTime;\r\n        }\r\n\r\n        $.state.hp = hp;\r\n\r\n       
-    sender.send(\"ReceiveDamage\",comsumeDuration);\r\n    }\r\n});\r\n\r\n$.onUpdate((deltaTime)
+    : durationPower,\r\n                enchantPower : enchantPower,\r\n               
+    craftDifficulty : craftDifficulty\r\n            });\r\n            \r\n           
+    let random_x = Math.random()*2-1;\r\n            let random_z = Math.random()*2-1;\r\n           
+    followingItem.addImpulsiveForce(new Vector3(random_x,4,random_z));\r\n       
+    }\r\n        \r\n\r\n        if(hp>0){\r\n            damagedSound.play();\r\n       
+    }else{\r\n            breakedSound.play();\r\n            subNodeVisual.setEnabled(false);\r\n           
+    $.createItem(oreBreakedItem, $.getPosition(), $.getRotation());\r\n           
+    $.state.enable = false;\r\n            $.state.respawnTime = respawnTime / $.getPlayersNear($.getPosition(),Infinity).length;\r\n       
+    }\r\n        \r\n        $.state.hp = hp;\r\n        \r\n        let newConsumeDuration
+    = consumeDuration;\r\n        if(arg.durationReduce) {\r\n            newConsumeDuration
+    -= arg.durationReduce;\r\n        }\r\n        if(newConsumeDuration<1)newConsumeDuration=1;\r\n       
+    \r\n        sender.send(\"ReceiveDamage\",newConsumeDuration);\r\n    }\r\n});\r\n\r\n$.onUpdate((deltaTime)
     => {\r\n    if(!$.state.enable){\r\n        $.state.respawnTime-=deltaTime;\r\n       
     if($.state.respawnTime<=0){\r\n            RespawnItem();\r\n        }\r\n   
     }\r\n});\r\n\r\nconst RespawnItem = () => {\r\n    subNodeVisual.setEnabled(true);\r\n   
@@ -5183,7 +5188,7 @@ MonoBehaviour:
     vector2Value: {x: 0, y: 0}
     vector3Value: {x: 0, y: 0, z: 0}
     quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: comsumeDuration
+  - fieldName: consumeDuration
     type: 1
     fieldDefinedLocation:
       startLine: 13
@@ -5221,7 +5226,7 @@ MonoBehaviour:
     quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
     overrideValue: 1
     boolValue: 0
-    intValue: 50
+    intValue: 30
     floatValue: 0
     stringValue: 
     vector2Value: {x: 0, y: 0}
@@ -5301,15 +5306,15 @@ MonoBehaviour:
       endLine: 23
       endColumn: 23
     boolInitialValue: 0
-    intInitialValue: 1
+    intInitialValue: 2
     floatInitialValue: 0
     stringInitialValue: 
     vector2InitialValue: {x: 0, y: 0}
     vector3InitialValue: {x: 0, y: 0, z: 0}
     quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
+    overrideValue: 1
     boolValue: 0
-    intValue: 1
+    intValue: 2
     floatValue: 0
     stringValue: 
     vector2Value: {x: 0, y: 0}
@@ -5331,7 +5336,29 @@ MonoBehaviour:
     quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
     overrideValue: 1
     boolValue: 0
-    intValue: 3
+    intValue: 25
+    floatValue: 0
+    stringValue: 
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
+  - fieldName: craftDifficulty
+    type: 1
+    fieldDefinedLocation:
+      startLine: 27
+      startColumn: 6
+      endLine: 27
+      endColumn: 25
+    boolInitialValue: 0
+    intInitialValue: 1
+    floatInitialValue: 0
+    stringInitialValue: 
+    vector2InitialValue: {x: 0, y: 0}
+    vector3InitialValue: {x: 0, y: 0, z: 0}
+    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
+    overrideValue: 1
+    boolValue: 0
+    intValue: 5
     floatValue: 0
     stringValue: 
     vector2Value: {x: 0, y: 0}
