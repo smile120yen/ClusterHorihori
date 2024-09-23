@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 913499158544906454}
   - component: {fileID: 913499158544906452}
   m_Layer: 14
-  m_Name: SellItemCube
+  m_Name: SellItemCube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

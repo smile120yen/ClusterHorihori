@@ -7,6 +7,8 @@ let followItem = null;
 let savedData = null;
 let dropCoolTime = 0;
 let isCancelableMotion = true;
+let isNeedSave = false;
+let currentSpeed = 1;
 const allItemList =["cupperOre","clystal","ironOre","goldOre",
     "turuhashiNormal","turuhashiGold","turuhashiIron","turuhashiCupper","turuhashiClystal",
     "trophyRabbitCupper","trophyRabbitIron","trophyRabbitGold","trophyRabbitClystal"];
@@ -22,14 +24,19 @@ const GoldUI = _.playerLocalObject("GoldUI");
 const updateInventory = () => {
 
     if(savedData&&followItem){
-        if(savedData.inventoryData[savedData.currentSelectIndex] && savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed){
-            _.sendTo(followItem,"SetDefaultMovementSpeed",savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed);
-        }else{
-            _.sendTo(followItem,"SetDefaultMovementSpeed",1);
+        let targetSpeed = 1;
+        if(savedData.inventoryData[savedData.currentSelectIndex] &&savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed){
+            targetSpeed = savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed;
+        }
+        
+        if(currentSpeed != targetSpeed){
+            _.sendTo(followItem,"SetDefaultMovementSpeed",targetSpeed);
+            currentSpeed = targetSpeed
         }
     }
 
     updateInventoryView();
+    isNeedSave = true;
 }
 
 const updateInventoryView = () => {
@@ -37,10 +44,12 @@ const updateInventoryView = () => {
     if(!followItem){
         InventoryUI.setEnabled(false);
         ItemDiscriptionUI.setEnabled(false);
+        GoldUI.setEnabled(false);
         return;
     }
 
     InventoryUI.setEnabled(true);
+    GoldUI.setEnabled(true);
     ItemDiscriptionUI.setEnabled(true);
 
     if(savedData.money){
@@ -303,10 +312,12 @@ const AddItem = (arg)=>{
         return false;
     }
 
-    if(!arg.duration || !arg.maxDuration){
-        arg.duration = getDefaultDuration(arg.itemName);
-        arg.maxDuration = getDefaultDuration(arg.itemName);
+    
+    if(!("duration" in arg) || !("maxDuration" in arg)){
+        arg.duration = -1;
+        arg.maxDuration = -1;
     }
+    
 
     if(!arg.uuid){
         arg.uuid = generateUUID();
@@ -558,7 +569,7 @@ _.onButton(2, (isDown) => {
             const dropItem = JSON.parse(JSON.stringify(savedData.inventoryData[savedData.currentSelectIndex]));
             dropItem.count = 1;
             _.sendTo(followItem, "DropItem", dropItem);
-            updateInventoryView();
+            updateInventory();
         }
     }
 });
@@ -568,14 +579,16 @@ let saveTime = 5.0;
 
 _.onFrame(deltaTime => {
 
-    saveTime -= deltaTime;
-    dropCoolTime -= deltaTime;
+    if(saveTime>0)saveTime -= deltaTime;
+    if(dropCoolTime>0)dropCoolTime -= deltaTime;
 
-    if(saveTime<=0){
+    if(saveTime<=0 && isNeedSave){
         if(savedData){
+            _.log("savedData:"+JSON.stringify(savedData));
             _.setPlayerStorageData(savedData);
         }
         saveTime = 5.0;
+        isNeedSave = false;
     }
 
     // モーション再生

@@ -1,6 +1,7 @@
 const pickupSound = $.audio("Pickup");
 const cancelSound = $.audio("Cancel");
 const fukidashiText = $.subNode("FukidashiText").getUnityComponent("Text");
+const canvas = $.subNode("FukidashiCanvas");
 
 // @field(string)
 const itemName = "turuhashiNormal";
@@ -31,6 +32,9 @@ $.onStart(()=>{
     $.state.getPlayerList = [];
     fukidashiText.unityProp.text = defaultTalkText;
     $.state.talkCooltime = talkCooltimeMax;
+    
+    canvas.setEnabled(false);
+    $.state.enableCanvas = false;
 });
 
 $.onInteract(player => {
@@ -40,10 +44,11 @@ $.onInteract(player => {
 });
 
 $.onReceive((requestName, arg, sender) => {
-    const time = GetTuruhashiRecentoryTime(sender);
+    //const time = GetTuruhashiRecentoryTime(sender);
+    const time = null;
     if(requestName == "CheckHasItemReceved"){
         if(time){
-            fukidashiText.unityProp.text = "さっきあげただろ！\nもう少しがんばってからまた来な\n（クールタイム:"+(30-time)+"秒）";
+            fukidashiText.unityProp.text = "さっきあげただろ！\nもう少しがんばってからまた来な\nクールタイム:"+(30-time)+"秒";
             cancelSound.play();
             
             $.state.isTalkStart = true;
@@ -74,12 +79,21 @@ $.onReceive((requestName, arg, sender) => {
 
 
 $.onUpdate((deltaTime) => {
-    if(!$.state.isTalkStart)return;
-    
-    $.state.talkCooltime-= deltaTime;
-    if($.state.talkCooltime<0){
-        fukidashiText.unityProp.text = defaultTalkText;
-        $.state.isTalkStart = false;
+
+    if($.getPlayersNear($.getPosition(), 3).length>=1 && !$.state.enableCanvas){
+        canvas.setEnabled(true);
+        $.state.enableCanvas = true;
+    }else if($.getPlayersNear($.getPosition(), 3).length<=0 && $.state.enableCanvas){
+        canvas.setEnabled(false);
+        $.state.enableCanvas = false;
+    }
+
+    if($.state.isTalkStart){
+        $.state.talkCooltime-= deltaTime;
+        if($.state.talkCooltime<0){
+            fukidashiText.unityProp.text = defaultTalkText;
+            $.state.isTalkStart = false;
+        }
     }
 });
 

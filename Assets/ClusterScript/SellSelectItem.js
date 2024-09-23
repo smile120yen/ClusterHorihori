@@ -1,13 +1,16 @@
 const pickupSound = $.audio("Pickup");
 const sellItemSound = $.audio("SellItem");
-const sellerText = $.subNode("SellerText").getUnityComponent("Text");
-
+const sellerText = $.subNode("FukidashiText").getUnityComponent("Text");
+const canvas = $.subNode("FukidashiCanvas");
 
 $.onStart(()=>{
     $.state.isCheckItemPrice = false;
     $.state.checkedItem = null;
     $.state.resetCooldownTime = 5;
-    sellerText.unityProp.text = "まいど！\nどのアイテムを売ってくれるんだ？";
+    sellerText.unityProp.text = "まいど！\nどんなアイテムでも買い取るぜ";
+    
+    canvas.setEnabled(false);
+    $.state.enableCanvas = false;
 });
 
 $.onInteract(player => {
@@ -18,7 +21,6 @@ $.onInteract(player => {
 $.onReceive((requestName, arg, sender) => {
     if(requestName == "itemChecked"){
         $.log("itemCheckReceve:"+JSON.stringify(arg));
-
         if(arg.uuid == $.state.checkedItemUUID){
             sellerText.unityProp.text = "まいどあり！";
             sender.send("RemoveSelectItem",{count:arg.count});
@@ -28,16 +30,25 @@ $.onReceive((requestName, arg, sender) => {
             pickupSound.play();
             if(!arg.price)arg.price = 0;
             sellerText.unityProp.text = arg.itemDisplayName + "を" + arg.count+"コ売ってくれるのかい？\nそれなら"+(arg.price * arg.count)+"Gでどうだ";
-    
-            $.state.isCheckItemPrice = true;
-            $.state.checkedItemUUID = arg.uuid;
         }
+        $.state.isCheckItemPrice = true;
+        $.state.checkedItemUUID = arg.uuid;
     }
 
 }, {item: true, player:true});
 
 
 $.onUpdate((deltaTime) => {
+    
+    if($.getPlayersNear($.getPosition(), 3).length>=1 && !$.state.enableCanvas){
+        canvas.setEnabled(true);
+        $.state.enableCanvas = true;
+    }else if($.getPlayersNear($.getPosition(), 3).length<=0 && $.state.enableCanvas){
+        canvas.setEnabled(false);
+        $.state.enableCanvas = false;
+    }
+
+
     if($.state.isCheckItemPrice){
         let cooldown = $.state.resetCooldownTime;
         cooldown -= deltaTime;

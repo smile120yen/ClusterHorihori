@@ -5,6 +5,7 @@ $.onStart(()=>{
     $.state.interactCoolTime = 0;
     $.state.isPickuped = false;
     $.state.deleteCoolTime = 180;
+    $.state.initialize = false;
 });
 
 $.onReceive((messageType, arg, sender) => {
@@ -14,6 +15,7 @@ $.onReceive((messageType, arg, sender) => {
         if(arg.rarity&&arg.rarity!=1){
             $.subNode(arg.rarity).setEnabled(true);
         }
+        $.state.initialize = true;
     }
 
     if (messageType === "GetItemReceived") {
@@ -36,6 +38,7 @@ $.onReceive((messageType, arg, sender) => {
 }, {item: true, player:true});
 
 $.onInteract(player => {
+    if(!$.state.initialize)return;
     if($.state.interactCoolTime>0)return;
     $.state.interactCoolTime = 3;
     player.send("getItem",$.state.itemStatus);
