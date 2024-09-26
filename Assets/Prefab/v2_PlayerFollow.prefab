@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1860474913516078862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5561909553455092489}
+  m_Layer: 14
+  m_Name: ClushParticleSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5561909553455092489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860474913516078862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.469, y: 0, z: 1.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4682151884475629083}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2407158872419307174
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fa9c8d02ea21945489b7818eeb06420b, type: 2}
+  - {fileID: 2100000, guid: e13c9deab6f1b284d9a6116be7768100, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,6 +209,7 @@ Transform:
   - {fileID: 9107904732576022270}
   - {fileID: 1601772213959430648}
   - {fileID: 5300866187689242524}
+  - {fileID: 5561909553455092489}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -276,6 +308,10 @@ MonoBehaviour:
     worldItemTemplate: {fileID: 251961206529852673, guid: 820cfa61da8b76349958f23929b7d59e, type: 3}
     itemTemplateId:
       value: 4930565574427732440
+  - id: ClushParticle
+    worldItemTemplate: {fileID: 2780980850714599596, guid: c6b511f9abe88774dab7b734e262bce8, type: 3}
+    itemTemplateId:
+      value: 8234452293019446985
 --- !u!114 &3394086951105888948
 MonoBehaviour:
   m_ObjectHideFlags: 0

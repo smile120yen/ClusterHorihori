@@ -16,7 +16,7 @@ $.onStart(()=>{
 $.onInteract(player => {
     pickupSound.play();
     player.send("RepairItem","all");
-    fukidashiText.unityProp.text = "ほら、直したよ";
+    fukidashiText.unityProp.text = "ほら、直したよ"; 
     $.state.isTalkStart = true;
     $.state.talkCooltime = talkCooltimeMax;
 });

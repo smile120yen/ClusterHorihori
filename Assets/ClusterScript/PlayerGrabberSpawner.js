@@ -1,4 +1,5 @@
 const playerFollowItem = new WorldItemTemplateId("GrabItem");
+const spawnPoint = $.subNode("SpawnPoint");
 
 $.onStart(() => {
     $.state.currentSpawnItem = null;
@@ -30,7 +31,7 @@ $.onUpdate((deltaTime) => {
 });
 
 const createGrabItem = () => {
-    const grabItem = $.createItem(playerFollowItem, $.getPosition().clone().add(new Vector3(0,1,0)),$.getRotation());
+    const grabItem = $.createItem(playerFollowItem, spawnPoint.getGlobalPosition(),$.getRotation());
     $.state.currentSpawnItem = grabItem;
     grabItem.send("RegisterGrabItemSpawner",null);
 }

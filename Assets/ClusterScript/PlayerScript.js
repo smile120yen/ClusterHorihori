@@ -9,17 +9,22 @@ let dropCoolTime = 0;
 let isCancelableMotion = true;
 let isNeedSave = false;
 let currentSpeed = 1;
+let isClashEffectOn = false;
 const allItemList =["cupperOre","clystal","ironOre","goldOre",
     "turuhashiNormal","turuhashiGold","turuhashiIron","turuhashiCupper","turuhashiClystal",
     "trophyRabbitCupper","trophyRabbitIron","trophyRabbitGold","trophyRabbitClystal"];
 
-const animation1 = _.humanoidAnimation("Animation1");
+const swingAnimation = _.humanoidAnimation("Swing");
 const InventoryUI = _.playerLocalObject("InventoryUI");
 const ItemDiscriptionUI = _.playerLocalObject("ItemDiscriptionUI");
 const KabanMaxWarningText = _.playerLocalObject("KabanMaxWarningText");
 const ItemDurationZeroText = _.playerLocalObject("ItemDurationZeroText");
 const CantUseItemText = _.playerLocalObject("CantUseItemText");
 const GoldUI = _.playerLocalObject("GoldUI");
+const MeteoUI = _.playerLocalObject("MeteoUI");
+const MeteoCompleteUI = _.playerLocalObject("MeteoCompleteUI");
+
+const lockonMarkerGameStart = _.worldItemReference("LockonMarkerGameStart");
 
 const updateInventory = () => {
 
@@ -284,6 +289,7 @@ const getDefaultDuration = (itemName) => {
 }
 
 const ResetSavedData = () => {
+    _.log("ResetSaveData");
     savedData = {
         currentSelectIndex : 0,
         inventoryData : [],
@@ -337,10 +343,12 @@ const AddItem = (arg)=>{
 
 _.onStart(() => {
     savedData = _.getPlayerStorageData();
-    if (!savedData || !savedData.inventoryData || !savedData.currentSelectIndex) {
+    _.log("getSaveData:"+JSON.stringify(savedData));
+    if (!savedData) {
         ResetSavedData();
     }
     updateInventory(); 
+    _.sendTo(lockonMarkerGameStart,"Lockon",null);
 });
 
 _.onReceive((messageType, arg, sender) => {
@@ -348,7 +356,8 @@ _.onReceive((messageType, arg, sender) => {
         followItem = sender;
         _.showButton(1, _.iconAsset("Next"));
         _.showButton(2, _.iconAsset("Drop"));
-        updateInventory(); 
+        updateInventory();         
+        _.sendTo(lockonMarkerGameStart,"Lockoff",null);
     }
 
     if (messageType === "UnRegisterFollowItem") {
@@ -402,8 +411,15 @@ _.onReceive((messageType, arg, sender) => {
     }
 
     if(messageType === "AttackCurrentItem"){
+        isClashEffectOn = false;
         AttackCurrentItem(sender);
     }
+
+    if(messageType === "AttackCurrentItemWithEffect"){
+        isClashEffectOn = true;
+        AttackCurrentItem(sender);
+    }
+
 
     if(messageType === "UseSelectItem"){
 
@@ -510,6 +526,20 @@ _.onReceive((messageType, arg, sender) => {
         updateInventory();
     }
 
+    if(messageType === "MeteoUIStart"){
+        _.log("MeteoUIStart");
+        MeteoUI.setEnabled(true);
+    }
+    
+    if(messageType === "MeteoUIEnd"){
+        _.log("MeteoUIEnd");
+        MeteoUI.setEnabled(false);
+        MeteoCompleteUI.setEnabled(false);
+        MeteoCompleteUI.setEnabled(true);
+    }
+
+    _.log("playerReceve:"+messageType+","+JSON.stringify(arg));
+
 }, {item: true, player:true});
 
 
@@ -530,11 +560,13 @@ const AttackCurrentItem = (target) => {
         _.sendTo(followItem, "PlaySound", "Cancel");
         CantUseItemText.setEnabled(false);
         CantUseItemText.setEnabled(true);
+        isClashEffectOn = false;
         return;
     }else if(savedData.inventoryData[targetIndex].duration==0){
         _.sendTo(followItem, "PlaySound", "Cancel");
         ItemDurationZeroText.setEnabled(false);
         ItemDurationZeroText.setEnabled(true);
+        isClashEffectOn = false;
         return;
     }
 
@@ -582,7 +614,7 @@ _.onFrame(deltaTime => {
     if(saveTime>0)saveTime -= deltaTime;
     if(dropCoolTime>0)dropCoolTime -= deltaTime;
 
-    if(saveTime<=0 && isNeedSave){
+    if(saveTime<=0 && isNeedSave && followItem){
         if(savedData){
             _.log("savedData:"+JSON.stringify(savedData));
             _.setPlayerStorageData(savedData);
@@ -599,10 +631,14 @@ _.onFrame(deltaTime => {
         if(targetItem && targetItem.motionMultiple)motionMultiple *= targetItem.motionMultiple;
 
         motionTime += deltaTime * motionMultiple;
-        isPlayingMotion = playMotion(animation1, motionTime);
+        isPlayingMotion = playMotion(swingAnimation, motionTime);
 
         if(motionTime>0.35 && !isClashed){
-            _.sendTo(followItem, "Clash", null);
+            if(isClashEffectOn){
+                _.sendTo(followItem, "ClashWithEffect", null);
+            }else{
+                _.sendTo(followItem, "Clash", null);
+            }
             isClashed = true;
         }
     }

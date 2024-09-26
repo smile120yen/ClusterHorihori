@@ -92,15 +92,15 @@ $.onReceive((messageType, arg, sender) => {
     }
 
     if (messageType === "Clash") {
-        $.state.isClash = true;
-
-        const target = $.state.attackedTarget;
-        //ダメージキャッシュに保存
-        const damageMessageCashe =$.state.damageMessageCashe;
-        damageMessageCashe.push(target);
-        $.state.damageMessageCashe = damageMessageCashe;
-
+        StartClash();
         $.log("Clash");
+    }
+    if (messageType === "ClashWithEffect") {
+        StartClash();
+        const clushParticleSpawnPosition = $.subNode("ClushParticleSpawnPosition");
+        const ClushParticleTemplete = new WorldItemTemplateId("ClushParticle");
+        const itemHandle = $.createItem(ClushParticleTemplete, clushParticleSpawnPosition.getGlobalPosition(), clushParticleSpawnPosition.getGlobalRotation());
+        $.log("ClashWithEffect");
     }
     
     if(messageType === "ReceiveDamage"){        
@@ -158,3 +158,14 @@ $.onUpdate((deltaTime) => {
         $.state.clashTime = clashTime;
     }
 });
+
+
+const StartClash = () =>{
+    $.state.isClash = true;
+
+    const target = $.state.attackedTarget;
+    //ダメージキャッシュに保存
+    const damageMessageCashe =$.state.damageMessageCashe;
+    damageMessageCashe.push(target);
+    $.state.damageMessageCashe = damageMessageCashe;
+}

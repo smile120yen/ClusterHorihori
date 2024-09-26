@@ -3,9 +3,9 @@ const buyItemSound = $.audio("BuyItem");
 const cancelSound = $.audio("Cancel");
 const sellerText = $.subNode("SellerText").getUnityComponent("Text");
 
-const buyItemName = "小さなカバン";
+const buyItemName = "カバンの拡張";
 const buyItemDiscription = "インベントリが1マス増える"
-const price = 10;
+const price = 1000;
 
 $.onStart(()=>{
     Initialize();
