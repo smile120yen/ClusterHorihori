@@ -510,7 +510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8370154138098717803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6334,6 +6334,10 @@ MonoBehaviour:
       value: 0
   - id: turuhashiClystal
     worldItemTemplate: {fileID: 251961206529852673, guid: bd1a453b60c6ad64d93fbbb59323cda4, type: 3}
+    itemTemplateId:
+      value: 0
+  - id: turuhashiEngine
+    worldItemTemplate: {fileID: 251961206529852673, guid: 97afa919ca3bfbd4887effa32752b0f3, type: 3}
     itemTemplateId:
       value: 0
 --- !u!1 &8607105882939249019

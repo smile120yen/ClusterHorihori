@@ -22,6 +22,8 @@ const count = 1;
 const price = 0;
 // @field(bool)
 const useableAnvil = false;
+// @field(int)
+const totalMergeCount = 3;
 
 const talkCooltimeMax = 1;
 const defaultTalkText = "新入りかい？\nボロでよけりゃツルハシをやるぜ";
@@ -71,7 +73,8 @@ $.onReceive((requestName, arg, sender) => {
                 specialEffect : specialEffect,
                 count : count,
                 price : price,
-                useableAnvil :useableAnvil
+                useableAnvil :useableAnvil,
+                totalMergeCount :totalMergeCount
             });
         }
     }

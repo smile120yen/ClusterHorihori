@@ -1,4 +1,5 @@
 using Baxter.ClusterScriptExtensions.Editor.ScriptUpdater;
+using ClusterVR.CreatorKit.Editor.EditorEvents;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,12 @@ namespace Baxter.ClusterScriptExtensions.Editor.Inspector
     [CustomEditor(typeof(ScriptableItemExtension))]
     public class ScriptableItemExtensionEditor : UnityEditor.Editor
     {
+        [InitializeOnLoadMethod]
+        public void Initalize()
+        {
+            WorldUploadEvents.RegisterOnWorldUploadStart(ForceReload);
+        }
+
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
@@ -48,6 +55,15 @@ namespace Baxter.ClusterScriptExtensions.Editor.Inspector
                 ReloadFields(serializedObject, false);
                 Apply(serializedObject);
             }
+        }
+
+        public bool ForceReload(WorldUploadStartEventData data)
+        {
+            serializedObject.ApplyModifiedProperties();
+            ReloadFields(serializedObject, false);
+            Apply(serializedObject);
+
+            return true;
         }
 
         private static void ResetValues(SerializedObject obj)

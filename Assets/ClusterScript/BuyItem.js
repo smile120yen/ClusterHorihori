@@ -1,51 +1,87 @@
 const pickupSound = $.audio("Pickup");
 const buyItemSound = $.audio("BuyItem");
 const cancelSound = $.audio("Cancel");
-const sellerText = $.subNode("SellerText").getUnityComponent("Text");
+const canvas = $.subNode("DetailCanvas");
 
-const buyItemName = "カバンの拡張";
-const buyItemDiscription = "インベントリが1マス増える"
+const buyItemName = "金貨袋";
+const buyPrice = 1050;
+
+// @field(string)
+const itemName = "goldCoinBag";
+// @field(string)
+const itemDisplayName = "1000Gの金貨袋";
+// @field(int)
+const duration = -1;
+// @field(int)
+const maxDuration = -1;
+// @field(int)
+const rarity = 3;
+// @field(int)
+const count = 1;
+// @field(int)
 const price = 1000;
+// @field(bool)
+const useableAnvil = false;
 
-$.onStart(()=>{
-    Initialize();
+$.onStart(() => {
+	Initialize();
 });
 
-$.onInteract(player => {
-    player.send("CheckMoney",price);
+$.onInteract((player) => {
+	player.send("CheckMoney", buyPrice);
 });
 
+$.onReceive(
+	(requestName, arg, sender) => {
+		if (requestName == "MoneyChecked") {
+			$.state.isCheckItemPrice = true;
+			if (arg) {
+				const targetItemData = {
+					itemName: itemName,
+					itemDisplayName: itemDisplayName,
+					duration: duration,
+					maxDuration: maxDuration,
+					rarity: rarity,
+					count: count,
+					price: price,
+					useableAnvil: useableAnvil,
+				};
+				sender.send("getItem", targetItemData);
+			} else {
+				cancelSound.play();
+			}
+		}
 
-$.onReceive((requestName, arg, sender) => {
-    if(requestName == "MoneyChecked"){
-        $.state.isCheckItemPrice = true;
-        if(arg){
-            buyItemSound.play();
-            sellerText.unityProp.text = "ご購入ありがとうございました！";
-            sender.send("RemoveMoney",{count:price});
-            sender.send("AddKabanSize",1);
-        }else{
-            cancelSound.play();
-            sellerText.unityProp.text = "ゴールドが足りません\n（価格:"+price+"G）";
-        }
-    }
-}, {item: true, player:true});
-
+		if (requestName == "GetItemReceived") {
+			buyItemSound.play();
+			sender.send("RemoveMoney", { count: buyPrice });
+		}
+	},
+	{ item: true, player: true }
+);
 
 $.onUpdate((deltaTime) => {
-    if($.state.isCheckItemPrice){
-        let cooldown = $.state.resetCooldownTime;
-        cooldown -= deltaTime;
-        $.state.resetCooldownTime = cooldown;
+	const nearPlayerLength = $.getPlayersNear($.getPosition(), 3).length;
+	if (nearPlayerLength >= 1 && !$.state.enableCanvas) {
+		canvas.setEnabled(true);
+		$.state.enableCanvas = true;
+	} else if (nearPlayerLength <= 0 && $.state.enableCanvas) {
+		canvas.setEnabled(false);
+		$.state.enableCanvas = false;
+	}
 
-        if(cooldown<=0){
-            Initialize();
-        }
-    }
+	if ($.state.isCheckItemPrice) {
+		let cooldown = $.state.resetCooldownTime;
+		cooldown -= deltaTime;
+		$.state.resetCooldownTime = cooldown;
+
+		if (cooldown <= 0) {
+			Initialize();
+		}
+	}
 });
 
 const Initialize = () => {
-    $.state.isCheckItemPrice = false;
-    $.state.resetCooldownTime = 5;
-    sellerText.unityProp.text = buyItemName+"\n"+buyItemDiscription+"\n"+price+"G";
-}
+	$.state.isCheckItemPrice = false;
+	$.state.resetCooldownTime = 5;
+};

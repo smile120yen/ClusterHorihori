@@ -7,7 +7,8 @@
         "ClusterVR.CreatorKit.Gimmick",
         "ClusterVR.CreatorKit.Item.Implements",
         "ClusterVR.CreatorKit.Gimmick.Implements",
-        "Baxter.ClusterScriptExtensions"
+        "Baxter.ClusterScriptExtensions",
+        "ClusterVR.CreatorKit.Editor.EditorEvents"
     ],
     "includePlatforms": [
         "Editor"

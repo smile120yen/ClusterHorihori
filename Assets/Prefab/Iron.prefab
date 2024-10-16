@@ -48,9 +48,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -970,8 +970,66 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 0
-    m_Bursts: []
+    m_BurstCount: 1
+    m_Bursts:
+    - serializedVersion: 2
+      time: 0
+      countCurve:
+        serializedVersion: 2
+        minMaxState: 0
+        scalar: 30
+        minScalar: 30
+        maxCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      cycleCount: 1
+      repeatInterval: 0.01
+      probability: 1
   SizeModule:
     enabled: 1
     curve:
@@ -4879,6 +4937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9119680342512959215}
+  - component: {fileID: 7877364468112625656}
   m_Layer: 14
   m_Name: Visual
   m_TagString: Untagged
@@ -4904,6 +4963,26 @@ Transform:
   m_Father: {fileID: 9119680342737090496}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7877364468112625656
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9119680342512959214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 817445d9943a0cb48b4865d4d1894f92, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9119680342636712444
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,11 +5024,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9119680342737090496}
-  - component: {fileID: 9119680342737090511}
   - component: {fileID: 9119680342737090510}
   - component: {fileID: 9119680342737090509}
   - component: {fileID: 9119680342737090508}
-  - component: {fileID: 9119680342737090507}
   - component: {fileID: 9119680342737090506}
   - component: {fileID: 9119680342737090497}
   m_Layer: 14
@@ -4976,26 +5053,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9119680342737090511
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9119680342737090505}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 817445d9943a0cb48b4865d4d1894f92, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &9119680342737090510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5012,7 +5069,9 @@ MonoBehaviour:
   sourceCode: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
     oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
     = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual
-    = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\n\r\n//@field(string)\r\nconst
+    = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst animator
+    = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst particle =
+    $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
     itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
     consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
     maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
@@ -5021,7 +5080,8 @@ MonoBehaviour:
     => {\r\n    RespawnItem();\r\n    $.state.itemUsePlayers = [];\r\n});\r\n\r\n\r\n$.onInteract(player
     => {\r\n    player.send(\"AttackCurrentItem\",null);\r\n});\r\n\r\n\r\n$.onReceive((requestName,
     arg, sender) => {\r\n    if (requestName == \"damage\") {\r\n        $.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n       
-    $.sendSignalCompat(\"this\", \"damage\");\r\n\r\n        let hp = $.state.hp;\r\n       
+    //$.sendSignalCompat(\"this\", \"damage\");\r\n        animator.setTrigger(\"Clash\");\r\n       
+    particle.play();\r\n\r\n        let hp = $.state.hp;\r\n        if(hp<=0)return;\r\n       
     hp -= 1;\r\n\r\n        let isDroped = false;\r\n        const rand = Math.random();\r\n       
     let newDropChance = dropChance;\r\n        if(arg.bonusDropChance) newDropChance
     += arg.bonusDropChance;\r\n        if( rand < newDropChance || hp <= 0){\r\n           
@@ -5089,26 +5149,6 @@ MonoBehaviour:
   - id: Break
     audioClip: {fileID: 8300000, guid: 2e3624fa1333d3546a0b9719b064265d, type: 3}
     loop: 0
---- !u!114 &9119680342737090507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9119680342737090505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133ae1ad08034b85a0a2611463ae4964, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 9119680342737090511}
-  globalGimmickKey:
-    key:
-      target: 0
-      key: damage
-    item: {fileID: 9119680342737090509}
-  parameterType: 0
-  animatorParameterName: Clash
 --- !u!114 &9119680342737090506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5147,9 +5187,9 @@ MonoBehaviour:
   - fieldName: itemName
     type: 3
     fieldDefinedLocation:
-      startLine: 9
+      startLine: 11
       startColumn: 6
-      endLine: 9
+      endLine: 11
       endColumn: 28
     boolInitialValue: 0
     intInitialValue: 0
@@ -5169,9 +5209,9 @@ MonoBehaviour:
   - fieldName: itemDisplayName
     type: 3
     fieldDefinedLocation:
-      startLine: 11
+      startLine: 13
       startColumn: 6
-      endLine: 11
+      endLine: 13
       endColumn: 29
     boolInitialValue: 0
     intInitialValue: 0
@@ -5191,9 +5231,9 @@ MonoBehaviour:
   - fieldName: consumeDuration
     type: 1
     fieldDefinedLocation:
-      startLine: 13
+      startLine: 15
       startColumn: 6
-      endLine: 13
+      endLine: 15
       endColumn: 25
     boolInitialValue: 0
     intInitialValue: 1
@@ -5213,9 +5253,9 @@ MonoBehaviour:
   - fieldName: price
     type: 1
     fieldDefinedLocation:
-      startLine: 15
+      startLine: 17
       startColumn: 6
-      endLine: 15
+      endLine: 17
       endColumn: 16
     boolInitialValue: 0
     intInitialValue: 10
@@ -5235,9 +5275,9 @@ MonoBehaviour:
   - fieldName: maxHp
     type: 1
     fieldDefinedLocation:
-      startLine: 17
+      startLine: 19
       startColumn: 6
-      endLine: 17
+      endLine: 19
       endColumn: 15
     boolInitialValue: 0
     intInitialValue: 5
@@ -5257,9 +5297,9 @@ MonoBehaviour:
   - fieldName: respawnTime
     type: 1
     fieldDefinedLocation:
-      startLine: 19
+      startLine: 21
       startColumn: 6
-      endLine: 19
+      endLine: 21
       endColumn: 23
     boolInitialValue: 0
     intInitialValue: 120
@@ -5279,9 +5319,9 @@ MonoBehaviour:
   - fieldName: dropChance
     type: 2
     fieldDefinedLocation:
-      startLine: 21
+      startLine: 23
       startColumn: 6
-      endLine: 21
+      endLine: 23
       endColumn: 22
     boolInitialValue: 0
     intInitialValue: 0
@@ -5301,9 +5341,9 @@ MonoBehaviour:
   - fieldName: durationPower
     type: 1
     fieldDefinedLocation:
-      startLine: 23
+      startLine: 25
       startColumn: 6
-      endLine: 23
+      endLine: 25
       endColumn: 23
     boolInitialValue: 0
     intInitialValue: 2
@@ -5323,9 +5363,9 @@ MonoBehaviour:
   - fieldName: enchantPower
     type: 1
     fieldDefinedLocation:
-      startLine: 25
+      startLine: 27
       startColumn: 6
-      endLine: 25
+      endLine: 27
       endColumn: 22
     boolInitialValue: 0
     intInitialValue: 1
@@ -5345,9 +5385,9 @@ MonoBehaviour:
   - fieldName: craftDifficulty
     type: 1
     fieldDefinedLocation:
-      startLine: 27
+      startLine: 29
       startColumn: 6
-      endLine: 27
+      endLine: 29
       endColumn: 25
     boolInitialValue: 0
     intInitialValue: 1

@@ -4,6 +4,8 @@ const damagedSound = $.audio("Clash");
 const breakedSound = $.audio("Break");
 const subNodeVisual = $.subNode("Visual");
 const oreObject = $.subNode("Ore");
+const animator = $.subNode("Visual").getUnityComponent("Animator");
+const particle = $.subNode("Particle System").getUnityComponent("ParticleSystem");
 
 //@field(string)
 const itemName = "cupperOre";
@@ -40,9 +42,12 @@ $.onInteract(player => {
 $.onReceive((requestName, arg, sender) => {
     if (requestName == "damage") {
         $.log("ダメージ受信");
-        $.sendSignalCompat("this", "damage");
+        //$.sendSignalCompat("this", "damage");
+        animator.setTrigger("Clash");
+        particle.play();
 
         let hp = $.state.hp;
+        if(hp<=0)return;
         hp -= 1;
 
         let isDroped = false;
