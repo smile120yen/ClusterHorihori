@@ -6,33 +6,44 @@ const cancelSound = $.audio("Cancel");
 const ItemText = $.subNode("ItemText").getUnityComponent("Text");
 const usingPlayerText = $.subNode("UsingPlayer").getUnityComponent("Text");
 const CraftProgress = $.subNode("CraftProgress").getUnityComponent("Image");
-const CraftProgressText =
-	$.subNode("CraftProgressText").getUnityComponent("Text");
+const CraftProgressText = $.subNode("CraftProgressText").getUnityComponent("Text");
 const ItemSpawnPoint = $.subNode("ItemSpawnPoint");
 const ProgressWaku = $.subNode("ProgressWaku");
 const CompleteWaku = $.subNode("CompleteWaku");
-const completeItemText = $.subNode(
-	"CompleteItemDiscriptionText"
-).getUnityComponent("Text");
-const ExpectationItemText =
-	$.subNode("ExpectationItem").getUnityComponent("Text");
+const completeItemText = $.subNode("CompleteItemDiscriptionText").getUnityComponent("Text");
+const ExpectationItemText = $.subNode("ExpectationItem").getUnityComponent("Text");
 const canvas = $.subNode("Canvas");
 const countWarning = $.subNode("CountWarning");
 const nothingItemWarning = $.subNode("NothingItemWarning");
+
 const allItemList = [
-	"cupperOre",
 	"clystal",
-	"ironOre",
+	"cupperOre",
 	"goldOre",
-	"turuhashiNormal",
+	"goldCoinBag",
+	"ironOre",
+	"trophyCatClystal",
+	"trophyCatCupper",
+	"trophyCatGold",
+	"trophyCatIron",
+	"trophyCowClystal",
+	"trophyCowCupper",
+	"trophyCowGold",
+	"trophyCowIron",
+	"trophyDeerClystal",
+	"trophyDeerCupper",
+	"trophyDeerGold",
+	"trophyDeerIron",
+	"trophyRabbitClystal",
+	"trophyRabbitCupper",
+	"trophyRabbitGold",
+	"trophyRabbitIron",
+	"turuhashiClystal",
+	"turuhashiCupper",
+	"turuhashiEngine",
 	"turuhashiGold",
 	"turuhashiIron",
-	"turuhashiCupper",
-	"turuhashiClystal",
-	"trophyRabbitCupper",
-	"trophyRabbitIron",
-	"trophyRabbitGold",
-	"trophyRabbitClystal",
+	"turuhashiNormal",
 ];
 
 const defaultCraftProgressMax = 2;
@@ -109,6 +120,7 @@ const getRandomItem = (usedItemList) => {
 		trophyList.push({ itemName: "trophyRabbit", itemDisplayName: "ウサギ" });
 		trophyList.push({ itemName: "trophyCow", itemDisplayName: "ウシ" });
 		trophyList.push({ itemName: "trophyDeer", itemDisplayName: "シカ" });
+		trophyList.push({ itemName: "trophyCat", itemDisplayName: "ネコ" });
 
 		const rand = Math.trunc(Math.random() * trophyList.length);
 
@@ -160,9 +172,7 @@ const getRandomItem = (usedItemList) => {
 			break;
 	}
 
-	newItem.rarity = Math.floor(
-		$.state.rarityPower / usedItemCount + Math.random() * 1.2
-	);
+	newItem.rarity = Math.floor($.state.rarityPower / usedItemCount + Math.random() * 1.2);
 	if (newItem.rarity > 5) newItem.rarity = 5;
 	if (newItem.rarity < 1) newItem.rarity = 1;
 
@@ -248,27 +258,16 @@ const getRandomItem = (usedItemList) => {
 const AddRandomSpecialEffect = (itemData) => {
 	let newItemData = itemData;
 
-	let specialEffectList = [
-		"ドロップ鉱石強化",
-		"移動速度アップ",
-		"ドロップ確率アップ",
-		"クラフト速度アップ",
-		"耐久力消費軽減",
-		"採掘速度アップ",
-	];
+	let specialEffectList = ["ドロップ鉱石強化", "移動速度アップ", "ドロップ確率アップ", "クラフト速度アップ", "耐久力消費軽減", "採掘速度アップ"];
 
 	for (specialEffectData of itemData.specialEffect) {
 		if (specialEffectData.power >= 5) {
-			specialEffectList = specialEffectList.filter(
-				(n) => n != specialEffectData.effectName
-			);
+			specialEffectList = specialEffectList.filter((n) => n != specialEffectData.effectName);
 		}
 	}
 
 	if (specialEffectList.length <= 0) return newItemData;
-	const randSpecialEffect = Math.floor(
-		Math.random() * specialEffectList.length
-	);
+	const randSpecialEffect = Math.floor(Math.random() * specialEffectList.length);
 	const targetSpecialEffectName = specialEffectList[randSpecialEffect];
 
 	switch (targetSpecialEffectName) {
@@ -303,9 +302,7 @@ const AddRandomSpecialEffect = (itemData) => {
 
 const AddSpecialEffectText = (itemData, effectName) => {
 	const newItemData = JSON.parse(JSON.stringify(itemData));
-	const index = newItemData.specialEffect.findIndex(
-		(item) => item.effectName == effectName
-	);
+	const index = newItemData.specialEffect.findIndex((item) => item.effectName == effectName);
 
 	if (index == -1) {
 		newItemData.specialEffect.push({ effectName: effectName, power: 1 });
@@ -361,9 +358,7 @@ const GetItemCountList = (usedItemList) => {
 	const itemCountList = [];
 
 	for (const itemData of usedItemList) {
-		const index = itemCountList.findIndex(
-			({ itemName }) => itemName === itemData.itemName
-		);
+		const index = itemCountList.findIndex(({ itemName }) => itemName === itemData.itemName);
 		if (index == -1) {
 			itemCountList.push({
 				itemName: itemData.itemName,
@@ -382,8 +377,7 @@ const updateProgressView = () => {
 	const craftProgressMax = $.state.craftProgressMax;
 
 	CraftProgress.unityProp.fillAmount = currentCraftProgress / craftProgressMax;
-	CraftProgressText.unityProp.text =
-		currentCraftProgress + "/" + craftProgressMax;
+	CraftProgressText.unityProp.text = currentCraftProgress + "/" + craftProgressMax;
 };
 
 const updateCompleteView = (finishingProductItem) => {
@@ -411,13 +405,7 @@ const updateCompleteView = (finishingProductItem) => {
 			"\n\n特殊効果：\n" +
 			specialEffectText;
 	} else {
-		completeItemText.unityProp.text =
-			finishingProductItem.itemDisplayName +
-			" " +
-			rarityText +
-			"\n" +
-			"売値：" +
-			finishingProductItem.price;
+		completeItemText.unityProp.text = finishingProductItem.itemDisplayName + " " + rarityText + "\n" + "売値：" + finishingProductItem.price;
 	}
 };
 
@@ -437,8 +425,7 @@ const GetSpecialEffectText = (itemData) => {
 	let specialEffectText = "";
 	if (itemData.specialEffect && itemData.specialEffect.length > 0) {
 		for (const [index, specialEffect] of itemData.specialEffect.entries()) {
-			specialEffectText +=
-				specialEffect.effectName + RomanNum(specialEffect.power);
+			specialEffectText += specialEffect.effectName + RomanNum(specialEffect.power);
 			if (index < itemData.specialEffect.length - 1) {
 				specialEffectText += ",";
 			}
@@ -699,17 +686,11 @@ $.onUpdate((deltaTime) => {
 		nothingItemWarning.setEnabled(false);
 	}
 
-	if (
-		$.getPlayersNear($.getPosition(), 3).length >= 1 &&
-		!$.state.enableCanvas
-	) {
+	if ($.getPlayersNear($.getPosition(), 3).length >= 1 && !$.state.enableCanvas) {
 		canvas.setEnabled(true);
 		extracterUI.send("SetEnable", true);
 		$.state.enableCanvas = true;
-	} else if (
-		$.getPlayersNear($.getPosition(), 3).length <= 0 &&
-		$.state.enableCanvas
-	) {
+	} else if ($.getPlayersNear($.getPosition(), 3).length <= 0 && $.state.enableCanvas) {
 		canvas.setEnabled(false);
 		extracterUI.send("SetEnable", false);
 		$.state.enableCanvas = false;
@@ -720,11 +701,7 @@ $.onUpdate((deltaTime) => {
 	}
 
 	if ($.state.usingPlayer) {
-		const distance = $.state.usingPlayer
-			.getPosition()
-			.clone()
-			.sub($.getPosition())
-			.length();
+		const distance = $.state.usingPlayer.getPosition().clone().sub($.getPosition()).length();
 
 		if (distance > 7) {
 			$.state.usingPlayerRemoveTime -= deltaTime;
@@ -757,13 +734,8 @@ $.onUpdate((deltaTime) => {
 		$.state.removeAllDummyItemWaitTime = 0.01;
 	}
 
-	if (
-		$.state.usingPlayer &&
-		$.state.usingPlayer != null &&
-		$.state.usingPlayer.exists()
-	) {
-		usingPlayerText.unityProp.text =
-			$.state.usingPlayer.userDisplayName + "が使用中";
+	if ($.state.usingPlayer && $.state.usingPlayer != null && $.state.usingPlayer.exists()) {
+		usingPlayerText.unityProp.text = $.state.usingPlayer.userDisplayName + "が使用中";
 	} else {
 		usingPlayerText.unityProp.text = "使用可能";
 	}
@@ -774,12 +746,7 @@ $.onInteract((player) => {
 	$.state.interactCoolTime = 0.3;
 
 	//使用中のプレイヤーじゃなければ触れない
-	if (
-		$.state.usingPlayer != null &&
-		$.state.usingPlayer.id != player.id &&
-		$.state.usingPlayer.exists()
-	)
-		return;
+	if ($.state.usingPlayer != null && $.state.usingPlayer.id != player.id && $.state.usingPlayer.exists()) return;
 
 	if ($.state.currentCraftProgress >= $.state.craftProgressMax) {
 		try {

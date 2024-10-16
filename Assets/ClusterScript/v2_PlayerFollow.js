@@ -1,6 +1,5 @@
 const DropSound = $.audio("Drop");
-const ClushParticle =
-	$.subNode("ClushParticle").getUnityComponent("ParticleSystem");
+const ClushParticle = $.subNode("ClushParticle").getUnityComponent("ParticleSystem");
 
 const registerPlayer = (player) => {
 	$.state.followingPlayer = player;
@@ -49,9 +48,7 @@ $.onReceive(
 		if (messageType === "DropItem") {
 			//このPlayerFollowのownerがスコアの所持者であることを前提としている
 			DropSound.play();
-			let headRotation = $.state.followingPlayer.getHumanoidBoneRotation(
-				HumanoidBone.Head
-			);
+			let headRotation = $.state.followingPlayer.getHumanoidBoneRotation(HumanoidBone.Head);
 			let addPositon = new Vector3(0, 0.5, 0.6).applyQuaternion(headRotation);
 			let spawnPosition = $.getPosition().clone().Add(addPositon);
 			const dropItemPrefab = new WorldItemTemplateId(arg.itemName);
@@ -157,8 +154,7 @@ $.onUpdate((deltaTime) => {
 		if (clashTime <= 0) {
 			//$.log("endClash");
 			let followingPlayer = $.state.followingPlayer;
-			if (followingPlayer)
-				followingPlayer.setMoveSpeedRate($.state.defaultMovementSpeed);
+			if (followingPlayer) followingPlayer.setMoveSpeedRate($.state.defaultMovementSpeed);
 			$.state.isClash = false;
 		}
 		$.state.clashTime = clashTime;

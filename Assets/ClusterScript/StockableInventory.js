@@ -1,21 +1,35 @@
 const chest = $.worldItemReference("Chest");
+
 const allItemList = [
-	"cupperOre",
 	"clystal",
-	"ironOre",
+	"cupperOre",
 	"goldOre",
-	"turuhashiNormal",
+	"goldCoinBag",
+	"ironOre",
+	"trophyCatClystal",
+	"trophyCatCupper",
+	"trophyCatGold",
+	"trophyCatIron",
+	"trophyCowClystal",
+	"trophyCowCupper",
+	"trophyCowGold",
+	"trophyCowIron",
+	"trophyDeerClystal",
+	"trophyDeerCupper",
+	"trophyDeerGold",
+	"trophyDeerIron",
+	"trophyRabbitClystal",
+	"trophyRabbitCupper",
+	"trophyRabbitGold",
+	"trophyRabbitIron",
+	"turuhashiClystal",
+	"turuhashiCupper",
+	"turuhashiEngine",
 	"turuhashiGold",
 	"turuhashiIron",
-	"turuhashiCupper",
-	"turuhashiClystal",
-	"turuhashiEngine",
-	"trophyRabbitCupper",
-	"trophyRabbitIron",
-	"trophyRabbitGold",
-	"trophyRabbitClystal",
-	"goldCoinBag",
+	"turuhashiNormal",
 ];
+
 const putinSound = $.audio("Putin");
 
 $.onStart(() => {
@@ -42,12 +56,7 @@ $.onReceive(
 		if (requestName === "ViewItemData") {
 			$.state.usingPlayerId = arg.sendPlayerId;
 
-			if (
-				arg.isPlaySound &&
-				(!$.state.itemData ||
-					!arg.itemData ||
-					$.state.itemData.count != arg.itemData.count)
-			) {
+			if (arg.isPlaySound && (!$.state.itemData || !arg.itemData || $.state.itemData.count != arg.itemData.count)) {
 				putinSound.play();
 			}
 			if (arg.itemData) {
@@ -123,8 +132,7 @@ const UpdateView = () => {
 		}
 		if (itemData.isStackable) {
 			inventoryCount.setEnabled(true);
-			inventoryCount.getUnityComponent("Text").unityProp.text =
-				`${itemData.count}`;
+			inventoryCount.getUnityComponent("Text").unityProp.text = `${itemData.count}`;
 		} else {
 			inventoryCount.setEnabled(false);
 		}
