@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 3484118584425877455}
   - component: {fileID: 3484118584425877460}
   - component: {fileID: 3484118584425877461}
+  - component: {fileID: 7154679905039202459}
   m_Layer: 0
   m_Name: MeteoEvent
   m_TagString: Untagged
@@ -1103,8 +1104,6 @@ MonoBehaviour:
   worldItemReferences:
   - id: LockonMarker
     item: {fileID: 0}
-  - id: BGMPlayer
-    item: {fileID: 0}
 --- !u!114 &3484118584425877460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,6 +1135,23 @@ MonoBehaviour:
   itemMaterialSets:
   - id: MeteoHpMaterial
     material: {fileID: 2100000, guid: b3869f44dea6d4941bdc6919b66ad28b, type: 2}
+--- !u!114 &7154679905039202459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484118585824746760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f60bfc9a2c4b04bcd3524b54a1e838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldItemTemplates:
+  - id: DropKouseki
+    worldItemTemplate: {fileID: 8614354452816490942, guid: 4e17461d4e6cd4c4aa5ebb81c48d7a28, type: 3}
+    itemTemplateId:
+      value: 0
 --- !u!1 &3777107714673739166
 GameObject:
   m_ObjectHideFlags: 0
@@ -6645,6 +6661,10 @@ PrefabInstance:
     - target: {fileID: 8455213249181356355, guid: f2f256f006394e348a9ec1e976e6d6f0, type: 3}
       propertyPath: m_Name
       value: LockonMarker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455213249181356355, guid: f2f256f006394e348a9ec1e976e6d6f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8455213249181356383, guid: f2f256f006394e348a9ec1e976e6d6f0, type: 3}
       propertyPath: m_RootOrder

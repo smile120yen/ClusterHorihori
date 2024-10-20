@@ -5075,45 +5075,42 @@ MonoBehaviour:
     itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
     consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
     maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-    dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
+    dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
     enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-    => {\r\n    RespawnItem();\r\n    $.state.itemUsePlayers = [];\r\n});\r\n\r\n\r\n$.onInteract(player
-    => {\r\n    player.send(\"AttackCurrentItem\",null);\r\n});\r\n\r\n\r\n$.onReceive((requestName,
-    arg, sender) => {\r\n    if (requestName == \"damage\") {\r\n        $.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n       
-    //$.sendSignalCompat(\"this\", \"damage\");\r\n        animator.setTrigger(\"Clash\");\r\n       
-    particle.play();\r\n\r\n        let hp = $.state.hp;\r\n        if(hp<=0)return;\r\n       
-    hp -= 1;\r\n\r\n        let isDroped = false;\r\n        const rand = Math.random();\r\n       
-    let newDropChance = dropChance;\r\n        if(arg.bonusDropChance) newDropChance
-    += arg.bonusDropChance;\r\n        if( rand < newDropChance || hp <= 0){\r\n           
-    isDroped= true;\r\n        }\r\n\r\n        let luck = 1;\r\n        if(arg.luck)luck
-    = arg.luck;\r\n\r\n        const rarityRand = Math.floor(Math.random()*100);\r\n\r\n       
-    let newRarity = 1;\r\n        if(rarityRand<55){\r\n            newRarity = 1;\r\n       
-    }\r\n        else if(rarityRand<75){\r\n            newRarity = 2;\r\n       
-    }\r\n        else if(rarityRand<85){\r\n            newRarity = 3;\r\n       
-    }\r\n        else if(rarityRand<95){\r\n            newRarity = 4;\r\n       
-    }else{\r\n            newRarity = 5;\r\n        }\r\n\r\n        if(luck<newRarity)newRarity
-    = luck;\r\n\r\n\r\n        if(isDroped){\r\n            let spawnPosition = $.getPosition().clone().add(new
-    Vector3(0,0.7,0));\r\n            let followingItem = $.createItem(dropKousekiItem,
-    spawnPosition, $.getRotation());\r\n            followingItem.send(\"setStatus\",{\r\n               
-    itemName: itemName,\r\n                itemDisplayName: itemDisplayName,\r\n               
-    price : price,\r\n                count : 1,\r\n                useableAnvil
-    : true,\r\n                rarity: newRarity,\r\n                durationPower
-    : durationPower,\r\n                enchantPower : enchantPower,\r\n               
-    craftDifficulty : craftDifficulty\r\n            });\r\n            \r\n           
-    let random_x = Math.random()*2-1;\r\n            let random_z = Math.random()*2-1;\r\n           
-    followingItem.addImpulsiveForce(new Vector3(random_x,4,random_z));\r\n       
-    }\r\n        \r\n\r\n        if(hp>0){\r\n            damagedSound.play();\r\n       
-    }else{\r\n            breakedSound.play();\r\n            subNodeVisual.setEnabled(false);\r\n           
-    $.createItem(oreBreakedItem, $.getPosition(), $.getRotation());\r\n           
-    $.state.enable = false;\r\n            $.state.respawnTime = respawnTime / $.getPlayersNear($.getPosition(),Infinity).length;\r\n       
-    }\r\n        \r\n        $.state.hp = hp;\r\n        \r\n        let newConsumeDuration
-    = consumeDuration;\r\n        if(arg.durationReduce) {\r\n            newConsumeDuration
-    -= arg.durationReduce;\r\n        }\r\n        if(newConsumeDuration<1)newConsumeDuration=1;\r\n       
-    \r\n        sender.send(\"ReceiveDamage\",newConsumeDuration);\r\n    }\r\n});\r\n\r\n$.onUpdate((deltaTime)
-    => {\r\n    if(!$.state.enable){\r\n        $.state.respawnTime-=deltaTime;\r\n       
-    if($.state.respawnTime<=0){\r\n            RespawnItem();\r\n        }\r\n   
-    }\r\n});\r\n\r\nconst RespawnItem = () => {\r\n    subNodeVisual.setEnabled(true);\r\n   
-    $.state.maxHp = maxHp;\r\n    $.state.hp = maxHp;\r\n    $.state.enable = true;\r\n};"
+    => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
+    => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
+    arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+    \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
+    hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
+    -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
+    (hp > 0) {\r\n\t\t\tdamagedSound.play();\r\n\t\t} else {\r\n\t\t\tbreakedSound.play();\r\n\t\t\tsubNodeVisual.setEnabled(false);\r\n\t\t\t$.createItem(oreBreakedItem,
+    $.getPosition(), $.getRotation());\r\n\t\t\t$.state.enable = false;\r\n\t\t\t$.state.respawnTime
+    = respawnTime / $.getPlayersNear($.getPosition(), Infinity).length;\r\n\t\t}\r\n\r\n\t\t$.state.hp
+    = hp;\r\n\r\n\t\tlet newConsumeDuration = consumeDuration;\r\n\t\tif (arg.durationReduce)
+    {\r\n\t\t\tnewConsumeDuration -= arg.durationReduce;\r\n\t\t}\r\n\t\tif (newConsumeDuration
+    < 1) newConsumeDuration = 1;\r\n\r\n\t\tsender.send(\"ReceiveDamage\", newConsumeDuration);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
+    => {\r\n\tif (!$.state.enable) {\r\n\t\t$.state.respawnTime -= deltaTime;\r\n\t\tif
+    ($.state.respawnTime <= 0) {\r\n\t\t\tRespawnItem();\r\n\t\t}\r\n\t}\r\n});\r\n\r\nconst
+    RespawnItem = () => {\r\n\tsubNodeVisual.setEnabled(true);\r\n\t$.state.maxHp
+    = maxHp;\r\n\t$.state.hp = maxHp;\r\n\t$.state.enable = true;\r\n};\r\n\r\nconst
+    CheckDropItem = (itemData) => {\r\n\tlet isDroped = false;\r\n\tconst rand =
+    Math.random();\r\n\tlet newDropChance = dropChance;\r\n\tif (itemData.bonusDropChance)
+    newDropChance += itemData.bonusDropChance;\r\n\tif (rand < newDropChance || hp
+    <= 0) {\r\n\t\tisDroped = true;\r\n\t}\r\n\r\n\tlet luck = 1;\r\n\tif (itemData.luck)
+    luck = itemData.luck;\r\n\r\n\tconst rarityRand = Math.floor(Math.random() *
+    100);\r\n\r\n\tlet newRarity = 1;\r\n\tif (rarityRand < 55) {\r\n\t\tnewRarity
+    = 1;\r\n\t} else if (rarityRand < 75) {\r\n\t\tnewRarity = 2;\r\n\t} else if
+    (rarityRand < 85) {\r\n\t\tnewRarity = 3;\r\n\t} else if (rarityRand < 95) {\r\n\t\tnewRarity
+    = 4;\r\n\t} else {\r\n\t\tnewRarity = 5;\r\n\t}\r\n\r\n\tif (luck < newRarity)
+    newRarity = luck;\r\n\r\n\tif (isDroped) {\r\n\t\tlet spawnPosition = $.getPosition()\r\n\t\t\t.clone()\r\n\t\t\t.add(new
+    Vector3(0, 0.7, 0));\r\n\t\tlet followingItem = $.createItem(dropKousekiItem,
+    spawnPosition, $.getRotation());\r\n\t\tfollowingItem.send(\"setStatus\", {\r\n\t\t\titemName:
+    itemName,\r\n\t\t\titemDisplayName: itemDisplayName,\r\n\t\t\tprice: price,\r\n\t\t\tcount:
+    1,\r\n\t\t\tuseableAnvil: true,\r\n\t\t\trarity: newRarity,\r\n\t\t\tdurationPower:
+    durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
+    craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 - 1;\r\n\t\tlet
+    random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
+    Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
 --- !u!114 &9119680342737090509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5333,7 +5330,7 @@ MonoBehaviour:
     overrideValue: 1
     boolValue: 0
     intValue: 0
-    floatValue: 0.1
+    floatValue: 0.05
     stringValue: 
     vector2Value: {x: 0, y: 0}
     vector3Value: {x: 0, y: 0, z: 0}

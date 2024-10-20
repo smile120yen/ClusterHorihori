@@ -7,6 +7,8 @@ Shader "Custom/LockonMarkerShaderWithFillAmount"
         _ImageScale ("Image Scale", float) = 1.0
         _FillAmount ("Fill Amount", Range(0, 1)) = 1.0
         _MaskColor ("Mask Color", Color) = (0,0,0,0)
+        _FadeStartDistance ("Fade Start Distance", float) = 10.0 // フェード開始距離
+        _FadeEndDistance ("Fade End Distance", float) = 50.0 // フェード終了距離
     }
     SubShader
     {
@@ -43,6 +45,7 @@ Shader "Custom/LockonMarkerShaderWithFillAmount"
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float distance : TEXCOORD1; // カメラとの距離を渡す
             };
 
             sampler2D _MainTex;
@@ -51,6 +54,8 @@ Shader "Custom/LockonMarkerShaderWithFillAmount"
             float _ImageScale; // 画像のサイズ調整用のプロパティ
             float _FillAmount;
             float4 _MaskColor;
+            float _FadeStartDistance;
+            float _FadeEndDistance;
 
             v2f vert (appdata v)
             {
@@ -64,12 +69,16 @@ Shader "Custom/LockonMarkerShaderWithFillAmount"
                 
                 o.vertex = mul(UNITY_MATRIX_P, mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1)) + float4(scaledVertex.x, scaledVertex.y, 0, 0));
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.distance = cameraToObjLength;
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                // フェード係数を計算（0 = 完全に見えない, 1 = 完全に表示）
+                float fadeFactor = saturate((_FadeEndDistance - i.distance) / (_FadeEndDistance - _FadeStartDistance));
+
                 float2 center = float2(0.5, 0.5); // マスクの中心をUV空間の中央に設定
                 float2 dir = i.uv - center;
                 float angle = atan2(dir.y, dir.x) * (180.0 / UNITY_PI) + 180.0; // 角度を0~360に正規化
@@ -80,12 +89,15 @@ Shader "Custom/LockonMarkerShaderWithFillAmount"
                 if (angle > currentFillAngle)
                 {
                     float4 col = _MaskColor;
-                    col.a *= tex2D(_MainTex, i.uv).a;
+                    // 距離に応じてアルファを調整
+                    col.a *= tex2D(_MainTex, i.uv).a * fadeFactor;
                     return col; // マスク外の色
                 }
 
                 // テクスチャのサンプル
                 fixed4 col = tex2D(_MainTex, i.uv) * _MainColor;
+                col.a *= fadeFactor; // 距離に応じてアルファを調整
+
                 // フォグの適用
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
