@@ -766,6 +766,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -855,18 +859,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -901,7 +906,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -1107,6 +1112,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -1196,18 +1205,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -1242,7 +1252,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -2063,6 +2073,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -2148,20 +2162,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -2193,7 +2209,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -2493,6 +2509,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -2590,20 +2610,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -2635,7 +2657,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -2753,6 +2775,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -2842,18 +2868,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -2888,7 +2915,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -3215,7 +3242,7 @@ MonoBehaviour:
   humanoidAnimations:
   - id: Swing
     animation: {fileID: -4738338977195520429, guid: 184eb7e372f4c60488bf3e8d47b665ca, type: 3}
-    humanoidAnimation: {fileID: 11400000, guid: c7425986b037fd544a086d6eb8c44fba, type: 2}
+    humanoidAnimation: {fileID: 11400000, guid: b7cb038a4dffe434fa5ae2d260edda9b, type: 2}
 --- !u!114 &289441658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3508,6 +3535,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -3605,20 +3636,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -3650,7 +3683,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -4281,6 +4314,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -4378,20 +4415,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -4423,7 +4462,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -4904,6 +4943,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -4993,18 +5036,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -5039,7 +5083,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -5658,6 +5702,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -5747,18 +5795,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -5793,7 +5842,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -6077,6 +6126,10 @@ PrefabInstance:
       propertyPath: id.value
       value: 10183249997360128074
       objectReference: {fileID: 0}
+    - target: {fileID: 1194090290021404876, guid: a4ec11867f181564496d1795c2328040, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1420856454918640716, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
       value: 7331676856452010740
@@ -6139,27 +6192,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375738007310402413, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: sourceCode
-      value: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-        = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Prev\";;\r\n// @field(int)\r\nconst
-        arg = 0;;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+      value: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+        !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+        target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+        @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg
+        = 0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
         = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable)
         {\r\n\t\ttarget.send(message, arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
         => {\r\n\tif (!$.state.isEnable) {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif
-        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n"
+        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/
+        })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 6236306015239156337, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
       value: 9354008446926367187
       objectReference: {fileID: 0}
+    - target: {fileID: 7210274092210936705, guid: a4ec11867f181564496d1795c2328040, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7740103020354997507, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: sourceCode
-      value: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-        = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Next\";;\r\n// @field(int)\r\nconst
-        arg = 0;;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+      value: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+        !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+        target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+        @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg
+        = 0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
         = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable)
         {\r\n\t\ttarget.send(message, arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
         => {\r\n\tif (!$.state.isEnable) {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif
-        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n"
+        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/
+        })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 7904979714211689092, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
@@ -7017,6 +7080,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -7106,20 +7173,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -7151,7 +7220,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -7297,6 +7366,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -7386,18 +7459,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -7432,7 +7506,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -9389,6 +9463,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -9478,20 +9556,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -9523,7 +9603,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -9581,6 +9661,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090496, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
+      propertyPath: extensionFields.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
@@ -9681,20 +9765,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"goldOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u91D1\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 4;;\r\n//@field(int)\r\nconst price = 40;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 15;;\r\n//@field(int)\r\nconst craftDifficulty = 4;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -9726,7 +9812,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
@@ -9895,6 +9981,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -9984,20 +10074,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -10029,7 +10121,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -10451,6 +10543,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -10548,20 +10644,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"goldOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u91D1\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 4;;\r\n//@field(int)\r\nconst price = 40;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 15;;\r\n//@field(int)\r\nconst craftDifficulty = 4;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -10593,7 +10691,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
@@ -11791,6 +11889,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -11880,18 +11982,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -11926,7 +12029,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -13708,6 +13811,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -13805,20 +13912,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -13850,7 +13959,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -14005,6 +14114,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -14102,20 +14215,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -14147,7 +14262,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -14896,6 +15011,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -14981,18 +15100,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -15027,7 +15147,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -15407,6 +15527,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -15504,20 +15628,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -15549,7 +15675,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -15560,6 +15686,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
@@ -15650,18 +15780,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -15696,7 +15827,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -17626,6 +17757,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -17723,20 +17858,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -17768,7 +17905,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -17935,6 +18072,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -18032,20 +18173,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"goldOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u91D1\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 4;;\r\n//@field(int)\r\nconst price = 40;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 15;;\r\n//@field(int)\r\nconst craftDifficulty = 4;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -18077,7 +18220,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
@@ -18313,6 +18456,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -18402,18 +18549,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -18448,7 +18596,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -19381,6 +19529,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -19470,20 +19622,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -19515,7 +19669,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -19526,6 +19680,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
@@ -19616,18 +19774,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -19662,7 +19821,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -20169,6 +20328,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -20258,18 +20421,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -20304,7 +20468,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -20401,6 +20565,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090496, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -20501,20 +20669,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -20546,7 +20716,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -21104,6 +21274,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -21193,20 +21367,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -21238,7 +21414,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -21290,6 +21466,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 70574805}
     m_Modifications:
+    - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 730620006231380420, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
@@ -21380,18 +21560,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135870077616839941, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName =
-        \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst consumeDuration = 1;;\r\n//@field(int)\r\nconst
-        price = 10;;\r\n//@field(int)\r\nconst maxHp = 5;;\r\n//@field(int)\r\nconst
-        respawnTime = 120;;\r\n//@field(float)\r\nconst dropChance = 0.2;;\r\n//@field(int)\r\nconst
-        durationPower = 1;;\r\n//@field(int)\r\nconst enchantPower = 5;;\r\n//@field(int)\r\nconst
-        craftDifficulty = 1;;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
         = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
         null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
         (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -21426,7 +21607,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 4534903347311393516, guid: 82cc34cd9551e164fbd54b969947f755, type: 3}
       propertyPath: m_RootOrder
@@ -21531,6 +21712,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -21620,20 +21805,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -21665,7 +21852,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -21992,6 +22179,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -22089,20 +22280,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"ironOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9244\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 3;;\r\n//@field(int)\r\nconst price = 20;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 4;;\r\n//@field(int)\r\nconst
-        enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 2;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -22134,7 +22327,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd66d57cf6f61144cb8df21206d9d788, type: 3}
@@ -22187,6 +22380,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090496, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
+      propertyPath: extensionFields.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
@@ -22287,20 +22484,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"goldOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u91D1\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 4;;\r\n//@field(int)\r\nconst price = 40;;\r\n//@field(int)\r\nconst
-        maxHp = 10;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.1;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 15;;\r\n//@field(int)\r\nconst craftDifficulty = 4;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -22332,7 +22531,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d1ee56371ee4d4f8fa94643288110d, type: 3}
@@ -23068,6 +23267,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119680342737090497, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: extensionFields.Array.data[0].fieldDefinedLocation.endLine
       value: 11
       objectReference: {fileID: 0}
@@ -23157,20 +23360,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119680342737090510, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
       propertyPath: sourceCode
-      value: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-        oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-        = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst
-        subNodeVisual = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst
-        animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+      value: "/******/ (() => { // webpackBootstrap\n/*!***************************************!*\\\n 
+        !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\nconst
+        dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+        = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+        breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+        oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
         particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-        itemName = \"clystal\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u30AF\u30EA\u30B9\u30BF\u30EB\";;\r\n//@field(int)\r\nconst
-        consumeDuration = 5;;\r\n//@field(int)\r\nconst price = 30;;\r\n//@field(int)\r\nconst
-        maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-        dropChance = 0.05;;\r\n//@field(int)\r\nconst durationPower = 2;;\r\n//@field(int)\r\nconst
-        enchantPower = 25;;\r\n//@field(int)\r\nconst craftDifficulty = 5;;\r\n\r\n$.onStart(()
-        => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
-        => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
-        arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
+        itemName = \"cupperOre\";\r\n//@field(string)\r\nconst itemDisplayName =
+        \"\u9285\u9271\u77F3\";\r\n//@field(int)\r\nconst consumeDuration = 1;\r\n//@field(int)\r\nconst
+        price = 10;\r\n//@field(int)\r\nconst maxHp = 5;\r\n//@field(int)\r\nconst
+        respawnTime = 120;\r\n//@field(float)\r\nconst dropChance = 0.2;\r\n//@field(int)\r\nconst
+        durationPower = 2;\r\n//@field(int)\r\nconst enchantPower = 1;\r\n//@field(int)\r\nconst
+        craftDifficulty = 1;\r\n\r\n$.onStart(() => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers
+        = [];\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tplayer.send(\"AttackCurrentItem\",
+        null);\r\n});\r\n\r\n$.onReceive((requestName, arg, sender) => {\r\n\tif
+        (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
         \"damage\");\r\n\t\tanimator.setTrigger(\"Clash\");\r\n\t\tparticle.play();\r\n\r\n\t\tlet
         hp = $.state.hp;\r\n\t\tif (hp <= 0) return;\r\n\t\tif (arg.damage) {\r\n\t\t\thp
         -= arg.damage;\r\n\t\t} else {\r\n\t\t\thp -= 1;\r\n\t\t}\r\n\r\n\t\tCheckDropItem(arg);\r\n\r\n\t\tif
@@ -23202,7 +23407,7 @@ PrefabInstance:
         durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
         craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 -
         1;\r\n\t\tlet random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+        Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n\n/******/ })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c7623664f734947b41e6a6b89f4777, type: 3}
@@ -23824,6 +24029,10 @@ PrefabInstance:
       propertyPath: id.value
       value: 15326151091800869407
       objectReference: {fileID: 0}
+    - target: {fileID: 1194090290021404876, guid: a4ec11867f181564496d1795c2328040, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1420856454918640716, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
       value: 14491445548753278956
@@ -23886,17 +24095,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375738007310402413, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: sourceCode
-      value: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-        = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Prev\";;\r\n// @field(int)\r\nconst
-        arg = 0;;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+      value: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+        !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+        target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+        @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg
+        = 0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
         = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable)
         {\r\n\t\ttarget.send(message, arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
         => {\r\n\tif (!$.state.isEnable) {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif
-        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n"
+        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/
+        })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 6236306015239156337, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
       value: 7110557073576618781
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210274092210936705, guid: a4ec11867f181564496d1795c2328040, type: 3}
+      propertyPath: extensionFields.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7370052794355473170, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
@@ -23904,13 +24120,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7740103020354997507, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: sourceCode
-      value: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-        = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Next\";;\r\n// @field(int)\r\nconst
-        arg = 0;;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+      value: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+        !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+        target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+        @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg
+        = 0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
         = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable)
         {\r\n\t\ttarget.send(message, arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
         => {\r\n\tif (!$.state.isEnable) {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif
-        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n"
+        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/
+        })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 7904979714211689092, guid: a4ec11867f181564496d1795c2328040, type: 3}
       propertyPath: id.value
@@ -26574,17 +26793,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 377558485480467266, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
       propertyPath: sourceCode
-      value: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-        = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Prev\";;\r\n// @field(int)\r\nconst
-        arg = 0;;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+      value: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+        !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+        target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+        @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg
+        = 0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
         = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable)
         {\r\n\t\ttarget.send(message, arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
         => {\r\n\tif (!$.state.isEnable) {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif
-        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n"
+        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/
+        })()\n;"
       objectReference: {fileID: 0}
     - target: {fileID: 861361344123242127, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
       propertyPath: extensionFields.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 861361344123242127, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
       propertyPath: extensionFields.Array.data[1].type
@@ -26668,7 +26890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6632378711176047147, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
       propertyPath: extensionFields.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6632378711176047147, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
       propertyPath: extensionFields.Array.data[1].type
@@ -26704,13 +26926,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8459105807175944141, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
       propertyPath: sourceCode
-      value: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-        = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Next\";;\r\n// @field(int)\r\nconst
-        arg = 0;;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+      value: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+        !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+        target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+        @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg
+        = 0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
         = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable)
         {\r\n\t\ttarget.send(message, arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime)
         => {\r\n\tif (!$.state.isEnable) {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif
-        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n"
+        ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/
+        })()\n;"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba0f7ab0160a13940bd0dd6d907d07b6, type: 3}
