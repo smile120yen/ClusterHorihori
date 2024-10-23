@@ -1,5 +1,6 @@
 const DropSound = $.audio("Drop");
 const ClushParticle = $.subNode("ClushParticle").getUnityComponent("ParticleSystem");
+const ClushItemSpawnPosition = $.subNode("ClushParticle");
 
 const registerPlayer = (player) => {
 	$.state.followingPlayer = player;
@@ -16,6 +17,8 @@ $.onStart(() => {
 	$.state.attackedTarget = null;
 	$.state.damagedItem = null;
 	$.state.defaultMovementSpeed = 1;
+	$.state.spawnItemSetStatusCache = [];
+	$.state.itemStatusSettingProcessTime = 0;
 });
 
 $.onGrab((isGrab, isLeftHand, player) => {
@@ -102,10 +105,11 @@ $.onReceive(
 			StartClash();
 			$.log("Clash");
 		}
+
 		if (messageType === "ClashWithEffect") {
 			StartClash();
 			ClushParticle.play();
-			$.log("ClashWithEffect");
+			if (arg) SpawnDropItem(arg, ClushItemSpawnPosition.getGlobalPosition());
 		}
 
 		if (messageType === "ReceiveDamage") {
@@ -138,6 +142,23 @@ $.onUpdate((deltaTime) => {
 		}
 	}
 
+	//アイテムステータス設定キャッシュを処理
+	$.state.itemStatusSettingProcessTime -= deltaTime;
+	if ($.state.itemStatusSettingProcessTime < 0) {
+		const spawnItemSetStatusCache = $.state.spawnItemSetStatusCache;
+		if (spawnItemSetStatusCache.length > 0) {
+			const spawnItemSetStatus = spawnItemSetStatusCache.shift();
+			$.log("send:spawnItemSetStatus:" + spawnItemSetStatusCache.length);
+			try {
+				spawnItemSetStatus.followingItem.send("setStatus", spawnItemSetStatus.itemStatus);
+			} catch {
+				spawnItemSetStatusCache.unshift(spawnItemSetStatus);
+			}
+			$.state.spawnItemSetStatusCache = spawnItemSetStatusCache;
+			$.state.itemStatusSettingProcessTime = 0.01;
+		}
+	}
+
 	let followingPlayer = $.state.followingPlayer;
 
 	// プレイヤーが居なくなるとアイテムも消える
@@ -150,9 +171,7 @@ $.onUpdate((deltaTime) => {
 	if ($.state.isClash) {
 		let clashTime = $.state.clashTime;
 		clashTime -= deltaTime;
-		//$.log(clashTime);
 		if (clashTime <= 0) {
-			//$.log("endClash");
 			let followingPlayer = $.state.followingPlayer;
 			if (followingPlayer) followingPlayer.setMoveSpeedRate($.state.defaultMovementSpeed);
 			$.state.isClash = false;
@@ -169,4 +188,18 @@ const StartClash = () => {
 	const damageMessageCashe = $.state.damageMessageCashe;
 	damageMessageCashe.push(target);
 	$.state.damageMessageCashe = damageMessageCashe;
+};
+
+const SpawnDropItem = (itemStatus, spawnPosition) => {
+	$.log("SpawnDropItem:" + JSON.stringify(itemStatus));
+	const dropKousekiItem = new WorldItemTemplateId(itemStatus.itemName);
+	let followingItem = $.createItem(dropKousekiItem, spawnPosition, $.getRotation());
+
+	const spawnItemSetStatusCache = $.state.spawnItemSetStatusCache;
+	spawnItemSetStatusCache.push({ followingItem, itemStatus });
+	$.state.spawnItemSetStatusCache = spawnItemSetStatusCache;
+
+	let random_x = Math.random() * 2 - 1;
+	let random_z = Math.random() * 2 - 1;
+	followingItem.addImpulsiveForce(new Vector3(random_x, 4, random_z));
 };

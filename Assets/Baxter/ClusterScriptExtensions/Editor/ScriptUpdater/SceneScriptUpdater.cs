@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ClusterVR.CreatorKit.Editor.EditorEvents;
 
 namespace Baxter.ClusterScriptExtensions.Editor.ScriptUpdater
 {
@@ -29,7 +30,19 @@ namespace Baxter.ClusterScriptExtensions.Editor.ScriptUpdater
             UpdateClusterScripts(scene);
         }
 
-        
+        [InitializeOnLoadMethod]
+        public static void Initalize()
+        {
+            WorldUploadEvents.RegisterOnWorldUploadStart(OnWorldUploadStart);
+        }
+
+        public static bool OnWorldUploadStart(WorldUploadStartEventData worldUploadStartEventData)
+        {
+            Debug.Log("OnWorldUploadStart");
+            UpdateClusterScriptsInCurrentScene();
+            return true;
+        }
+
         /// <summary>
         /// この処理でやること
         /// - 以下の3箇所から、ワールドで使われうるScriptable Item Extensionを取得

@@ -16,6 +16,7 @@ let stockItemSendList = [];
 let currentOpenedChest = null;
 let playerSelf = null;
 let salaryCoolTime = 90;
+let clushItemStatus = null;
 const maxSalaryCoolTime = 90;
 
 const allItemList = [
@@ -24,6 +25,7 @@ const allItemList = [
 	"goldOre",
 	"goldCoinBag",
 	"ironOre",
+	"crimsonOre",
 	"trophyCatClystal",
 	"trophyCatCupper",
 	"trophyCatGold",
@@ -265,6 +267,8 @@ const updateInventoryView = () => {
 			itemText.unityProp.text = "金鉱石 " + rarityText + "\n柔らかくきれいな鉱石。価値が高い";
 		} else if (targetItemName == "ironOre") {
 			itemText.unityProp.text = "鉄鉱石 " + rarityText + "\n硬い鉱石。耐久力に優れる";
+		} else if (targetItemName == "crimsonOre") {
+			itemText.unityProp.text = "クリムゾン鉱石 " + rarityText + "\n高熱を放つ鉱石。特殊なツルハシの制作に使う";
 		} else {
 			itemText.unityProp.text = targetItem.itemDisplayName + " " + rarityText + "\nきれいな飾り。" + targetItem.price + "Gで売れる";
 		}
@@ -296,6 +300,7 @@ const getStackable = (itemName) => {
 		case "ironOre":
 		case "goldOre":
 		case "goldCoinBag":
+		case "crimsonOre":
 			return true;
 	}
 };
@@ -444,11 +449,13 @@ _.onReceive(
 
 		if (messageType === "AttackCurrentItem") {
 			isClashEffectOn = false;
+			clushItemStatus = null;
 			AttackCurrentItem(sender);
 		}
 
 		if (messageType === "AttackCurrentItemWithEffect") {
 			isClashEffectOn = true;
+			clushItemStatus = SetRarityByDropChance(arg);
 			AttackCurrentItem(sender);
 		}
 
@@ -761,6 +768,7 @@ _.onButton(2, (isDown) => {
 let saveTime = 5.0;
 
 _.onFrame((deltaTime) => {
+	if (!followItem) return;
 	if (saveTime > 0) saveTime -= deltaTime;
 	if (dropCoolTime > 0) dropCoolTime -= deltaTime;
 	if (salaryCoolTime > 0) {
@@ -820,7 +828,7 @@ _.onFrame((deltaTime) => {
 
 		if (motionTime > 0.4 - multipleAttackCount * 0.01 && !isClashed) {
 			if (isClashEffectOn) {
-				_.sendTo(followItem, "ClashWithEffect", null);
+				_.sendTo(followItem, "ClashWithEffect", clushItemStatus);
 			} else {
 				_.sendTo(followItem, "Clash", null);
 			}
@@ -898,3 +906,49 @@ function generateUUID() {
 		return v.toString(16);
 	});
 }
+
+const SetRarityByDropChance = (clushItemStatus) => {
+	const newItemStatus = clushItemStatus;
+	const itemData = savedData.inventoryData[savedData.currentSelectIndex];
+
+	//_.log("checkRarity:" + JSON.stringify(newItemStatus) + "," + JSON.stringify(itemData));
+
+	let isDroped = false;
+	const rand = Math.random();
+	let newDropChance = clushItemStatus.dropChance;
+	if (itemData.bonusDropChance) newDropChance += itemData.bonusDropChance;
+	if (rand < newDropChance) {
+		isDroped = true;
+	}
+
+	//_.log("checkRarity:" + rand + "," + newDropChance);
+
+	if (!isDroped) return null;
+
+	let luck = 1;
+	if (itemData.luck) luck = itemData.luck;
+
+	const rarityRand = Math.floor(Math.random() * 100);
+
+	let newRarity = 1;
+	if (rarityRand < 55) {
+		newRarity = 1;
+	} else if (rarityRand < 75) {
+		newRarity = 2;
+	} else if (rarityRand < 85) {
+		newRarity = 3;
+	} else if (rarityRand < 95) {
+		newRarity = 4;
+	} else {
+		newRarity = 5;
+	}
+
+	if (luck < newRarity) newRarity = luck;
+
+	newItemStatus.rarity = newRarity;
+	delete newItemStatus.dropChance;
+
+	//_.log("finalData:" + JSON.stringify(newItemStatus));
+
+	return newItemStatus;
+};

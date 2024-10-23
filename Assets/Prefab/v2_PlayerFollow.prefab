@@ -10519,7 +10519,7 @@ MonoBehaviour:
     worldItemTemplate: {fileID: 8614354452816490942, guid: 8479d4d7adcd4a44d8bc50ff7aacc282, type: 3}
     itemTemplateId:
       value: 937511493698144420
-  - id: CrimsonDrop
+  - id: crimsonOre
     worldItemTemplate: {fileID: 8614354452816490942, guid: 4e17461d4e6cd4c4aa5ebb81c48d7a28, type: 3}
     itemTemplateId:
       value: 14673605119395408455

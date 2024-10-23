@@ -4,7 +4,8 @@
     "references": [
         "ClusterVR.CreatorKit",
         "ClusterVR.CreatorKit.Item",
-        "ClusterVR.CreatorKit.Item.Implements"
+        "ClusterVR.CreatorKit.Item.Implements",
+        "ClusterVR.CreatorKit.Editor.EditorEvents"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

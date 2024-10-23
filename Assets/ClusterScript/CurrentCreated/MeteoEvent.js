@@ -10,7 +10,7 @@ const damagedSound = $.audio("Clash");
 const meteoHPMaterial = $.material("MeteoHpMaterial");
 
 //@field(string)
-const itemName = "cupperOre";
+const itemName = "crimsonOre";
 //@field(string)
 const itemDisplayName = "クリムゾン鉱石";
 //@field(int)
@@ -28,6 +28,18 @@ const enchantPower = 1;
 //@field(int)
 const craftDifficulty = 5;
 
+const itemStatus = {
+	itemName: itemName,
+	itemDisplayName: itemDisplayName,
+	price: price,
+	count: 1,
+	useableAnvil: true,
+	durationPower: durationPower,
+	enchantPower: enchantPower,
+	craftDifficulty: craftDifficulty,
+	dropChance: dropChance,
+};
+
 $.onStart(() => {
 	$.state.breakedMeteo = true;
 	$.state.meteoRespawnWaitTime = 30;
@@ -42,38 +54,49 @@ $.onStart(() => {
 });
 
 $.onInteract((player) => {
-	player.send("AttackCurrentItemWithEffect", null);
+	//この時点ではレアリティは確定しない
+	//プレイヤー側でレアリティを確定させる
+	player.send("AttackCurrentItemWithEffect", itemStatus);
 	$.state.ownerPlayer = player;
 });
 
-$.onReceive((requestName, arg, sender) => {
-	if (requestName == "damage") {
-		if ($.state.breakedMeteo) return;
-		$.log("ダメージ受信");
-		$.sendSignalCompat("this", "damage");
-		let hp = $.state.hp;
-		hp -= 1;
+$.onReceive(
+	(requestName, arg, sender) => {
+		if (requestName == "damage") {
+			if ($.state.breakedMeteo) return;
+			$.log("ダメージ受信");
+			$.sendSignalCompat("this", "damage");
+			let hp = $.state.hp;
+			hp -= 1;
 
-		meteoHPMaterial.setFloat("_FillAmount", hp / maxHp);
+			meteoHPMaterial.setFloat("_FillAmount", hp / maxHp);
 
-		if (hp > 0) {
-			//ダメージ
-			damagedSound.play();
-		} else {
-			BreakMeteoAnim();
+			if (hp > 0) {
+				//ダメージ
+				damagedSound.play();
+			} else {
+				BreakMeteoAnim();
+			}
+
+			$.state.hp = hp;
+
+			let newConsumeDuration = consumeDuration;
+			if (arg.durationReduce) {
+				newConsumeDuration -= arg.durationReduce;
+			}
+			if (newConsumeDuration < 1) newConsumeDuration = 1;
+
+			sender.send("ReceiveDamage", newConsumeDuration);
 		}
 
-		$.state.hp = hp;
-
-		let newConsumeDuration = consumeDuration;
-		if (arg.durationReduce) {
-			newConsumeDuration -= arg.durationReduce;
+		if (requestName == "forceStartMeteoEvent") {
+			$.log("receve:forceStartMeteoEvent");
+			$.state.breakedMeteo = false;
+			StartMeteoAnim();
 		}
-		if (newConsumeDuration < 1) newConsumeDuration = 1;
-
-		sender.send("ReceiveDamage", newConsumeDuration);
-	}
-});
+	},
+	{ item: true, player: true }
+);
 
 $.onUpdate((deltaTime) => {
 	if ($.state.tryLockOff) {
@@ -197,56 +220,4 @@ const BreakMeteoAnim = () => {
 		});
 	});
 	$.state.sendMessageCache = cache;
-};
-
-const CheckDropItem = (itemData) => {
-	let isDroped = false;
-	const rand = Math.random();
-	let newDropChance = dropChance;
-	if (itemData.bonusDropChance) newDropChance += itemData.bonusDropChance;
-	if (rand < newDropChance || hp <= 0) {
-		isDroped = true;
-	}
-
-	let luck = 1;
-	if (itemData.luck) luck = itemData.luck;
-
-	const rarityRand = Math.floor(Math.random() * 100);
-
-	let newRarity = 1;
-	if (rarityRand < 55) {
-		newRarity = 1;
-	} else if (rarityRand < 75) {
-		newRarity = 2;
-	} else if (rarityRand < 85) {
-		newRarity = 3;
-	} else if (rarityRand < 95) {
-		newRarity = 4;
-	} else {
-		newRarity = 5;
-	}
-
-	if (luck < newRarity) newRarity = luck;
-
-	if (isDroped) {
-		let spawnPosition = $.getPosition()
-			.clone()
-			.add(new Vector3(0, 0.7, 0));
-		let followingItem = $.createItem(dropKousekiItem, spawnPosition, $.getRotation());
-		followingItem.send("setStatus", {
-			itemName: itemName,
-			itemDisplayName: itemDisplayName,
-			price: price,
-			count: 1,
-			useableAnvil: true,
-			rarity: newRarity,
-			durationPower: durationPower,
-			enchantPower: enchantPower,
-			craftDifficulty: craftDifficulty,
-		});
-
-		let random_x = Math.random() * 2 - 1;
-		let random_z = Math.random() * 2 - 1;
-		followingItem.addImpulsiveForce(new Vector3(random_x, 4, random_z));
-	}
 };

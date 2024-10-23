@@ -22,6 +22,7 @@ const allItemList = [
 	"goldOre",
 	"goldCoinBag",
 	"ironOre",
+	"crimsonOre",
 	"trophyCatClystal",
 	"trophyCatCupper",
 	"trophyCatGold",

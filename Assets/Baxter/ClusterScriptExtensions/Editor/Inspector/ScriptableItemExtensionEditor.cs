@@ -8,12 +8,6 @@ namespace Baxter.ClusterScriptExtensions.Editor.Inspector
     [CustomEditor(typeof(ScriptableItemExtension))]
     public class ScriptableItemExtensionEditor : UnityEditor.Editor
     {
-        [InitializeOnLoadMethod]
-        public void Initalize()
-        {
-            WorldUploadEvents.RegisterOnWorldUploadStart(ForceReload);
-        }
-
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
@@ -57,13 +51,18 @@ namespace Baxter.ClusterScriptExtensions.Editor.Inspector
             }
         }
 
-        public bool ForceReload(WorldUploadStartEventData data)
+        public static bool OnWorldUploadStart(WorldUploadStartEventData data)
+        {
+            Debug.Log("OnWorldUploadStart:");
+            //ForceReload();
+            return true;
+        }
+
+        public void ForceReload()
         {
             serializedObject.ApplyModifiedProperties();
             ReloadFields(serializedObject, false);
             Apply(serializedObject);
-
-            return true;
         }
 
         private static void ResetValues(SerializedObject obj)

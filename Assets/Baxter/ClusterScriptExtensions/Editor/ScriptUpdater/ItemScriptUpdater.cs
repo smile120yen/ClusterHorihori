@@ -14,6 +14,8 @@ namespace Baxter.ClusterScriptExtensions.Editor.ScriptUpdater
         /// ScriptableItemのテキストとして適用する
         /// </summary>
         /// <param name="ext"></param>
+        /// 
+
         public static void ApplyGeneratedSourceCode(ScriptableItemExtension ext)
         {
             var script = ext.TemplateCode?.text ?? "";

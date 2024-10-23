@@ -96,6 +96,7 @@ const CheckDropItem = (itemData) => {
 	let isDroped = false;
 	const rand = Math.random();
 	let newDropChance = dropChance;
+	let hp = $.state.hp;
 	if (itemData.bonusDropChance) newDropChance += itemData.bonusDropChance;
 	if (rand < newDropChance || hp <= 0) {
 		isDroped = true;
