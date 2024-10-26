@@ -29,7 +29,7 @@ namespace Baxter.ClusterScriptExtensions.Editor.ScriptUpdater
             var scene = SceneManager.GetActiveScene();
             UpdateClusterScripts(scene);
         }
-
+        /*
         [InitializeOnLoadMethod]
         public static void Initalize()
         {
@@ -42,6 +42,7 @@ namespace Baxter.ClusterScriptExtensions.Editor.ScriptUpdater
             UpdateClusterScriptsInCurrentScene();
             return true;
         }
+        */
 
         /// <summary>
         /// この処理でやること

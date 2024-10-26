@@ -8,7 +8,6 @@ $.onStart(() => {
 $.onReceive(
 	(messageType, arg, sender) => {
 		if (messageType == "PlayBGM") {
-			$.log("PlayBGM:" + arg);
 			switch (arg) {
 				case "BGMDefault":
 					bgmDefault.setEnabled(true);
@@ -19,7 +18,6 @@ $.onReceive(
 			}
 		}
 		if (messageType == "StopBGM") {
-			$.log("StopBGM:" + arg);
 			switch (arg) {
 				case "BGMDefault":
 					bgmDefault.setEnabled(false);
@@ -29,6 +27,8 @@ $.onReceive(
 					break;
 			}
 		}
+
+		$.log("receve:" + (messageType || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

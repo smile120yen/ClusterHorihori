@@ -56,6 +56,8 @@ $.onReceive(
 			buyItemSound.play();
 			sender.send("RemoveMoney", { count: buyPrice });
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

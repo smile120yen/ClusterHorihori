@@ -8,10 +8,10 @@ const ClushItemSpawnPosition = $.subNode("ClushParticle");
 
 const registerPlayer = (player) => {
 	$.state.followingPlayer = player;
+	$.state.isGrabed = true;
 };
 
 $.onStart(() => {
-	$.log("created");
 	$.state.followingPlayer = null;
 	$.state.beforeSelectItem = null;
 	$.state.damageMessageCashe = [];
@@ -23,20 +23,26 @@ $.onStart(() => {
 	$.state.defaultMovementSpeed = 1;
 	$.state.spawnItemSetStatusCache = [];
 	$.state.itemStatusSettingProcessTime = 0;
+	$.state.sendMessageCache = [];
+	$.state.cacheWaitTime = 0;
+	$.state.isGrabed = false;
 });
 
 $.onGrab((isGrab, isLeftHand, player) => {
 	if (isGrab) {
 		registerPlayer(player);
-		player.send("RegisterFollowItem", null);
+		AddSendMessageCache(player, "RegisterFollowItem", null);
+		//player.send("RegisterFollowItem", null);
 		$.subNode("GetCollision").setEnabled(false);
 
 		if ($.state.grabItemSpawner) {
-			$.state.grabItemSpawner.send("SpawnNewGrabItem", null);
+			AddSendMessageCache($.state.grabItemSpawner, "SpawnNewGrabItem", null);
+			//$.state.grabItemSpawner.send("SpawnNewGrabItem", null);
 			$.state.grabItemSpawner = null;
 		}
 	} else {
 		registerPlayer(null);
+		//AddSendMessageCache(player, "UnRegisterFollowItem", null);
 		player.send("UnRegisterFollowItem", null);
 		player.setMoveSpeedRate(1);
 		$.destroy();
@@ -46,7 +52,6 @@ $.onGrab((isGrab, isLeftHand, player) => {
 $.onReceive(
 	(messageType, arg, sender) => {
 		if (messageType === "SetDefaultMovementSpeed") {
-			$.log("SetDefaultMovementSpeed:" + arg);
 			let followingPlayer = $.state.followingPlayer;
 			$.state.defaultMovementSpeed = arg;
 			followingPlayer.setMoveSpeedRate($.state.defaultMovementSpeed);
@@ -60,12 +65,20 @@ $.onReceive(
 			let spawnPosition = $.getPosition().clone().Add(addPositon);
 			const dropItemPrefab = new WorldItemTemplateId(arg.itemName);
 			let dropItem = $.createItem(dropItemPrefab, spawnPosition, headRotation);
-			dropItem.send("setStatus", arg);
 
+			AddSendMessageCache(dropItem, "setStatus", arg);
+			//dropItem.send("setStatus", arg);
+
+			AddSendMessageCache($.state.followingPlayer, "RemoveSelectItem", {
+				itemName: [],
+				count: 1,
+			});
+			/*
 			$.state.followingPlayer.send("RemoveSelectItem", {
 				itemName: [],
 				count: 1,
 			});
+			*/
 
 			let addForce = new Vector3(0, 0, 3).applyQuaternion(headRotation);
 			dropItem.addImpulsiveForce(addForce);
@@ -79,12 +92,14 @@ $.onReceive(
 				}
 			}
 
-			const currentVisibleSubNode = $.subNode(arg);
-			if (currentVisibleSubNode) {
-				currentVisibleSubNode.setEnabled(true);
+			if (arg.itemName != null) {
+				const currentVisibleSubNode = $.subNode(arg.itemName);
+				if (currentVisibleSubNode) {
+					currentVisibleSubNode.setEnabled(true);
+				}
 			}
 
-			$.state.beforeSelectItem = arg;
+			$.state.beforeSelectItem = arg.itemName;
 		}
 
 		if (messageType === "PlaySound") {
@@ -107,7 +122,6 @@ $.onReceive(
 
 		if (messageType === "Clash") {
 			StartClash();
-			$.log("Clash");
 		}
 
 		if (messageType === "ClashWithEffect") {
@@ -118,12 +132,16 @@ $.onReceive(
 
 		if (messageType === "ReceiveDamage") {
 			let followingPlayer = $.state.followingPlayer;
-			followingPlayer.send("consumeItem", arg);
+
+			AddSendMessageCache(followingPlayer, "consumeItem", arg);
+			//followingPlayer.send("consumeItem", arg);
 		}
 
 		if (messageType === "RegisterGrabItemSpawner") {
 			$.state.grabItemSpawner = sender;
 		}
+
+		$.log("receve:" + (messageType || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );
@@ -135,11 +153,11 @@ $.onUpdate((deltaTime) => {
 		const damageMessageCashe = $.state.damageMessageCashe;
 		if (damageMessageCashe.length > 0) {
 			const damageMessageTarget = damageMessageCashe.shift();
-			$.log("send:damage");
 			try {
 				damageMessageTarget.send("damage", $.state.damagedItem);
 			} catch {
 				damageMessageCashe.unshift(damageMessageTarget);
+				$.log("キャッシュ処理失敗");
 			}
 			$.state.damageMessageCashe = damageMessageCashe;
 			$.state.damageMessageProcessTime = 0.01;
@@ -152,21 +170,38 @@ $.onUpdate((deltaTime) => {
 		const spawnItemSetStatusCache = $.state.spawnItemSetStatusCache;
 		if (spawnItemSetStatusCache.length > 0) {
 			const spawnItemSetStatus = spawnItemSetStatusCache.shift();
-			$.log("send:spawnItemSetStatus:" + spawnItemSetStatusCache.length);
 			try {
 				spawnItemSetStatus.followingItem.send("setStatus", spawnItemSetStatus.itemStatus);
 			} catch {
 				spawnItemSetStatusCache.unshift(spawnItemSetStatus);
+				$.log("キャッシュ処理失敗");
 			}
 			$.state.spawnItemSetStatusCache = spawnItemSetStatusCache;
 			$.state.itemStatusSettingProcessTime = 0.01;
 		}
 	}
 
+	//汎用メッセージキャッシュを処理
+	if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
+	if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
+		const sendMessageCache = $.state.sendMessageCache;
+		const sendMessageData = sendMessageCache.shift();
+		try {
+			let arg = sendMessageData.arg;
+			if (!arg) arg = "";
+			sendMessageData.targetHandle.send(sendMessageData.message, arg);
+		} catch {
+			sendMessageCache.unshift(sendMessageData);
+			$.log("キャッシュ処理失敗");
+		}
+		$.state.sendMessageCache = sendMessageCache;
+		$.state.cacheWaitTime = 0.1;
+	}
+
 	let followingPlayer = $.state.followingPlayer;
 
 	// プレイヤーが居なくなるとアイテムも消える
-	if (followingPlayer && followingPlayer.exists() === false) {
+	if ((!followingPlayer && $.state.isGrabed) || (followingPlayer && followingPlayer.exists() === false)) {
 		$.destroy();
 		return;
 	}
@@ -195,7 +230,6 @@ const StartClash = () => {
 };
 
 const SpawnDropItem = (itemStatus, spawnPosition) => {
-	$.log("SpawnDropItem:" + JSON.stringify(itemStatus));
 	const dropKousekiItem = new WorldItemTemplateId(itemStatus.itemName);
 	let followingItem = $.createItem(dropKousekiItem, spawnPosition, $.getRotation());
 
@@ -206,6 +240,13 @@ const SpawnDropItem = (itemStatus, spawnPosition) => {
 	let random_x = Math.random() * 2 - 1;
 	let random_z = Math.random() * 2 - 1;
 	followingItem.addImpulsiveForce(new Vector3(random_x, 4, random_z));
+};
+
+const AddSendMessageCache = (targetHandle, message, arg) => {
+	let currentCache = $.state.sendMessageCache;
+	if (!currentCache) currentCache = [];
+	currentCache.push({ targetHandle, message, arg });
+	$.state.sendMessageCache = currentCache;
 };
 
 /******/ })()

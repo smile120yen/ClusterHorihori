@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4135870077616839940}
   - component: {fileID: 4135870077616839947}
   - component: {fileID: 4135870077616840050}
-  - component: {fileID: 730620006231380420}
   m_Layer: 14
   m_Name: Cupper
   m_TagString: Untagged
@@ -71,18 +70,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61061896c654489a41575fc291bf4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceCodeAsset: {fileID: 0}
-  sourceCode: "const dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst
-    oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound
-    = $.audio(\"Clash\");\r\nconst breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual
-    = $.subNode(\"Visual\");\r\nconst oreObject = $.subNode(\"Ore\");\r\nconst animator
-    = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst particle =
-    $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n//@field(string)\r\nconst
-    itemName = \"cupperOre\";;\r\n//@field(string)\r\nconst itemDisplayName = \"\u9285\u9271\u77F3\";;\r\n//@field(int)\r\nconst
-    consumeDuration = 1;;\r\n//@field(int)\r\nconst price = 10;;\r\n//@field(int)\r\nconst
-    maxHp = 5;;\r\n//@field(int)\r\nconst respawnTime = 120;;\r\n//@field(float)\r\nconst
-    dropChance = 0.2;;\r\n//@field(int)\r\nconst durationPower = 1;;\r\n//@field(int)\r\nconst
-    enchantPower = 5;;\r\n//@field(int)\r\nconst craftDifficulty = 1;;\r\n\r\n$.onStart(()
+  sourceCodeAsset: {fileID: 5022602860645237092, guid: 1cd3c4656608f8d45ade35e6b0db4a7d, type: 3}
+  sourceCode: "/******/ (() => { // webpackBootstrap\n/******/ \t\"use strict\";\n/******/
+    \tvar __webpack_modules__ = ({\n\n/***/ \"./src/modules/BreakableOreItemScriptModule.js\":\n/*!*****************************************************!*\\\n 
+    !*** ./src/modules/BreakableOreItemScriptModule.js ***!\n  \\*****************************************************/\n/***/
+    ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {\n\n__webpack_require__.r(__webpack_exports__);\n/*
+    harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export
+    */   initListeners: () => (/* binding */ initListeners)\n/* harmony export */
+    });\nconst initListeners = (itemSettings) => {\r\n\tconst dropKousekiItem = new
+    WorldItemTemplateId(\"DropKouseki\");\r\n\tconst oreBreakedItem = new WorldItemTemplateId(\"OreBreaked\");\r\n\tconst
+    damagedSound = $.audio(\"Clash\");\r\n\tconst breakedSound = $.audio(\"Break\");\r\n\tconst
+    subNodeVisual = $.subNode(\"Visual\");\r\n\tconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\n\tconst
+    particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n\t$.onStart(()
+    => {\r\n\t\tRespawnItem();\r\n\t\t$.state.itemUsePlayers = [];\r\n\t});\r\n\r\n\t$.onInteract((player)
+    => {\r\n\t\tplayer.send(\"AttackCurrentItem\", null);\r\n\t});\r\n\r\n\t$.onReceive((requestName,
+    arg, sender) => {\r\n\t\tif (requestName == \"damage\") {\r\n\t\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t\t//$.sendSignalCompat(\"this\",
+    \"damage\");\r\n\t\t\tanimator.setTrigger(\"Clash\");\r\n\t\t\tparticle.play();\r\n\r\n\t\t\tlet
+    hp = $.state.hp;\r\n\t\t\tif (hp <= 0) return;\r\n\t\t\tif (arg.damage) {\r\n\t\t\t\thp
+    -= arg.damage;\r\n\t\t\t} else {\r\n\t\t\t\thp -= 1;\r\n\t\t\t}\r\n\r\n\t\t\tCheckDropItem(arg);\r\n\r\n\t\t\tif
+    (hp > 0) {\r\n\t\t\t\tdamagedSound.play();\r\n\t\t\t} else {\r\n\t\t\t\tbreakedSound.play();\r\n\t\t\t\tsubNodeVisual.setEnabled(false);\r\n\t\t\t\t$.createItem(oreBreakedItem,
+    $.getPosition(), $.getRotation());\r\n\t\t\t\t$.state.enable = false;\r\n\t\t\t\t$.state.respawnTime
+    = respawnTime / $.getPlayersNear($.getPosition(), Infinity).length;\r\n\t\t\t}\r\n\r\n\t\t\t$.state.hp
+    = hp;\r\n\r\n\t\t\tlet newConsumeDuration = consumeDuration;\r\n\t\t\tif (arg.durationReduce)
+    {\r\n\t\t\t\tnewConsumeDuration -= arg.durationReduce;\r\n\t\t\t}\r\n\t\t\tif
+    (newConsumeDuration < 1) newConsumeDuration = 1;\r\n\r\n\t\t\tsender.send(\"ReceiveDamage\",
+    newConsumeDuration);\r\n\t\t}\r\n\t});\r\n\r\n\t$.onUpdate((deltaTime) => {\r\n\t\tif
+    (!$.state.enable) {\r\n\t\t\t$.state.respawnTime -= deltaTime;\r\n\t\t\tif ($.state.respawnTime
+    <= 0) {\r\n\t\t\t\tRespawnItem();\r\n\t\t\t}\r\n\t\t}\r\n\t});\r\n\r\n\tconst
+    RespawnItem = () => {\r\n\t\tsubNodeVisual.setEnabled(true);\r\n\t\t$.state.maxHp
+    = itemSettings.maxHp;\r\n\t\t$.state.hp = itemSettings.maxHp;\r\n\t\t$.state.enable
+    = true;\r\n\t};\r\n\r\n\tconst CheckDropItem = (itemData) => {\r\n\t\tlet isDroped
+    = false;\r\n\t\tconst rand = Math.random();\r\n\t\tlet newDropChance = itemSettings.dropChance;\r\n\t\tlet
+    hp = $.state.hp;\r\n\t\tif (itemData.bonusDropChance) newDropChance += itemData.bonusDropChance;\r\n\t\tif
+    (rand < newDropChance || hp <= 0) {\r\n\t\t\tisDroped = true;\r\n\t\t}\r\n\r\n\t\tlet
+    luck = 1;\r\n\t\tif (itemData.luck) luck = itemData.luck;\r\n\r\n\t\tconst rarityRand
+    = Math.floor(Math.random() * 100);\r\n\r\n\t\tlet newRarity = 1;\r\n\t\tif (rarityRand
+    < 55) {\r\n\t\t\tnewRarity = 1;\r\n\t\t} else if (rarityRand < 75) {\r\n\t\t\tnewRarity
+    = 2;\r\n\t\t} else if (rarityRand < 85) {\r\n\t\t\tnewRarity = 3;\r\n\t\t} else
+    if (rarityRand < 95) {\r\n\t\t\tnewRarity = 4;\r\n\t\t} else {\r\n\t\t\tnewRarity
+    = 5;\r\n\t\t}\r\n\r\n\t\tif (luck < newRarity) newRarity = luck;\r\n\r\n\t\tif
+    (isDroped) {\r\n\t\t\tlet spawnPosition = $.getPosition()\r\n\t\t\t\t.clone()\r\n\t\t\t\t.add(new
+    Vector3(0, 0.7, 0));\r\n\t\t\tlet followingItem = $.createItem(dropKousekiItem,
+    spawnPosition, $.getRotation());\r\n\t\t\tfollowingItem.send(\"setStatus\", {\r\n\t\t\t\titemName:
+    itemSettings.itemName,\r\n\t\t\t\titemDisplayName: itemSettings.itemDisplayName,\r\n\t\t\t\tprice:
+    itemSettings.price,\r\n\t\t\t\tcount: 1,\r\n\t\t\t\tuseableAnvil: true,\r\n\t\t\t\trarity:
+    newRarity,\r\n\t\t\t\tdurationPower: itemSettings.durationPower,\r\n\t\t\t\tenchantPower:
+    itemSettings.enchantPower,\r\n\t\t\t\tcraftDifficulty: itemSettings.craftDifficulty,\r\n\t\t\t});\r\n\r\n\t\t\tlet
+    random_x = Math.random() * 2 - 1;\r\n\t\t\tlet random_z = Math.random() * 2 -
+    1;\r\n\t\t\tfollowingItem.addImpulsiveForce(new Vector3(random_x, 4, random_z));\r\n\t\t}\r\n\t};\r\n};\r\n\n\n/***/
+    })\n\n/******/ \t});\n/************************************************************************/\n/******/
+    \t// The module cache\n/******/ \tvar __webpack_module_cache__ = {};\n/******/
+    \t\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId)
+    {\n/******/ \t\t// Check if module is in cache\n/******/ \t\tvar cachedModule
+    = __webpack_module_cache__[moduleId];\n/******/ \t\tif (cachedModule !== undefined)
+    {\n/******/ \t\t\treturn cachedModule.exports;\n/******/ \t\t}\n/******/ \t\t//
+    Create a new module (and put it into the cache)\n/******/ \t\tvar module = __webpack_module_cache__[moduleId]
+    = {\n/******/ \t\t\t// no module.id needed\n/******/ \t\t\t// no module.loaded
+    needed\n/******/ \t\t\texports: {}\n/******/ \t\t};\n/******/ \t\n/******/ \t\t//
+    Execute the module function\n/******/ \t\t__webpack_modules__[moduleId](module,
+    module.exports, __webpack_require__);\n/******/ \t\n/******/ \t\t// Return the
+    exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n/******/
+    \t\n/************************************************************************/\n/******/
+    \t/* webpack/runtime/define property getters */\n/******/ \t(() => {\n/******/
+    \t\t// define getter functions for harmony exports\n/******/ \t\t__webpack_require__.d
+    = (exports, definition) => {\n/******/ \t\t\tfor(var key in definition) {\n/******/
+    \t\t\t\tif(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports,
+    key)) {\n/******/ \t\t\t\t\tObject.defineProperty(exports, key, { enumerable:
+    true, get: definition[key] });\n/******/ \t\t\t\t}\n/******/ \t\t\t}\n/******/
+    \t\t};\n/******/ \t})();\n/******/ \t\n/******/ \t/* webpack/runtime/hasOwnProperty
+    shorthand */\n/******/ \t(() => {\n/******/ \t\t__webpack_require__.o = (obj,
+    prop) => (Object.prototype.hasOwnProperty.call(obj, prop))\n/******/ \t})();\n/******/
+    \t\n/******/ \t/* webpack/runtime/make namespace object */\n/******/ \t(() =>
+    {\n/******/ \t\t// define __esModule on exports\n/******/ \t\t__webpack_require__.r
+    = (exports) => {\n/******/ \t\t\tif(typeof Symbol !== 'undefined' && Symbol.toStringTag)
+    {\n/******/ \t\t\t\tObject.defineProperty(exports, Symbol.toStringTag, { value:
+    'Module' });\n/******/ \t\t\t}\n/******/ \t\t\tObject.defineProperty(exports,
+    '__esModule', { value: true });\n/******/ \t\t};\n/******/ \t})();\n/******/
+    \t\n/************************************************************************/\nvar
+    __webpack_exports__ = {};\n// This entry need to be wrapped in an IIFE because
+    it need to be isolated against other modules in the chunk.\n(() => {\n/*!***************************************!*\\\n 
+    !*** ./src/BreakableOreItemScript.js ***!\n  \\***************************************/\n__webpack_require__.r(__webpack_exports__);\n/*
+    harmony import */ var _modules_BreakableOreItemScriptModule_js__WEBPACK_IMPORTED_MODULE_0__
+    = __webpack_require__(/*! ./modules/BreakableOreItemScriptModule.js */ \"./src/modules/BreakableOreItemScriptModule.js\");\n\r\n\r\nconst
+    itemSettings = {\r\n\titemName: \"cupperOre\",\r\n\titemDisplayName: \"\u9285\u9271\u77F3\",\r\n\tconsumeDuration:
+    1,\r\n\tprice: 10,\r\n\tmaxHp: 5,\r\n\trespawnTime: 120,\r\n\tdropChance: 0.2,\r\n\tdurationPower:
+    2,\r\n\tenchantPower: 1,\r\n\tcraftDifficulty: 1,\r\n};\r\n\r\n(0,_modules_BreakableOreItemScriptModule_js__WEBPACK_IMPORTED_MODULE_0__.initListeners)(itemSettings);\r\n\r\n/*\r\n\r\nconst
+    dropKousekiItem = new WorldItemTemplateId(\"DropKouseki\");\r\nconst oreBreakedItem
+    = new WorldItemTemplateId(\"OreBreaked\");\r\nconst damagedSound = $.audio(\"Clash\");\r\nconst
+    breakedSound = $.audio(\"Break\");\r\nconst subNodeVisual = $.subNode(\"Visual\");\r\nconst
+    oreObject = $.subNode(\"Ore\");\r\nconst animator = $.subNode(\"Visual\").getUnityComponent(\"Animator\");\r\nconst
+    particle = $.subNode(\"Particle System\").getUnityComponent(\"ParticleSystem\");\r\n\r\n$.onStart(()
     => {\r\n\tRespawnItem();\r\n\t$.state.itemUsePlayers = [];\r\n});\r\n\r\n$.onInteract((player)
     => {\r\n\tplayer.send(\"AttackCurrentItem\", null);\r\n});\r\n\r\n$.onReceive((requestName,
     arg, sender) => {\r\n\tif (requestName == \"damage\") {\r\n\t\t$.log(\"\u30C0\u30E1\u30FC\u30B8\u53D7\u4FE1\");\r\n\t\t//$.sendSignalCompat(\"this\",
@@ -116,7 +193,7 @@ MonoBehaviour:
     durationPower,\r\n\t\t\tenchantPower: enchantPower,\r\n\t\t\tcraftDifficulty:
     craftDifficulty,\r\n\t\t});\r\n\r\n\t\tlet random_x = Math.random() * 2 - 1;\r\n\t\tlet
     random_z = Math.random() * 2 - 1;\r\n\t\tfollowingItem.addImpulsiveForce(new
-    Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n"
+    Vector3(random_x, 4, random_z));\r\n\t}\r\n};\r\n*/\r\n\n})();\n\n/******/ })()\n;"
 --- !u!114 &4135870077616839940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,240 +250,6 @@ MonoBehaviour:
     worldItemTemplate: {fileID: 458837421975935184, guid: db12b7bbef067c549bbbcfe6d3dc4bfa, type: 3}
     itemTemplateId:
       value: 11510264840520560172
---- !u!114 &730620006231380420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865467533507813462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b823bd601c25d6643a680126a20d89c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateCode: {fileID: 5022602860645237092, guid: 6108375cddf7fda4687dedd640fe5c59, type: 3}
-  extensionFields:
-  - fieldName: itemName
-    type: 3
-    fieldDefinedLocation:
-      startLine: 11
-      startColumn: 6
-      endLine: 11
-      endColumn: 28
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: cupperOre
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: cupperOre
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: itemDisplayName
-    type: 3
-    fieldDefinedLocation:
-      startLine: 13
-      startColumn: 6
-      endLine: 13
-      endColumn: 29
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: "\u9285\u9271\u77F3"
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: "\u9285\u9271\u77F3"
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: consumeDuration
-    type: 1
-    fieldDefinedLocation:
-      startLine: 15
-      startColumn: 6
-      endLine: 15
-      endColumn: 25
-    boolInitialValue: 0
-    intInitialValue: 1
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 1
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: price
-    type: 1
-    fieldDefinedLocation:
-      startLine: 17
-      startColumn: 6
-      endLine: 17
-      endColumn: 16
-    boolInitialValue: 0
-    intInitialValue: 10
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 1
-    boolValue: 0
-    intValue: 10
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: maxHp
-    type: 1
-    fieldDefinedLocation:
-      startLine: 19
-      startColumn: 6
-      endLine: 19
-      endColumn: 15
-    boolInitialValue: 0
-    intInitialValue: 5
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 5
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: respawnTime
-    type: 1
-    fieldDefinedLocation:
-      startLine: 21
-      startColumn: 6
-      endLine: 21
-      endColumn: 23
-    boolInitialValue: 0
-    intInitialValue: 120
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 120
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: dropChance
-    type: 2
-    fieldDefinedLocation:
-      startLine: 23
-      startColumn: 6
-      endLine: 23
-      endColumn: 22
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0.2
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 1
-    boolValue: 0
-    intValue: 0
-    floatValue: 0.2
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: durationPower
-    type: 1
-    fieldDefinedLocation:
-      startLine: 25
-      startColumn: 6
-      endLine: 25
-      endColumn: 23
-    boolInitialValue: 0
-    intInitialValue: 2
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 1
-    boolValue: 0
-    intValue: 1
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: enchantPower
-    type: 1
-    fieldDefinedLocation:
-      startLine: 27
-      startColumn: 6
-      endLine: 27
-      endColumn: 22
-    boolInitialValue: 0
-    intInitialValue: 1
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 1
-    boolValue: 0
-    intValue: 5
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: craftDifficulty
-    type: 1
-    fieldDefinedLocation:
-      startLine: 29
-      startColumn: 6
-      endLine: 29
-      endColumn: 25
-    boolInitialValue: 0
-    intInitialValue: 1
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 1
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1 &4135870077173042391
 GameObject:
   m_ObjectHideFlags: 0

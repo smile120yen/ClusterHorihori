@@ -1561,7 +1561,6 @@ GameObject:
   - component: {fileID: 3791571547170864702}
   - component: {fileID: 9213778750253208375}
   - component: {fileID: 4375738007310402413}
-  - component: {fileID: 7210274092210936705}
   - component: {fileID: 6603254315536813868}
   m_Layer: 0
   m_Name: Prev
@@ -1628,73 +1627,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61061896c654489a41575fc291bf4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceCodeAsset: {fileID: 0}
-  sourceCode: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
-    = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Prev\";;\r\n// @field(int)\r\nconst
-    arg = 0;;\r\n\r\n$.onStart(()=>{\r\n    $.state.cooltime = 0;\r\n    $.state.isEnable
-    = true;\r\n});\r\n\r\n$.onInteract(player => {\r\n    if($.state.isEnable){\r\n       
-    target.send(message, arg);\r\n    }\r\n});\r\n\r\n\r\n$.onUpdate((deltaTime)
-    => {\r\n    if(!$.state.isEnable){\r\n        $.state.cooltime -= deltaTime;\r\n       
-    if($.state.cooltime<=0){\r\n            $.state.isEnable= true;\r\n        }\r\n   
-    }\r\n});"
---- !u!114 &7210274092210936705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6979901093909431755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b823bd601c25d6643a680126a20d89c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateCode: {fileID: 5022602860645237092, guid: 8bb1b42dad61e5044aa1bffa82711f91, type: 3}
-  extensionFields:
-  - fieldName: message
-    type: 3
-    fieldDefinedLocation:
-      startLine: 5
-      startColumn: 6
-      endLine: 5
-      endColumn: 22
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: Next
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 1
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: Prev
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: arg
-    type: 1
-    fieldDefinedLocation:
-      startLine: 7
-      startColumn: 6
-      endLine: 7
-      endColumn: 13
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
+  sourceCodeAsset: {fileID: 5022602860645237092, guid: 12d90914e64a2d84084ed5e765ad95ea, type: 3}
+  sourceCode: "/******/ (() => { // webpackBootstrap\n/*!********************************************!*\\\n 
+    !*** ./src/InteractSendMessageToTarget.js ***!\n  \\********************************************/\nconst
+    target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax = 0.1;\r\n\r\n//
+    @field(string)\r\nconst message = \"Next\";\r\n// @field(int)\r\nconst arg =
+    0;\r\n\r\n$.onStart(() => {\r\n\t$.state.cooltime = 0;\r\n\t$.state.isEnable
+    = true;\r\n});\r\n\r\n$.onInteract((player) => {\r\n\tif ($.state.isEnable) {\r\n\t\ttarget.send(message,
+    arg);\r\n\t}\r\n});\r\n\r\n$.onUpdate((deltaTime) => {\r\n\tif (!$.state.isEnable)
+    {\r\n\t\t$.state.cooltime -= deltaTime;\r\n\t\tif ($.state.cooltime <= 0) {\r\n\t\t\t$.state.isEnable
+    = true;\r\n\t\t}\r\n\t}\r\n});\r\n\n/******/ })()\n;"
 --- !u!114 &6603254315536813868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,7 +2147,6 @@ GameObject:
   - component: {fileID: 8438612186859348636}
   - component: {fileID: 663864482477634784}
   - component: {fileID: 7740103020354997507}
-  - component: {fileID: 1194090290021404876}
   - component: {fileID: 1396280874894850717}
   m_Layer: 0
   m_Name: Next
@@ -2284,7 +2225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61061896c654489a41575fc291bf4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceCodeAsset: {fileID: 0}
+  sourceCodeAsset: {fileID: 5022602860645237092, guid: a45e9b452e7f6884db3c008cb14b05bb, type: 3}
   sourceCode: "const target = $.worldItemReference(\"Target\");\r\nconst cooltimeMax
     = 0.1;\r\n\r\n// @field(string)\r\nconst message = \"Next\";;\r\n// @field(int)\r\nconst
     arg = 0;;\r\n\r\n$.onStart(()=>{\r\n    $.state.cooltime = 0;\r\n    $.state.isEnable
@@ -2293,64 +2234,6 @@ MonoBehaviour:
     => {\r\n    if(!$.state.isEnable){\r\n        $.state.cooltime -= deltaTime;\r\n       
     if($.state.cooltime<=0){\r\n            $.state.isEnable= true;\r\n        }\r\n   
     }\r\n});"
---- !u!114 &1194090290021404876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8360966849944807754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b823bd601c25d6643a680126a20d89c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateCode: {fileID: 5022602860645237092, guid: 8bb1b42dad61e5044aa1bffa82711f91, type: 3}
-  extensionFields:
-  - fieldName: message
-    type: 3
-    fieldDefinedLocation:
-      startLine: 5
-      startColumn: 6
-      endLine: 5
-      endColumn: 22
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: Next
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: Next
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
-  - fieldName: arg
-    type: 1
-    fieldDefinedLocation:
-      startLine: 7
-      startColumn: 6
-      endLine: 7
-      endColumn: 13
-    boolInitialValue: 0
-    intInitialValue: 0
-    floatInitialValue: 0
-    stringInitialValue: 
-    vector2InitialValue: {x: 0, y: 0}
-    vector3InitialValue: {x: 0, y: 0, z: 0}
-    quaternionInitialValue: {x: 0, y: 0, z: 0, w: 1}
-    overrideValue: 0
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    stringValue: 
-    vector2Value: {x: 0, y: 0}
-    vector3Value: {x: 0, y: 0, z: 0}
-    quaternionValue: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &1396280874894850717
 MonoBehaviour:
   m_ObjectHideFlags: 0

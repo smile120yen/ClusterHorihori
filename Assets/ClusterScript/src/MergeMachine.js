@@ -55,7 +55,6 @@ $.onReceive(
 		//アイテムを消費した
 		if (requestName == "itemRemoved") {
 			const itemList = $.state.usedItemList;
-			$.log("Receve itemRemoved:" + JSON.stringify(arg));
 			itemList.push(arg);
 			$.state.usedItemList = itemList;
 			SpawnDummyTuruhashi(arg, itemList.length);
@@ -111,6 +110,8 @@ $.onReceive(
 				return;
 			}
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

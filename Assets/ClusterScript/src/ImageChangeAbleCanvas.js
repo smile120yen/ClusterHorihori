@@ -18,6 +18,8 @@ $.onReceive(
 			UpdateIndex(newIndex);
 			$.state.currentIndex = newIndex;
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

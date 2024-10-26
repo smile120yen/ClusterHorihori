@@ -45,7 +45,7 @@ $.onReceive(
 			SendGetStockItemList($.state.usingPlayer);
 		}
 
-		$.log("chestReceve:" + messageType + "," + JSON.stringify(arg));
+		$.log("receve:" + (messageType || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );
@@ -113,6 +113,7 @@ $.onUpdate((deltaTime) => {
 			$.state.stockViewSendDataList = [];
 		} catch {
 			stockPlayerSendDataList.unshift(targetStockData);
+			$.log("キャッシュ処理失敗");
 		}
 
 		$.state.stockPlayerSendDataList = stockPlayerSendDataList;
@@ -130,9 +131,9 @@ $.onUpdate((deltaTime) => {
 
 		try {
 			$.worldItemReference("Waku0" + index).send("ViewItemData", targetStockData);
-			$.log("sendData:" + JSON.stringify(targetStockData));
 		} catch (e) {
 			stockViewSendDataList.unshift(targetStockData);
+			$.log("キャッシュ処理失敗");
 		}
 
 		$.state.stockViewSendDataList = stockViewSendDataList;

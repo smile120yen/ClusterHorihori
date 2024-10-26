@@ -22,9 +22,7 @@ const maxDuration = 30;
 const motionMultiple = 1;
 // @field(int)
 const rarity = 3;
-const specialEffect = [
-	{ effectName: "[固有]発動機", power: 2, isUnique: true },
-];
+const specialEffect = [{ effectName: "[固有]発動機", power: 2, isUnique: true }];
 // @field(int)
 const count = 1;
 // @field(int)
@@ -76,6 +74,8 @@ $.onReceive(
 			buyItemSound.play();
 			sender.send("RemoveMoney", { count: buyPrice });
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

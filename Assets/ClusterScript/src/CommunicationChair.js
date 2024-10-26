@@ -25,7 +25,6 @@ $.onRide((isGetOn, player) => {
 $.onReceive(
 	(requestName, arg, sender) => {
 		if (requestName == "ReceveAhiveStatus") {
-			$.log(JSON.stringify(arg));
 			mineLvTextFront.unityProp.text = "採掘Lv " + arg.mineLv;
 			mineLvTextBack.unityProp.text = "採掘Lv " + arg.mineLv;
 
@@ -35,6 +34,8 @@ $.onReceive(
 				const BatchBack = $.subNode(batchName + "BatchBack").setEnabled(true);
 			}
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

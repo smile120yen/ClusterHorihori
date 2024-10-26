@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &711716035089049676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34448268452724069}
+  - component: {fileID: 685276319022801562}
+  - component: {fileID: 2551922879726270987}
+  m_Layer: 0
+  m_Name: trophyRabbitCrimson
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &34448268452724069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711716035089049676}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.296, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4682151884475629083}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!33 &685276319022801562
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711716035089049676}
+  m_Mesh: {fileID: -5981759663563155700, guid: b5d2678c435220345bc9cd6e32e30617, type: 3}
+--- !u!23 &2551922879726270987
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711716035089049676}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fa9c8d02ea21945489b7818eeb06420b, type: 2}
+  - {fileID: 2100000, guid: bd173c0377fc5ab4bbbfda3de3995d8d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &910435684490881909
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +545,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4682151884475629083}
-  m_RootOrder: 30
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2048867548724891207
 ParticleSystem:
@@ -5504,7 +5588,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4682151884475629083}
-  m_RootOrder: 28
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1 &3668513075472530953
 GameObject:
@@ -10402,6 +10486,89 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &4170458921165161566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247982431204173362}
+  - component: {fileID: 2899812473240686393}
+  - component: {fileID: 1562136635008315791}
+  m_Layer: 0
+  m_Name: trophyCatCrimson
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &247982431204173362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170458921165161566}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.296, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4682151884475629083}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!33 &2899812473240686393
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170458921165161566}
+  m_Mesh: {fileID: 3669258589346456565, guid: a2760acdcc04dcd4b9afc4d1dd6bb9ed, type: 3}
+--- !u!23 &1562136635008315791
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170458921165161566}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fa9c8d02ea21945489b7818eeb06420b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4682151884475629077
 GameObject:
   m_ObjectHideFlags: 0
@@ -10466,6 +10633,10 @@ Transform:
   - {fileID: 1935546888575480130}
   - {fileID: 570080024172655055}
   - {fileID: 2744313779317879659}
+  - {fileID: 34448268452724069}
+  - {fileID: 247982431204173362}
+  - {fileID: 1799197272283600379}
+  - {fileID: 3803996055094974592}
   - {fileID: 5300866187689242524}
   - {fileID: 3346440314897054985}
   - {fileID: 7622341763375878257}
@@ -10530,7 +10701,7 @@ MonoBehaviour:
   - id: goldCoinBag
     worldItemTemplate: {fileID: 8614354452816490942, guid: 50195de67a42df647b9c9e699c87ed18, type: 3}
     itemTemplateId:
-      value: 5925365673784306290
+      value: 5994342484130036271
   - id: goldOre
     worldItemTemplate: {fileID: 8614354452816490942, guid: 15d465451ac3ff74ead3b6babc7ca3d1, type: 3}
     itemTemplateId:
@@ -10570,63 +10741,79 @@ MonoBehaviour:
   - id: trophyCatCupper
     worldItemTemplate: {fileID: 251961206529852673, guid: 974c56fed2ef24e46b122e8f7bb8bc4d, type: 3}
     itemTemplateId:
-      value: 14594102862004796558
+      value: 981554697188157287
   - id: trophyCatGold
     worldItemTemplate: {fileID: 251961206529852673, guid: 6779724910b239646ace2a3a3209ac79, type: 3}
     itemTemplateId:
-      value: 9494236960174963951
+      value: 11130271941126170795
   - id: trophyCatIron
     worldItemTemplate: {fileID: 251961206529852673, guid: cd9d35b3b14befe4d8ee8014bfcf73e2, type: 3}
     itemTemplateId:
-      value: 17505706343508811275
+      value: 4639788179890535031
   - id: trophyCowClystal
     worldItemTemplate: {fileID: 251961206529852673, guid: cb504f591163e8f4c9ea9ee12eee7cd4, type: 3}
     itemTemplateId:
-      value: 3877185789757254507
+      value: 5306588120962173018
   - id: trophyCowCupper
     worldItemTemplate: {fileID: 251961206529852673, guid: b8dad62f8a2fb074c86dd398e08aed9e, type: 3}
     itemTemplateId:
-      value: 13085959434176775340
+      value: 7307814197654578558
   - id: trophyCowGold
     worldItemTemplate: {fileID: 251961206529852673, guid: e14e0e32a9f054440b6afc14dd3cbafa, type: 3}
     itemTemplateId:
-      value: 7518301283848185135
+      value: 16438715374584321847
   - id: trophyCowIron
     worldItemTemplate: {fileID: 251961206529852673, guid: b3c451cc6fadfc04189b39c5ab4969c1, type: 3}
     itemTemplateId:
-      value: 7500284995321990713
+      value: 9046730340664824176
   - id: trophyDeerClystal
     worldItemTemplate: {fileID: 251961206529852673, guid: 41ef084dcde94d84e96cd97022b38e40, type: 3}
     itemTemplateId:
-      value: 15130141192098211931
+      value: 1503013939355710371
   - id: trophyDeerCupper
     worldItemTemplate: {fileID: 251961206529852673, guid: 90bfb3897a2e88d43a785847a7f17cb2, type: 3}
     itemTemplateId:
-      value: 8348142936819780127
+      value: 13654481302869770835
   - id: trophyDeerGold
     worldItemTemplate: {fileID: 251961206529852673, guid: a1d5d12dc8afe4f45911bac845e5618c, type: 3}
     itemTemplateId:
-      value: 432562074536869489
+      value: 7393701580804683857
   - id: trophyDeerIron
     worldItemTemplate: {fileID: 251961206529852673, guid: c77bfb9a6bfcf4c4e97f0a6ff96847f4, type: 3}
     itemTemplateId:
-      value: 2126824203605261698
+      value: 1217961559480989388
   - id: trophyRabbitClystal
     worldItemTemplate: {fileID: 251961206529852673, guid: 820cfa61da8b76349958f23929b7d59e, type: 3}
     itemTemplateId:
-      value: 2521334698393539147
+      value: 3067661763335765763
   - id: trophyRabbitCupper
     worldItemTemplate: {fileID: 251961206529852673, guid: 3c983af520488414cbb22abc29d3ed1d, type: 3}
     itemTemplateId:
-      value: 7945972485154970027
+      value: 13078842148152965008
   - id: trophyRabbitGold
     worldItemTemplate: {fileID: 251961206529852673, guid: 0f6aaf923be73d544a5616d689ab536a, type: 3}
     itemTemplateId:
-      value: 9583961529741080490
+      value: 7449103718774456127
   - id: trophyRabbitIron
     worldItemTemplate: {fileID: 251961206529852673, guid: 4b7f55dce6c15f841a54fbc0d4a5276a, type: 3}
     itemTemplateId:
-      value: 7210274095471650617
+      value: 4050319665688015806
+  - id: trophyCatCrimson
+    worldItemTemplate: {fileID: 251961206529852673, guid: 013cbc9eeeb6f684db61325a6446b8dd, type: 3}
+    itemTemplateId:
+      value: 14403051397639125479
+  - id: trophyDeerCrimson
+    worldItemTemplate: {fileID: 251961206529852673, guid: 691b490b9f5daf44197a52d9ee2cd235, type: 3}
+    itemTemplateId:
+      value: 11045514668142812646
+  - id: trophyRabbitCrimson
+    worldItemTemplate: {fileID: 251961206529852673, guid: fc089fe3afe2d3c4ba68d35fc6e7d8e6, type: 3}
+    itemTemplateId:
+      value: 11225115385802394558
+  - id: trophyCowCrimson
+    worldItemTemplate: {fileID: 251961206529852673, guid: a64c005e783275b4285cc61e98226384, type: 3}
+    itemTemplateId:
+      value: 14785054716475112851
 --- !u!114 &3394086951105888948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10747,6 +10934,10 @@ MonoBehaviour:
   - {fileID: 251961206529852679, guid: 3c983af520488414cbb22abc29d3ed1d, type: 3}
   - {fileID: 251961206529852679, guid: 0f6aaf923be73d544a5616d689ab536a, type: 3}
   - {fileID: 251961206529852679, guid: 4b7f55dce6c15f841a54fbc0d4a5276a, type: 3}
+  - {fileID: 251961206529852679, guid: 013cbc9eeeb6f684db61325a6446b8dd, type: 3}
+  - {fileID: 251961206529852679, guid: 691b490b9f5daf44197a52d9ee2cd235, type: 3}
+  - {fileID: 251961206529852679, guid: fc089fe3afe2d3c4ba68d35fc6e7d8e6, type: 3}
+  - {fileID: 251961206529852679, guid: a64c005e783275b4285cc61e98226384, type: 3}
 --- !u!1 &4731703539405365592
 GameObject:
   m_ObjectHideFlags: 0
@@ -11312,6 +11503,173 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 87e39765483f074439a8db8916e41f7b, type: 2}
   - {fileID: 2100000, guid: bd173c0377fc5ab4bbbfda3de3995d8d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7857793465998449881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799197272283600379}
+  - component: {fileID: 8736533417162334960}
+  - component: {fileID: 768386846222137440}
+  m_Layer: 0
+  m_Name: trophyCowCrimson
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1799197272283600379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857793465998449881}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.296, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4682151884475629083}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!33 &8736533417162334960
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857793465998449881}
+  m_Mesh: {fileID: -5721213220885554954, guid: 6d63a1158d7df02408849fd11e5a8d0c, type: 3}
+--- !u!23 &768386846222137440
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857793465998449881}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bd173c0377fc5ab4bbbfda3de3995d8d, type: 2}
+  - {fileID: 2100000, guid: fa9c8d02ea21945489b7818eeb06420b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8189120173433235534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3803996055094974592}
+  - component: {fileID: 3161511461815945089}
+  - component: {fileID: 8243213570525473157}
+  m_Layer: 0
+  m_Name: trophyDeerCrimson
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3803996055094974592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189120173433235534}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.296, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4682151884475629083}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!33 &3161511461815945089
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189120173433235534}
+  m_Mesh: {fileID: -3821164108456987792, guid: 30589ae56ecc1034381dbe772fccbb08, type: 3}
+--- !u!23 &8243213570525473157
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189120173433235534}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fa9c8d02ea21945489b7818eeb06420b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12427,7 +12785,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6325873705745958523, guid: c6b511f9abe88774dab7b734e262bce8, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 6325873705745958523, guid: c6b511f9abe88774dab7b734e262bce8, type: 3}
       propertyPath: m_LocalPosition.x

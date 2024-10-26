@@ -1,12 +1,122 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/modules/allItemList.js":
+/*!************************************!*\
+  !*** ./src/modules/allItemList.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   allItemList: () => (/* binding */ allItemList)
+/* harmony export */ });
+const allItemList = [
+	"clystal",
+	"crimsonOre",
+	"cupperOre",
+	"goldCoinBag",
+	"goldOre",
+	"ironOre",
+	"trophyCatClystal",
+	"trophyCatCrimson",
+	"trophyCatCupper",
+	"trophyCatGold",
+	"trophyCatIron",
+	"trophyCowClystal",
+	"trophyCowCrimson",
+	"trophyCowCupper",
+	"trophyCowGold",
+	"trophyCowIron",
+	"trophyDeerClystal",
+	"trophyDeerCrimson",
+	"trophyDeerCupper",
+	"trophyDeerGold",
+	"trophyDeerIron",
+	"trophyRabbitClystal",
+	"trophyRabbitCrimson",
+	"trophyRabbitCupper",
+	"trophyRabbitGold",
+	"trophyRabbitIron",
+	"turuhashiClystal",
+	"turuhashiCupper",
+	"turuhashiEngine",
+	"turuhashiGold",
+	"turuhashiIron",
+	"turuhashiNormal",
+];
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!*****************************!*\
   !*** ./src/PlayerScript.js ***!
   \*****************************/
-let grabbedItem = null;
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_allItemList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/allItemList.js */ "./src/modules/allItemList.js");
 let motionTime = 0;
 let isPlayingMotion = false;
 let isClashed = false;
-let sourceItem = null;
 let followItem = null;
 let savedData = null;
 let dropCoolTime = 0;
@@ -18,41 +128,15 @@ let multipleAttackCount = 1;
 let multipleAttackSpeed = 1;
 let stockItemSendList = [];
 let currentOpenedChest = null;
-let playerSelf = null;
 let salaryCoolTime = 90;
 let clushItemStatus = null;
+let sendToCache = [];
+let sendCacheWaitTime = 0;
+let beforeVisibleItem = null;
 const maxSalaryCoolTime = 90;
+const salaryMultiple = 10;
 
-const allItemList = [
-	"clystal",
-	"cupperOre",
-	"goldOre",
-	"goldCoinBag",
-	"ironOre",
-	"crimsonOre",
-	"trophyCatClystal",
-	"trophyCatCupper",
-	"trophyCatGold",
-	"trophyCatIron",
-	"trophyCowClystal",
-	"trophyCowCupper",
-	"trophyCowGold",
-	"trophyCowIron",
-	"trophyDeerClystal",
-	"trophyDeerCupper",
-	"trophyDeerGold",
-	"trophyDeerIron",
-	"trophyRabbitClystal",
-	"trophyRabbitCupper",
-	"trophyRabbitGold",
-	"trophyRabbitIron",
-	"turuhashiClystal",
-	"turuhashiCupper",
-	"turuhashiEngine",
-	"turuhashiGold",
-	"turuhashiIron",
-	"turuhashiNormal",
-];
+
 
 const swingAnimation = _.humanoidAnimation("Swing");
 const InventoryUI = _.playerLocalObject("InventoryUI");
@@ -72,6 +156,9 @@ const BonusSalaryRatioUI = _.playerLocalObject("BonusSalaryRatio").getUnityCompo
 const lockonMarkerGameStart = _.worldItemReference("LockonMarkerGameStart");
 
 const updateInventory = () => {
+	savedData.inventoryData = savedData.inventoryData.filter((item) => !item || _modules_allItemList_js__WEBPACK_IMPORTED_MODULE_0__.allItemList.includes(item.itemName));
+	savedData.stockItemData = savedData.stockItemData.filter((item) => !item || _modules_allItemList_js__WEBPACK_IMPORTED_MODULE_0__.allItemList.includes(item.itemName));
+
 	if (savedData && followItem) {
 		let targetSpeed = 1;
 		if (savedData.inventoryData[savedData.currentSelectIndex] && savedData.inventoryData[savedData.currentSelectIndex].baseMovementSpeed) {
@@ -79,7 +166,8 @@ const updateInventory = () => {
 		}
 
 		if (currentSpeed != targetSpeed) {
-			_.sendTo(followItem, "SetDefaultMovementSpeed", targetSpeed);
+			//_.sendTo(followItem, "SetDefaultMovementSpeed", targetSpeed);
+			AddSendToCache(followItem, "SetDefaultMovementSpeed", targetSpeed);
 			currentSpeed = targetSpeed;
 		}
 	}
@@ -127,7 +215,7 @@ const updateInventoryView = () => {
 
 		//特定の子要素を一括で非表示にするみたいなのができない(getChildsみたいなのがない)ので手動で非表示処理
 
-		for (itemName of allItemList) {
+		for (itemName of _modules_allItemList_js__WEBPACK_IMPORTED_MODULE_0__.allItemList) {
 			const itemIcon = waku.findObject("Icons").findObject(itemName);
 			itemIcon.setEnabled(false);
 		}
@@ -150,7 +238,12 @@ const updateInventoryView = () => {
 			const inventoryData = savedData.inventoryData[i];
 
 			const itemIcon = waku.findObject("Icons").findObject(savedData.inventoryData[i].itemName);
-			itemIcon.setEnabled(true);
+
+			try {
+				itemIcon.setEnabled(true);
+			} catch {
+				_.log("itemIcon " + savedData.inventoryData[i].itemName + " is notfound:" + i);
+			}
 
 			const duration = savedData.inventoryData[i].duration;
 			const maxDuration = savedData.inventoryData[i].maxDuration;
@@ -200,10 +293,14 @@ const updateInventoryView = () => {
 		const targetItemCount = savedData.inventoryData[savedData.currentSelectIndex].count;
 		const targetItemDuration = savedData.inventoryData[savedData.currentSelectIndex].maxDuration;
 		const targetItemName = savedData.inventoryData[savedData.currentSelectIndex].itemName;
-		_.sendTo(followItem, "VisibleItem", targetItemName);
+		//_.sendTo(followItem, "VisibleItem", targetItemName);
+		if (beforeVisibleItem != targetItemName) {
+			AddSendToCache(followItem, "VisibleItem", { itemName: targetItemName });
+			beforeVisibleItem = targetItemName;
+		}
 
 		//特定の子要素を一括で非表示にするみたいなのができない(getChildsみたいなのがない)ので手動で非表示処理
-		for (itemName of allItemList) {
+		for (itemName of _modules_allItemList_js__WEBPACK_IMPORTED_MODULE_0__.allItemList) {
 			const itemIcon = ItemDiscriptionUI.findObject("Icons").findObject(itemName);
 			itemIcon.setEnabled(false);
 		}
@@ -277,7 +374,10 @@ const updateInventoryView = () => {
 			itemText.unityProp.text = targetItem.itemDisplayName + " " + rarityText + "\nきれいな飾り。" + targetItem.price + "Gで売れる";
 		}
 	} else {
-		_.sendTo(followItem, "VisibleItem", "");
+		if (beforeVisibleItem != null) {
+			AddSendToCache(followItem, "VisibleItem", { itemName: null });
+			beforeVisibleItem = null;
+		}
 		ItemDiscriptionUI.setEnabled(false);
 	}
 };
@@ -336,7 +436,9 @@ const Initialize = () => {
 	_.hideButton(1);
 	_.hideButton(2);
 	updateInventory();
-	_.sendTo(lockonMarkerGameStart, "Lockon", null);
+
+	AddSendToCache(lockonMarkerGameStart, "Lockon", null);
+	//_.sendTo(lockonMarkerGameStart, "Lockon", null);
 };
 
 const AddItem = (arg) => {
@@ -352,7 +454,9 @@ const AddItem = (arg) => {
 
 	if (savedData.inventoryData.length >= savedData.kabanSize && ((targetIndex == -1 && isStackable) || !isStackable) && nullIndex == -1) {
 		VerticalLayoutMessageAnim.setTrigger("KabanMax");
-		_.sendTo(followItem, "PlaySound", "Cancel");
+
+		AddSendToCache(followItem, "PlaySound", "Cancel");
+		//_.sendTo(followItem, "PlaySound", "Cancel");
 		return false;
 	}
 
@@ -389,7 +493,8 @@ _.onStart(() => {
 	if (!savedData.money) savedData.money = 0;
 
 	updateInventory();
-	_.sendTo(lockonMarkerGameStart, "Lockon", null);
+
+	AddSendToCache(lockonMarkerGameStart, "Lockon", null);
 });
 
 _.onReceive(
@@ -399,7 +504,8 @@ _.onReceive(
 			_.showButton(1, _.iconAsset("Next"));
 			_.showButton(2, _.iconAsset("Drop"));
 			updateInventory();
-			_.sendTo(lockonMarkerGameStart, "Lockoff", null);
+			AddSendToCache(lockonMarkerGameStart, "Lockoff", null);
+			//_.sendTo(lockonMarkerGameStart, "Lockoff", null);
 		}
 
 		if (messageType === "UnRegisterFollowItem") {
@@ -412,10 +518,11 @@ _.onReceive(
 		}
 
 		if (messageType === "getItem") {
-			_.log("receve:getItem");
 			const success = AddItem(arg);
 			if (success) {
-				_.sendTo(sender, "GetItemReceived", null);
+				AddSendToCache(sender, "GetItemReceived", arg);
+			} else {
+				AddSendToCache(sender, "GetItemFailed", arg);
 			}
 			updateInventory();
 		}
@@ -424,7 +531,8 @@ _.onReceive(
 			for (var itemData of arg) {
 				AddItem(itemData);
 			}
-			_.sendTo(sender, "GetItemReceived", null);
+			AddSendToCache(sender, "GetItemReceived", null);
+			//_.sendTo(sender, "GetItemReceived", null);
 			updateInventory();
 		}
 
@@ -478,7 +586,8 @@ _.onReceive(
 				//savedData.inventoryData.splice(targetIndex,1);
 			}
 
-			_.sendTo(sender, "itemRemoved", itemData);
+			AddSendToCache(sender, "itemRemoved", itemData);
+			//_.sendTo(sender, "itemRemoved", itemData);
 
 			updateInventory();
 		}
@@ -497,7 +606,9 @@ _.onReceive(
 				//savedData.inventoryData.splice(targetIndex,1);
 				savedData.inventoryData[targetIndex] = null;
 			}
-			_.sendTo(sender, "itemRemoved", itemData);
+
+			AddSendToCache(sender, "itemRemoved", itemData);
+			//_.sendTo(sender, "itemRemoved", itemData);
 			updateInventory();
 		}
 
@@ -508,15 +619,15 @@ _.onReceive(
 
 			if (savedData.inventoryData[targetIndex].duration <= 0) {
 				savedData.inventoryData[targetIndex].duration = 0;
-				_.sendTo(followItem, "PlaySound", "Break");
+
+				AddSendToCache(followItem, "PlaySound", "Break");
+				//_.sendTo(followItem, "PlaySound", "Break");
 			}
 
 			updateInventory();
 		}
 
 		if (messageType === "RepairItem") {
-			_.log("receve:RepairItem:" + arg);
-
 			if (arg == "all") {
 				for (let i = 0; i < savedData.inventoryData.length; i++) {
 					if (savedData.inventoryData[i] && savedData.inventoryData[i].maxDuration) {
@@ -531,11 +642,14 @@ _.onReceive(
 			const targetIndex = savedData.currentSelectIndex;
 			if (savedData.inventoryData.length <= targetIndex) return;
 			const itemData = JSON.parse(JSON.stringify(savedData.inventoryData[targetIndex]));
-			_.sendTo(sender, "itemChecked", itemData);
+
+			AddSendToCache(sender, "itemChecked", itemData);
+			//_.sendTo(sender, "itemChecked", itemData);
 		}
 
 		if (messageType === "CheckHasItem") {
-			_.sendTo(sender, "CheckHasItemReceved", HasTargetItemName(arg));
+			AddSendToCache(sender, "CheckHasItemReceved", HasTargetItemName(arg));
+			//_.sendTo(sender, "CheckHasItemReceved", HasTargetItemName(arg));
 		}
 
 		if (messageType === "AddMoney") {
@@ -554,32 +668,53 @@ _.onReceive(
 
 		if (messageType === "CheckMoney") {
 			if (arg <= savedData.money) {
-				_.sendTo(sender, "MoneyChecked", true);
+				AddSendToCache(sender, "MoneyChecked", true);
+				//_.sendTo(sender, "MoneyChecked", true);
 			} else {
 				MissingGoldText.unityProp.text = "ゴールドが足りません！（価格：" + arg + "G）";
 				VerticalLayoutMessageAnim.setTrigger("MissingGold");
-				_.sendTo(sender, "MoneyChecked", false);
+
+				AddSendToCache(sender, "MoneyChecked", false);
+				//_.sendTo(sender, "MoneyChecked", false);
 			}
 		}
 
 		if (messageType === "CheckMoneyAndKabanAddable") {
 			if (savedData.kabanSize >= 9) {
+				AddSendToCache(sender, "MoneyAndKabanChecked", {
+					moneyCheck: null,
+					kabanSize: false,
+				});
+				/*
 				_.sendTo(sender, "MoneyAndKabanChecked", {
 					moneyCheck: null,
 					kabanSize: false,
 				});
+				*/
 			} else if (arg > savedData.money) {
 				MissingGoldText.unityProp.text = "ゴールドが足りません！（価格：" + arg + "G）";
 				VerticalLayoutMessageAnim.setTrigger("MissingGold");
+				AddSendToCache(sender, "MoneyAndKabanChecked", {
+					moneyCheck: false,
+					kabanSize: true,
+				});
+				/*
 				_.sendTo(sender, "MoneyAndKabanChecked", {
 					moneyCheck: false,
 					kabanSize: true,
 				});
+				*/
 			} else {
+				AddSendToCache(sender, "MoneyAndKabanChecked", {
+					moneyCheck: true,
+					kabanSize: true,
+				});
+				/*
 				_.sendTo(sender, "MoneyAndKabanChecked", {
 					moneyCheck: true,
 					kabanSize: true,
 				});
+				*/
 			}
 		}
 
@@ -590,12 +725,10 @@ _.onReceive(
 		}
 
 		if (messageType === "MeteoUIStart") {
-			_.log("MeteoUIStart");
 			MeteoUI.setEnabled(true);
 		}
 
 		if (messageType === "MeteoUIEnd") {
-			_.log("MeteoUIEnd");
 			MeteoUI.setEnabled(false);
 			MeteoCompleteUI.setEnabled(false);
 			MeteoCompleteUI.setEnabled(true);
@@ -603,7 +736,8 @@ _.onReceive(
 
 		if (messageType === "GetAchiveStatus") {
 			if (!savedData.batch) savedData.batch = [];
-			_.sendTo(sender, "ReceveAhiveStatus", { mineLv: savedData.mineLv, batch: savedData.batch });
+			//_.sendTo(sender, "ReceveAhiveStatus", { mineLv: savedData.mineLv, batch: savedData.batch });
+			AddSendToCache(sender, "ReceveAhiveStatus", { mineLv: savedData.mineLv, batch: savedData.batch });
 		}
 
 		if (messageType === "StockOrPickUpItem") {
@@ -627,7 +761,8 @@ _.onReceive(
 					savedData.inventoryData[targetIndex] = null;
 				} else {
 					//収納失敗
-					_.sendTo(followItem, "PlaySound", "Cancel");
+					//_.sendTo(followItem, "PlaySound", "Cancel");
+					AddSendToCache(followItem, "PlaySound", "Cancel");
 					HanyouMessageText.unityProp.text = "アイテムを手に持った状態では取り出せません！";
 					VerticalLayoutMessageAnim.setTrigger("Hanyou");
 				}
@@ -666,6 +801,10 @@ _.onReceive(
 			savedData.batch.push(arg);
 		}
 
+		if (messageType === "GetMineLv") {
+			AddSendToCache(sender, "ReceveMineLv", savedData.mineLv);
+		}
+
 		_.log("playerReceve:" + messageType + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
@@ -687,17 +826,20 @@ const AttackCurrentItem = (target) => {
 
 	const targetIndex = savedData.currentSelectIndex;
 	if (savedData.inventoryData[targetIndex] == null) {
-		_.sendTo(followItem, "PlaySound", "Cancel");
+		AddSendToCache(followItem, "PlaySound", "Cancel");
+		//_.sendTo(followItem, "PlaySound", "Cancel");
 		VerticalLayoutMessageAnim.setTrigger("CantUseItem");
 		isClashEffectOn = false;
 		return;
 	} else if (savedData.inventoryData[targetIndex].duration == -1) {
-		_.sendTo(followItem, "PlaySound", "Cancel");
+		AddSendToCache(followItem, "PlaySound", "Cancel");
+		//_.sendTo(followItem, "PlaySound", "Cancel");
 		VerticalLayoutMessageAnim.setTrigger("CantUseItem");
 		isClashEffectOn = false;
 		return;
 	} else if (savedData.inventoryData[targetIndex].duration == 0) {
-		_.sendTo(followItem, "PlaySound", "Cancel");
+		AddSendToCache(followItem, "PlaySound", "Cancel");
+		//_.sendTo(followItem, "PlaySound", "Cancel");
 		VerticalLayoutMessageAnim.setTrigger("ItemDurationZero");
 		isClashEffectOn = false;
 		return;
@@ -709,14 +851,24 @@ const AttackCurrentItem = (target) => {
 	}
 	multipleAttackSpeed = 1;
 
+	/*
 	_.sendTo(followItem, "Attack", {
 		target: target,
 		itemData: savedData.inventoryData[targetIndex],
 	});
+	*/
+
+	AddSendToCache(followItem, "Attack", {
+		target: target,
+		itemData: savedData.inventoryData[targetIndex],
+	});
+
 	if (savedData.inventoryData[targetIndex].swingSound) {
-		_.sendTo(followItem, "PlaySound", savedData.inventoryData[targetIndex].swingSound);
+		//_.sendTo(followItem, "PlaySound", savedData.inventoryData[targetIndex].swingSound);
+		AddSendToCache(followItem, "PlaySound", savedData.inventoryData[targetIndex].swingSound);
 	} else {
-		_.sendTo(followItem, "PlaySound", "Swing");
+		//_.sendTo(followItem, "PlaySound", "Swing");
+		AddSendToCache(followItem, "PlaySound", "Swing");
 	}
 
 	//経験値増加
@@ -724,13 +876,22 @@ const AttackCurrentItem = (target) => {
 	const nextMineLvExp = GetNextMineLvUpExp();
 	if (nextMineLvExp <= savedData.mineExp) {
 		savedData.mineLv++;
-		_.sendTo(followItem, "PlaySound", "LvUp");
-		AddMineLevelText.getUnityComponent("Text").unityProp.text = "レベルアップ！採掘Lvが" + savedData.mineLv + "になった！";
+		//_.sendTo(followItem, "PlaySound", "LvUp");
+		AddSendToCache(followItem, "PlaySound", "LvUp");
+		HanyouMessageText.unityProp.text =
+			"Lv" +
+			savedData.mineLv +
+			"にレベルアップ！\nプレイ時間ボーナス増加が増加した（90秒につき" +
+			savedData.mineLv * salaryMultiple +
+			"G）\n金床に入れられる素材の最大数が増加した（" +
+			(savedData.mineLv + 10) +
+			"コ）";
+		VerticalLayoutMessageAnim.setTrigger("Hanyou");
 		savedData.mineExp -= nextMineLvExp;
 	} else {
 		AddMineLevelText.getUnityComponent("Text").unityProp.text = "経験値+1 ( " + savedData.mineExp + " / " + nextMineLvExp + " )";
+		VerticalLayoutMessageAnim.setTrigger("AddMineLevel");
 	}
-	VerticalLayoutMessageAnim.setTrigger("AddMineLevel");
 
 	// モーション再生開始
 	isPlayingMotion = true;
@@ -763,7 +924,8 @@ _.onButton(2, (isDown) => {
 			//参照渡しを回避
 			const dropItem = JSON.parse(JSON.stringify(savedData.inventoryData[savedData.currentSelectIndex]));
 			dropItem.count = 1;
-			_.sendTo(followItem, "DropItem", dropItem);
+			//_.sendTo(followItem, "DropItem", dropItem);
+			AddSendToCache(followItem, "DropItem", dropItem);
 			updateInventory();
 		}
 	}
@@ -808,13 +970,27 @@ _.onFrame((deltaTime) => {
 		} catch {}
 	}
 
+	//SendToCache処理
+	if (sendCacheWaitTime > 0) sendCacheWaitTime -= deltaTime;
+	if (sendCacheWaitTime <= 0 && sendToCache.length > 0) {
+		const sendToData = sendToCache.shift();
+		try {
+			_.sendTo(sendToData.targetHandle, sendToData.message, sendToData.arg);
+		} catch {
+			sendToCache.unshift(sendToData);
+			$.log("キャッシュ処理失敗");
+		}
+		sendCacheWaitTime = 0.1;
+	}
+
 	//お給料処理
 	if (salaryCoolTime <= 0) {
-		_.sendTo(followItem, "PlaySound", "Coin");
-		savedData.money += savedData.mineLv * 100;
+		AddSendToCache(followItem, "PlaySound", "Coin");
+		//_.sendTo(followItem, "PlaySound", "Coin");
+		savedData.money += savedData.mineLv * salaryMultiple;
 		salaryCoolTime = maxSalaryCoolTime;
 
-		HanyouMessageText.unityProp.text = "プレイ時間ボーナスをゲットした！(" + savedData.mineLv * 100 + "G)";
+		HanyouMessageText.unityProp.text = "プレイ時間ボーナスをゲットした！(" + savedData.mineLv * salaryMultiple + "G)";
 		VerticalLayoutMessageAnim.setTrigger("Hanyou");
 		updateInventory();
 	}
@@ -832,9 +1008,11 @@ _.onFrame((deltaTime) => {
 
 		if (motionTime > 0.4 - multipleAttackCount * 0.01 && !isClashed) {
 			if (isClashEffectOn) {
-				_.sendTo(followItem, "ClashWithEffect", clushItemStatus);
+				AddSendToCache(followItem, "ClashWithEffect", clushItemStatus);
+				//_.sendTo(followItem, "ClashWithEffect", clushItemStatus);
 			} else {
-				_.sendTo(followItem, "Clash", null);
+				AddSendToCache(followItem, "Clash", null);
+				//_.sendTo(followItem, "Clash", null);
 			}
 			isClashed = true;
 
@@ -885,7 +1063,6 @@ const playMotion = (animation, time) => {
 	//モーションが7割終わってたらキャンセル可能
 	let motionTimeRatio = motionTime / animationLength;
 	isCancelableMotion = motionTimeRatio >= 0.7;
-	//_.log(isCancelableMotion);
 
 	if (continuePlaying) {
 		let pose = animation.getSample(time);
@@ -915,8 +1092,6 @@ const SetRarityByDropChance = (clushItemStatus) => {
 	const newItemStatus = clushItemStatus;
 	const itemData = savedData.inventoryData[savedData.currentSelectIndex];
 
-	//_.log("checkRarity:" + JSON.stringify(newItemStatus) + "," + JSON.stringify(itemData));
-
 	let isDroped = false;
 	const rand = Math.random();
 	let newDropChance = clushItemStatus.dropChance;
@@ -924,8 +1099,6 @@ const SetRarityByDropChance = (clushItemStatus) => {
 	if (rand < newDropChance) {
 		isDroped = true;
 	}
-
-	//_.log("checkRarity:" + rand + "," + newDropChance);
 
 	if (!isDroped) return null;
 
@@ -952,10 +1125,15 @@ const SetRarityByDropChance = (clushItemStatus) => {
 	newItemStatus.rarity = newRarity;
 	delete newItemStatus.dropChance;
 
-	//_.log("finalData:" + JSON.stringify(newItemStatus));
-
 	return newItemStatus;
 };
+
+const AddSendToCache = (targetHandle, message, arg) => {
+	//_.sendTo(followItem, "DropItem", dropItem);
+	sendToCache.push({ targetHandle, message: message, arg: arg });
+};
+
+})();
 
 /******/ })()
 ;

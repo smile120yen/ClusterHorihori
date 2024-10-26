@@ -20,7 +20,6 @@ $.onInteract((player) => {
 $.onReceive(
 	(requestName, arg, sender) => {
 		if (requestName == "itemChecked") {
-			$.log("itemCheckReceve:" + JSON.stringify(arg));
 			if (!arg) return;
 			if (arg.uuid == $.state.checkedItemUUID) {
 				sellerText.unityProp.text = "まいどあり！";
@@ -35,6 +34,8 @@ $.onReceive(
 			$.state.isCheckItemPrice = true;
 			$.state.checkedItemUUID = arg.uuid;
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

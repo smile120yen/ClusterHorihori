@@ -68,7 +68,6 @@ $.onReceive(
 	(requestName, arg, sender) => {
 		if (requestName == "damage") {
 			if ($.state.breakedMeteo) return;
-			$.log("ダメージ受信");
 			$.sendSignalCompat("this", "damage");
 			let hp = $.state.hp;
 			hp -= 1;
@@ -94,10 +93,11 @@ $.onReceive(
 		}
 
 		if (requestName == "forceStartMeteoEvent") {
-			$.log("receve:forceStartMeteoEvent");
 			$.state.breakedMeteo = false;
 			StartMeteoAnim();
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );
@@ -116,17 +116,14 @@ $.onUpdate((deltaTime) => {
 		const cache = $.state.sendMessageCache;
 		const messageCache = cache.pop();
 		try {
-			$.log("tryMessage:" + messageCache.messageType);
 			const arg = messageCache.arg;
 			const messageType = messageCache.messageType;
 			const handle = messageCache.handle;
 			handle.send(messageType, arg);
 		} catch {
-			$.log("miss:" + messageCache.messageType);
 			cache.push(messageCache);
 		}
 		$.state.sendMessageCache = cache;
-		$.log("cache:" + JSON.stringify(cache));
 	}
 
 	if (lockonMarkerVisibleChecker.getEnabled() && !$.state.visibleMarker) {
@@ -170,7 +167,7 @@ const AddMarkerVisiblePlayer = () => {
 	newVisiblePlayers.forEach((player) => {
 		// 適用済みプレイヤーに追加
 		markerVisiblePlayerList.push(player);
-		player.send("MeteoUIStart", null);
+		//player.send("MeteoUIStart", null);
 	});
 
 	if (newVisiblePlayers.length > 0) {
@@ -185,14 +182,12 @@ const AddMarkerVisiblePlayer = () => {
 };
 
 const EnableMaker = () => {
-	$.log("Meteo:EnableMarker");
 	$.state.visibleMarker = true;
 	$.state.markerVisiblePlayerList = [];
 	MeteoHP.setEnabled(true);
 };
 
 const DisableMarker = () => {
-	$.log("Meteo:DisableMarker");
 	$.state.visibleMarker = false;
 	$.state.markerVisiblePlayerList = [];
 	$.state.tryLockOff = true;
@@ -200,20 +195,17 @@ const DisableMarker = () => {
 };
 
 const StartMeteoAnim = () => {
-	$.log("Meteo:sendSignal");
 	$.sendSignalCompat("this", "Start");
 	$.state.hp = maxHp;
 	meteoHPMaterial.setFloat("_FillAmount", 1);
 };
 
 const BreakMeteoAnim = () => {
-	$.log("Meteo:sendSignal");
 	$.sendSignalCompat("this", "Break");
 	$.state.breakedMeteo = true;
 	$.state.meteoRespawnWaitTime = meteoRespawnWaitTimeMax;
-
+	/*
 	let players = $.getPlayersNear($.getPosition(), Infinity);
-
 	const cache = $.state.sendMessageCache;
 	players.forEach((player) => {
 		cache.push({ handle: player, messageType: "MeteoUIEnd", arg: "dummy" });
@@ -224,6 +216,7 @@ const BreakMeteoAnim = () => {
 		});
 	});
 	$.state.sendMessageCache = cache;
+	*/
 };
 
 /******/ })()

@@ -15,9 +15,11 @@ $.onStart(() => {
 $.onReceive(
 	(requestName, arg, sender) => {
 		if (requestName == "SetEnable") {
-			canvas.setEnabled(arg);
-			collider.setEnabled(arg);
+			canvas.setEnabled(arg.enabled);
+			collider.setEnabled(arg.enabled);
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

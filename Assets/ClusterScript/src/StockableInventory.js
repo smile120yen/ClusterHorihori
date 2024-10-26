@@ -1,5 +1,7 @@
 const chest = $.worldItemReference("Chest");
 
+import { allItemList } from "./modules/allItemList.js";
+/*
 const allItemList = [
 	"clystal",
 	"cupperOre",
@@ -29,6 +31,7 @@ const allItemList = [
 	"turuhashiIron",
 	"turuhashiNormal",
 ];
+*/
 
 const putinSound = $.audio("Putin");
 
@@ -69,6 +72,8 @@ $.onReceive(
 
 			UpdateView();
 		}
+
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

@@ -1319,6 +1319,7 @@ GameObject:
   - component: {fileID: 556359735132646372}
   - component: {fileID: 556359735132646373}
   - component: {fileID: 7952372416171772549}
+  - component: {fileID: 1259530562278004135}
   m_Layer: 0
   m_Name: Anvil
   m_TagString: Untagged
@@ -1415,22 +1416,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldItemTemplates:
-  - id: cupperOre
-    worldItemTemplate: {fileID: 8614354452816490942, guid: 6f5171540b928e444b7e9fa1c611657a, type: 3}
-    itemTemplateId:
-      value: 18383990129352258730
-  - id: ironOre
-    worldItemTemplate: {fileID: 8614354452816490942, guid: 64a51f561a8bb2c4dbddf9c97b9443fa, type: 3}
-    itemTemplateId:
-      value: 13252297509221593816
-  - id: goldOre
-    worldItemTemplate: {fileID: 8614354452816490942, guid: 15d465451ac3ff74ead3b6babc7ca3d1, type: 3}
-    itemTemplateId:
-      value: 10033944262813683192
   - id: clystal
     worldItemTemplate: {fileID: 8614354452816490942, guid: 8479d4d7adcd4a44d8bc50ff7aacc282, type: 3}
     itemTemplateId:
-      value: 937511493698144420
+      value: 14673605119395408455
+  - id: crimsonOre
+    worldItemTemplate: {fileID: 8614354452816490942, guid: 4e17461d4e6cd4c4aa5ebb81c48d7a28, type: 3}
+    itemTemplateId:
+      value: 14673605119395408455
+  - id: cupperOre
+    worldItemTemplate: {fileID: 8614354452816490942, guid: 6f5171540b928e444b7e9fa1c611657a, type: 3}
+    itemTemplateId:
+      value: 14673605119395408455
+  - id: goldOre
+    worldItemTemplate: {fileID: 8614354452816490942, guid: 15d465451ac3ff74ead3b6babc7ca3d1, type: 3}
+    itemTemplateId:
+      value: 14673605119395408455
+  - id: ironOre
+    worldItemTemplate: {fileID: 8614354452816490942, guid: 64a51f561a8bb2c4dbddf9c97b9443fa, type: 3}
+    itemTemplateId:
+      value: 14673605119395408455
 --- !u!95 &556359735132646372
 Animator:
   serializedVersion: 4
@@ -1486,6 +1491,25 @@ MonoBehaviour:
   worldItemReferences:
   - id: ExtracterUI
     item: {fileID: 0}
+--- !u!114 &1259530562278004135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826973390842910392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3cd8f069ec954f9b5748a71950059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldItemTemplateList: {fileID: 556359735132646370}
+  prefabs:
+  - {fileID: 8884824066060668136, guid: 8479d4d7adcd4a44d8bc50ff7aacc282, type: 3}
+  - {fileID: 8884824066060668136, guid: 4e17461d4e6cd4c4aa5ebb81c48d7a28, type: 3}
+  - {fileID: 8884824066060668136, guid: 6f5171540b928e444b7e9fa1c611657a, type: 3}
+  - {fileID: 8884824066060668136, guid: 15d465451ac3ff74ead3b6babc7ca3d1, type: 3}
+  - {fileID: 8884824066060668136, guid: 64a51f561a8bb2c4dbddf9c97b9443fa, type: 3}
 --- !u!1 &2574946167145177649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1522,7 @@ GameObject:
   - component: {fileID: 7437547744629537849}
   - component: {fileID: 7273191367395890352}
   m_Layer: 0
-  m_Name: ItemText (1)
+  m_Name: CountWarningItemText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
