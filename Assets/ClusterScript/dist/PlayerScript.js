@@ -114,6 +114,8 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_allItemList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/allItemList.js */ "./src/modules/allItemList.js");
+
+
 let motionTime = 0;
 let isPlayingMotion = false;
 let isClashed = false;
@@ -132,11 +134,11 @@ let salaryCoolTime = 90;
 let clushItemStatus = null;
 let sendToCache = [];
 let sendCacheWaitTime = 0;
+let enableCache = false;
+
 let beforeVisibleItem = null;
 const maxSalaryCoolTime = 90;
 const salaryMultiple = 10;
-
-
 
 const swingAnimation = _.humanoidAnimation("Swing");
 const InventoryUI = _.playerLocalObject("InventoryUI");
@@ -602,13 +604,10 @@ _.onReceive(
 			itemData.count = arg.count;
 
 			if (savedData.inventoryData[targetIndex].count <= 0) {
-				//test
-				//savedData.inventoryData.splice(targetIndex,1);
 				savedData.inventoryData[targetIndex] = null;
 			}
 
 			AddSendToCache(sender, "itemRemoved", itemData);
-			//_.sendTo(sender, "itemRemoved", itemData);
 			updateInventory();
 		}
 
@@ -644,12 +643,10 @@ _.onReceive(
 			const itemData = JSON.parse(JSON.stringify(savedData.inventoryData[targetIndex]));
 
 			AddSendToCache(sender, "itemChecked", itemData);
-			//_.sendTo(sender, "itemChecked", itemData);
 		}
 
 		if (messageType === "CheckHasItem") {
 			AddSendToCache(sender, "CheckHasItemReceved", HasTargetItemName(arg));
-			//_.sendTo(sender, "CheckHasItemReceved", HasTargetItemName(arg));
 		}
 
 		if (messageType === "AddMoney") {
@@ -827,19 +824,16 @@ const AttackCurrentItem = (target) => {
 	const targetIndex = savedData.currentSelectIndex;
 	if (savedData.inventoryData[targetIndex] == null) {
 		AddSendToCache(followItem, "PlaySound", "Cancel");
-		//_.sendTo(followItem, "PlaySound", "Cancel");
 		VerticalLayoutMessageAnim.setTrigger("CantUseItem");
 		isClashEffectOn = false;
 		return;
 	} else if (savedData.inventoryData[targetIndex].duration == -1) {
 		AddSendToCache(followItem, "PlaySound", "Cancel");
-		//_.sendTo(followItem, "PlaySound", "Cancel");
 		VerticalLayoutMessageAnim.setTrigger("CantUseItem");
 		isClashEffectOn = false;
 		return;
 	} else if (savedData.inventoryData[targetIndex].duration == 0) {
 		AddSendToCache(followItem, "PlaySound", "Cancel");
-		//_.sendTo(followItem, "PlaySound", "Cancel");
 		VerticalLayoutMessageAnim.setTrigger("ItemDurationZero");
 		isClashEffectOn = false;
 		return;
@@ -851,23 +845,14 @@ const AttackCurrentItem = (target) => {
 	}
 	multipleAttackSpeed = 1;
 
-	/*
-	_.sendTo(followItem, "Attack", {
-		target: target,
-		itemData: savedData.inventoryData[targetIndex],
-	});
-	*/
-
 	AddSendToCache(followItem, "Attack", {
 		target: target,
 		itemData: savedData.inventoryData[targetIndex],
 	});
 
 	if (savedData.inventoryData[targetIndex].swingSound) {
-		//_.sendTo(followItem, "PlaySound", savedData.inventoryData[targetIndex].swingSound);
 		AddSendToCache(followItem, "PlaySound", savedData.inventoryData[targetIndex].swingSound);
 	} else {
-		//_.sendTo(followItem, "PlaySound", "Swing");
 		AddSendToCache(followItem, "PlaySound", "Swing");
 	}
 
@@ -971,16 +956,21 @@ _.onFrame((deltaTime) => {
 	}
 
 	//SendToCache処理
-	if (sendCacheWaitTime > 0) sendCacheWaitTime -= deltaTime;
-	if (sendCacheWaitTime <= 0 && sendToCache.length > 0) {
-		const sendToData = sendToCache.shift();
-		try {
-			_.sendTo(sendToData.targetHandle, sendToData.message, sendToData.arg);
-		} catch {
-			sendToCache.unshift(sendToData);
-			$.log("キャッシュ処理失敗");
+	if (enableCache) {
+		if (sendCacheWaitTime > 0) sendCacheWaitTime -= deltaTime;
+		if (sendCacheWaitTime <= 0) {
+			const sendToData = sendToCache.shift();
+			try {
+				_.sendTo(sendToData.targetHandle, sendToData.message, sendToData.arg);
+			} catch {
+				sendToCache.unshift(sendToData);
+				$.log("キャッシュ処理失敗");
+			}
+			sendCacheWaitTime = 0.1;
+			if (sendToCache.length <= 0) {
+				enableCache = false;
+			}
 		}
-		sendCacheWaitTime = 0.1;
 	}
 
 	//お給料処理
@@ -996,7 +986,7 @@ _.onFrame((deltaTime) => {
 	}
 
 	// モーション再生
-	if (isPlayingMotion && followItem) {
+	if (isPlayingMotion) {
 		const targetItem = savedData.inventoryData[savedData.currentSelectIndex];
 
 		let motionMultiple = 1;
@@ -1009,10 +999,8 @@ _.onFrame((deltaTime) => {
 		if (motionTime > 0.4 - multipleAttackCount * 0.01 && !isClashed) {
 			if (isClashEffectOn) {
 				AddSendToCache(followItem, "ClashWithEffect", clushItemStatus);
-				//_.sendTo(followItem, "ClashWithEffect", clushItemStatus);
 			} else {
 				AddSendToCache(followItem, "Clash", null);
-				//_.sendTo(followItem, "Clash", null);
 			}
 			isClashed = true;
 
@@ -1129,8 +1117,8 @@ const SetRarityByDropChance = (clushItemStatus) => {
 };
 
 const AddSendToCache = (targetHandle, message, arg) => {
-	//_.sendTo(followItem, "DropItem", dropItem);
 	sendToCache.push({ targetHandle, message: message, arg: arg });
+	enableCache = true;
 };
 
 })();

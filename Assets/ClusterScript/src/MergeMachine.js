@@ -1,3 +1,5 @@
+import { InitializeSendCache, ProcessCache, AddSendMessageCache } from "./modules/CacheModule.js";
+
 //Extracter設定
 const extracterUI = $.worldItemReference("ExtracterUI");
 
@@ -35,6 +37,8 @@ $.onStart(() => {
 	$.state.removeAllDummyItemWaitTime = 0;
 	$.state.mergeCost = 0;
 	$.state.breakChance = 0;
+
+	InitializeSendCache();
 	removeUsingPlayer();
 	UpdateUI();
 });
@@ -44,7 +48,8 @@ $.onReceive(
 		//使用可能なアイテムなら使用する
 		if (requestName === "itemChecked") {
 			if (arg.maxDuration != -1) {
-				sender.send("UseSelectItem", 1);
+				AddSendMessageCache(sender, "UseSelectItem", 1);
+				//sender.send("UseSelectItem", 1);
 				$.state.usingPlayer = sender;
 				itemUsingPlayerText.unityProp.text = sender.userDisplayName + "が使用中";
 			} else {
@@ -127,16 +132,30 @@ $.onUpdate((deltaTime) => {
 		}
 	}
 
-	const nearPlayerLength = $.getPlayersNear($.getPosition(), 3).length;
+	/*
+	const nearPlayerLength = $.getPlayersNear($.getPosition(), 3.5).length;
 	if (nearPlayerLength >= 1 && !$.state.enableCanvas) {
 		canvas.setEnabled(true);
-		extracterUI.send("SetEnable", true);
+		//AddSendMessageCache
+		AddSendMessageCache(extracterUI, "SetEnable", { enabled: true });
+		//extracterUI.send("SetEnable", true);
 		$.state.enableCanvas = true;
 	} else if (nearPlayerLength <= 0 && $.state.enableCanvas) {
 		canvas.setEnabled(false);
-		extracterUI.send("SetEnable", false);
+		AddSendMessageCache(extracterUI, "SetEnable", { enabled: false });
+		//extracterUI.send("SetEnable", false);
 		$.state.enableCanvas = false;
+	}*/
+
+	if (!canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3.5).length >= 1) {
+		canvas.setEnabled(true);
+		AddSendMessageCache(extracterUI, "SetEnable", { enabled: true });
+	} else if (canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3.5).length <= 0) {
+		canvas.setEnabled(false);
+		AddSendMessageCache(extracterUI, "SetEnable", { enabled: false });
 	}
+
+	ProcessCache(deltaTime);
 
 	if ($.state.removeAllDummyItemWaitTime > 0) $.state.removeAllDummyItemWaitTime -= deltaTime;
 	if ($.state.removeAllDummyItem && $.state.removeAllDummyItemWaitTime <= 0) {
@@ -295,7 +314,10 @@ const OnMergeComplete = () => {
 		let spawnRotation = turuhashiSpawnPosition.getGlobalRotation();
 		const usedItem = new WorldItemTemplateId(finishingProductItem.itemName);
 		let followingItem = $.createItem(usedItem, spawnPosition, spawnRotation);
-		followingItem.send("FreezePosition", true);
+
+		//followingItem.send("FreezePosition", true);
+		AddSendMessageCache(followingItem, "FreezePosition", true);
+
 		$.state.spawnDummyItemComplete = followingItem;
 		$.state.finishingProductItem = finishingProductItem;
 	} else {

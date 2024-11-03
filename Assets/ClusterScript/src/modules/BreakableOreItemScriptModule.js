@@ -1,3 +1,5 @@
+import { InitializeSendCache, ProcessCache, AddSendMessageCache } from "./CacheModule.js";
+
 export const initListeners = (itemSettings) => {
 	const dropKousekiItem = new WorldItemTemplateId("DropKouseki");
 	const oreBreakedItem = new WorldItemTemplateId("OreBreaked");
@@ -10,12 +12,15 @@ export const initListeners = (itemSettings) => {
 	$.onStart(() => {
 		RespawnItem();
 		$.state.itemUsePlayers = [];
-		$.state.sendMessageCache = [];
-		$.state.cacheWaitTime = 0;
+		$.state.interactWaitTime = 0;
+		InitializeSendCache();
 	});
 
 	$.onInteract((player) => {
-		player.send("AttackCurrentItem", null);
+		if ($.state.interactWaitTime <= 0) {
+			player.send("AttackCurrentItem", null);
+			$.state.interactWaitTime = 0.2;
+		}
 	});
 
 	$.onReceive((requestName, arg, sender) => {
@@ -53,13 +58,14 @@ export const initListeners = (itemSettings) => {
 			if (newConsumeDuration < 1) newConsumeDuration = 1;
 
 			AddSendMessageCache(sender, "ReceiveDamage", newConsumeDuration);
-			//sender.send("ReceiveDamage", newConsumeDuration);
 		}
 
 		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	});
 
 	$.onUpdate((deltaTime) => {
+		if ($.state.interactWaitTime > 0) $.state.interactWaitTime -= deltaTime;
+
 		if (!$.state.enable) {
 			$.state.respawnTime -= deltaTime;
 			if ($.state.respawnTime <= 0) {
@@ -67,22 +73,7 @@ export const initListeners = (itemSettings) => {
 			}
 		}
 
-		//汎用メッセージキャッシュを処理
-		if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
-		if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
-			const sendMessageCache = $.state.sendMessageCache;
-			const sendMessageData = sendMessageCache.shift();
-			try {
-				let arg = sendMessageData.arg;
-				if (!arg) arg = "";
-				sendMessageData.targetHandle.send(sendMessageData.message, arg);
-			} catch {
-				$.log("キャッシュ処理失敗");
-				sendMessageCache.unshift(sendMessageData);
-			}
-			$.state.sendMessageCache = sendMessageCache;
-			$.state.cacheWaitTime = 0.1;
-		}
+		ProcessCache(deltaTime);
 	});
 
 	const RespawnItem = () => {
@@ -144,12 +135,5 @@ export const initListeners = (itemSettings) => {
 			let random_z = Math.random() * 2 - 1;
 			followingItem.addImpulsiveForce(new Vector3(random_x, 4, random_z));
 		}
-	};
-
-	const AddSendMessageCache = (targetHandle, message, arg) => {
-		let currentCache = $.state.sendMessageCache;
-		if (!currentCache) currentCache = [];
-		currentCache.push({ targetHandle, message, arg });
-		$.state.sendMessageCache = currentCache;
 	};
 };

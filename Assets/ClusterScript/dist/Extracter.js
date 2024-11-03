@@ -14,12 +14,12 @@ $.onStart(() => {
 
 $.onReceive(
 	(requestName, arg, sender) => {
+		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
+
 		if (requestName == "SetEnable") {
 			canvas.setEnabled(arg.enabled);
 			collider.setEnabled(arg.enabled);
 		}
-
-		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	},
 	{ item: true, player: true }
 );

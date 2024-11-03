@@ -684,16 +684,14 @@ $.onUpdate((deltaTime) => {
 		nothingItemWarning.setEnabled(false);
 	}
 
-	if ($.getPlayersNear($.getPosition(), 3).length >= 1 && !$.state.enableCanvas) {
+	if (!canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3).length >= 1) {
 		canvas.setEnabled(true);
 		//extracterUI.send("SetEnable", true);
 		AddSendMessageCache(extracterUI, "SetEnable", { enabled: true });
-		$.state.enableCanvas = true;
-	} else if ($.getPlayersNear($.getPosition(), 3).length <= 0 && $.state.enableCanvas) {
+	} else if (canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3).length <= 0) {
 		canvas.setEnabled(false);
 		//extracterUI.send("SetEnable", false);
 		AddSendMessageCache(extracterUI, "SetEnable", { enabled: false });
-		$.state.enableCanvas = false;
 	}
 
 	if ($.state.usingPlayer && !$.state.usingPlayer.exists()) {
@@ -732,7 +730,7 @@ $.onUpdate((deltaTime) => {
 		}
 
 		$.state.spawnDummyItemList = spawnDummyItemList;
-		$.state.removeAllDummyItemWaitTime = 0.01;
+		$.state.removeAllDummyItemWaitTime = 0.1;
 	}
 
 	ProcessCache(deltaTime);

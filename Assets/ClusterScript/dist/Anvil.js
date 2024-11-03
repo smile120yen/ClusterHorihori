@@ -15,37 +15,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ProcessCache: () => (/* binding */ ProcessCache)
 /* harmony export */ });
 const InitializeSendCache = () => {
-	$.log("InitializeSendCache");
+	//$.log("InitializeSendCache");
 	$.state.sendMessageCache = [];
 	$.state.cacheWaitTime = 0;
+	$.state.findCache = false;
 };
 
 const ProcessCache = (deltaTime) => {
 	//汎用メッセージキャッシュを処理
-	if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
-	if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
-		const sendMessageCache = $.state.sendMessageCache;
-		const sendMessageData = sendMessageCache.shift();
-		$.log("ProcessCache:" + JSON.stringify(sendMessageData));
-		try {
-			let arg = sendMessageData.arg;
-			if (!arg) arg = "";
-			sendMessageData.targetHandle.send(sendMessageData.message, arg);
-		} catch {
-			sendMessageCache.unshift(sendMessageData);
-			$.log("キャッシュ処理失敗");
+	if ($.state.findCache) {
+		if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
+		if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
+			const sendMessageCache = $.state.sendMessageCache;
+			const sendMessageData = sendMessageCache.shift();
+			$.log("ProcessCache:" + JSON.stringify(sendMessageData));
+			try {
+				let arg = sendMessageData.arg;
+				if (!arg) arg = "";
+				sendMessageData.targetHandle.send(sendMessageData.message, arg);
+			} catch {
+				sendMessageCache.unshift(sendMessageData);
+				$.log("キャッシュ処理失敗");
+			}
+			$.state.sendMessageCache = sendMessageCache;
+			$.state.cacheWaitTime = 0.1;
+
+			if ($.state.sendMessageCache.length <= 0) {
+				$.state.findCache = false;
+			}
 		}
-		$.state.sendMessageCache = sendMessageCache;
-		$.state.cacheWaitTime = 0.1;
 	}
 };
 
 const AddSendMessageCache = (targetHandle, message, arg) => {
-	$.log("AddSendMessageCache");
+	//$.log("AddSendMessageCache");
 	let currentCache = $.state.sendMessageCache;
 	if (!currentCache) currentCache = [];
 	currentCache.push({ targetHandle, message, arg });
 	$.state.sendMessageCache = currentCache;
+	$.state.findCache = true;
 };
 
 
@@ -850,16 +858,14 @@ $.onUpdate((deltaTime) => {
 		nothingItemWarning.setEnabled(false);
 	}
 
-	if ($.getPlayersNear($.getPosition(), 3).length >= 1 && !$.state.enableCanvas) {
+	if (!canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3).length >= 1) {
 		canvas.setEnabled(true);
 		//extracterUI.send("SetEnable", true);
 		(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_1__.AddSendMessageCache)(extracterUI, "SetEnable", { enabled: true });
-		$.state.enableCanvas = true;
-	} else if ($.getPlayersNear($.getPosition(), 3).length <= 0 && $.state.enableCanvas) {
+	} else if (canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3).length <= 0) {
 		canvas.setEnabled(false);
 		//extracterUI.send("SetEnable", false);
 		(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_1__.AddSendMessageCache)(extracterUI, "SetEnable", { enabled: false });
-		$.state.enableCanvas = false;
 	}
 
 	if ($.state.usingPlayer && !$.state.usingPlayer.exists()) {
@@ -898,7 +904,7 @@ $.onUpdate((deltaTime) => {
 		}
 
 		$.state.spawnDummyItemList = spawnDummyItemList;
-		$.state.removeAllDummyItemWaitTime = 0.01;
+		$.state.removeAllDummyItemWaitTime = 0.1;
 	}
 
 	(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_1__.ProcessCache)(deltaTime);

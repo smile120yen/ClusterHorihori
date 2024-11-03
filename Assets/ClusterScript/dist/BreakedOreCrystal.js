@@ -12,6 +12,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   initListeners: () => (/* binding */ initListeners)
 /* harmony export */ });
+/* harmony import */ var _CacheModule_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CacheModule.js */ "./src/modules/CacheModule.js");
+
+
 const initListeners = (itemSettings) => {
 	const dropKousekiItem = new WorldItemTemplateId("DropKouseki");
 	const oreBreakedItem = new WorldItemTemplateId("OreBreaked");
@@ -24,12 +27,15 @@ const initListeners = (itemSettings) => {
 	$.onStart(() => {
 		RespawnItem();
 		$.state.itemUsePlayers = [];
-		$.state.sendMessageCache = [];
-		$.state.cacheWaitTime = 0;
+		$.state.interactWaitTime = 0;
+		(0,_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.InitializeSendCache)();
 	});
 
 	$.onInteract((player) => {
-		player.send("AttackCurrentItem", null);
+		if ($.state.interactWaitTime <= 0) {
+			player.send("AttackCurrentItem", null);
+			$.state.interactWaitTime = 0.2;
+		}
 	});
 
 	$.onReceive((requestName, arg, sender) => {
@@ -66,14 +72,15 @@ const initListeners = (itemSettings) => {
 			}
 			if (newConsumeDuration < 1) newConsumeDuration = 1;
 
-			AddSendMessageCache(sender, "ReceiveDamage", newConsumeDuration);
-			//sender.send("ReceiveDamage", newConsumeDuration);
+			(0,_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.AddSendMessageCache)(sender, "ReceiveDamage", newConsumeDuration);
 		}
 
 		$.log("receve:" + (requestName || "null") + "," + JSON.stringify(arg));
 	});
 
 	$.onUpdate((deltaTime) => {
+		if ($.state.interactWaitTime > 0) $.state.interactWaitTime -= deltaTime;
+
 		if (!$.state.enable) {
 			$.state.respawnTime -= deltaTime;
 			if ($.state.respawnTime <= 0) {
@@ -81,22 +88,7 @@ const initListeners = (itemSettings) => {
 			}
 		}
 
-		//汎用メッセージキャッシュを処理
-		if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
-		if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
-			const sendMessageCache = $.state.sendMessageCache;
-			const sendMessageData = sendMessageCache.shift();
-			try {
-				let arg = sendMessageData.arg;
-				if (!arg) arg = "";
-				sendMessageData.targetHandle.send(sendMessageData.message, arg);
-			} catch {
-				$.log("キャッシュ処理失敗");
-				sendMessageCache.unshift(sendMessageData);
-			}
-			$.state.sendMessageCache = sendMessageCache;
-			$.state.cacheWaitTime = 0.1;
-		}
+		(0,_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.ProcessCache)(deltaTime);
 	});
 
 	const RespawnItem = () => {
@@ -142,7 +134,7 @@ const initListeners = (itemSettings) => {
 				.add(new Vector3(0, 0.7, 0));
 			let followingItem = $.createItem(dropKousekiItem, spawnPosition, $.getRotation());
 
-			AddSendMessageCache(followingItem, "setStatus", {
+			(0,_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.AddSendMessageCache)(followingItem, "setStatus", {
 				itemName: itemSettings.itemName,
 				itemDisplayName: itemSettings.itemDisplayName,
 				price: itemSettings.price,
@@ -159,13 +151,63 @@ const initListeners = (itemSettings) => {
 			followingItem.addImpulsiveForce(new Vector3(random_x, 4, random_z));
 		}
 	};
+};
 
-	const AddSendMessageCache = (targetHandle, message, arg) => {
-		let currentCache = $.state.sendMessageCache;
-		if (!currentCache) currentCache = [];
-		currentCache.push({ targetHandle, message, arg });
-		$.state.sendMessageCache = currentCache;
-	};
+
+/***/ }),
+
+/***/ "./src/modules/CacheModule.js":
+/*!************************************!*\
+  !*** ./src/modules/CacheModule.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AddSendMessageCache: () => (/* binding */ AddSendMessageCache),
+/* harmony export */   InitializeSendCache: () => (/* binding */ InitializeSendCache),
+/* harmony export */   ProcessCache: () => (/* binding */ ProcessCache)
+/* harmony export */ });
+const InitializeSendCache = () => {
+	//$.log("InitializeSendCache");
+	$.state.sendMessageCache = [];
+	$.state.cacheWaitTime = 0;
+	$.state.findCache = false;
+};
+
+const ProcessCache = (deltaTime) => {
+	//汎用メッセージキャッシュを処理
+	if ($.state.findCache) {
+		if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
+		if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
+			const sendMessageCache = $.state.sendMessageCache;
+			const sendMessageData = sendMessageCache.shift();
+			$.log("ProcessCache:" + JSON.stringify(sendMessageData));
+			try {
+				let arg = sendMessageData.arg;
+				if (!arg) arg = "";
+				sendMessageData.targetHandle.send(sendMessageData.message, arg);
+			} catch {
+				sendMessageCache.unshift(sendMessageData);
+				$.log("キャッシュ処理失敗");
+			}
+			$.state.sendMessageCache = sendMessageCache;
+			$.state.cacheWaitTime = 0.1;
+
+			if ($.state.sendMessageCache.length <= 0) {
+				$.state.findCache = false;
+			}
+		}
+	}
+};
+
+const AddSendMessageCache = (targetHandle, message, arg) => {
+	//$.log("AddSendMessageCache");
+	let currentCache = $.state.sendMessageCache;
+	if (!currentCache) currentCache = [];
+	currentCache.push({ targetHandle, message, arg });
+	$.state.sendMessageCache = currentCache;
+	$.state.findCache = true;
 };
 
 

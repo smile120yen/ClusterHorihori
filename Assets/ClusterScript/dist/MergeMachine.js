@@ -1,7 +1,130 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/modules/CacheModule.js":
+/*!************************************!*\
+  !*** ./src/modules/CacheModule.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AddSendMessageCache: () => (/* binding */ AddSendMessageCache),
+/* harmony export */   InitializeSendCache: () => (/* binding */ InitializeSendCache),
+/* harmony export */   ProcessCache: () => (/* binding */ ProcessCache)
+/* harmony export */ });
+const InitializeSendCache = () => {
+	//$.log("InitializeSendCache");
+	$.state.sendMessageCache = [];
+	$.state.cacheWaitTime = 0;
+	$.state.findCache = false;
+};
+
+const ProcessCache = (deltaTime) => {
+	//汎用メッセージキャッシュを処理
+	if ($.state.findCache) {
+		if ($.state.cacheWaitTime > 0) $.state.cacheWaitTime -= deltaTime;
+		if ($.state.cacheWaitTime <= 0 && $.state.sendMessageCache.length > 0) {
+			const sendMessageCache = $.state.sendMessageCache;
+			const sendMessageData = sendMessageCache.shift();
+			$.log("ProcessCache:" + JSON.stringify(sendMessageData));
+			try {
+				let arg = sendMessageData.arg;
+				if (!arg) arg = "";
+				sendMessageData.targetHandle.send(sendMessageData.message, arg);
+			} catch {
+				sendMessageCache.unshift(sendMessageData);
+				$.log("キャッシュ処理失敗");
+			}
+			$.state.sendMessageCache = sendMessageCache;
+			$.state.cacheWaitTime = 0.1;
+
+			if ($.state.sendMessageCache.length <= 0) {
+				$.state.findCache = false;
+			}
+		}
+	}
+};
+
+const AddSendMessageCache = (targetHandle, message, arg) => {
+	//$.log("AddSendMessageCache");
+	let currentCache = $.state.sendMessageCache;
+	if (!currentCache) currentCache = [];
+	currentCache.push({ targetHandle, message, arg });
+	$.state.sendMessageCache = currentCache;
+	$.state.findCache = true;
+};
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!*****************************!*\
   !*** ./src/MergeMachine.js ***!
   \*****************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/CacheModule.js */ "./src/modules/CacheModule.js");
+
+
 //Extracter設定
 const extracterUI = $.worldItemReference("ExtracterUI");
 
@@ -39,6 +162,8 @@ $.onStart(() => {
 	$.state.removeAllDummyItemWaitTime = 0;
 	$.state.mergeCost = 0;
 	$.state.breakChance = 0;
+
+	(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.InitializeSendCache)();
 	removeUsingPlayer();
 	UpdateUI();
 });
@@ -48,7 +173,8 @@ $.onReceive(
 		//使用可能なアイテムなら使用する
 		if (requestName === "itemChecked") {
 			if (arg.maxDuration != -1) {
-				sender.send("UseSelectItem", 1);
+				(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.AddSendMessageCache)(sender, "UseSelectItem", 1);
+				//sender.send("UseSelectItem", 1);
 				$.state.usingPlayer = sender;
 				itemUsingPlayerText.unityProp.text = sender.userDisplayName + "が使用中";
 			} else {
@@ -131,16 +257,30 @@ $.onUpdate((deltaTime) => {
 		}
 	}
 
-	const nearPlayerLength = $.getPlayersNear($.getPosition(), 3).length;
+	/*
+	const nearPlayerLength = $.getPlayersNear($.getPosition(), 3.5).length;
 	if (nearPlayerLength >= 1 && !$.state.enableCanvas) {
 		canvas.setEnabled(true);
-		extracterUI.send("SetEnable", true);
+		//AddSendMessageCache
+		AddSendMessageCache(extracterUI, "SetEnable", { enabled: true });
+		//extracterUI.send("SetEnable", true);
 		$.state.enableCanvas = true;
 	} else if (nearPlayerLength <= 0 && $.state.enableCanvas) {
 		canvas.setEnabled(false);
-		extracterUI.send("SetEnable", false);
+		AddSendMessageCache(extracterUI, "SetEnable", { enabled: false });
+		//extracterUI.send("SetEnable", false);
 		$.state.enableCanvas = false;
+	}*/
+
+	if (!canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3.5).length >= 1) {
+		canvas.setEnabled(true);
+		(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.AddSendMessageCache)(extracterUI, "SetEnable", { enabled: true });
+	} else if (canvas.getEnabled() && $.getPlayersNear($.getPosition(), 3.5).length <= 0) {
+		canvas.setEnabled(false);
+		(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.AddSendMessageCache)(extracterUI, "SetEnable", { enabled: false });
 	}
+
+	(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.ProcessCache)(deltaTime);
 
 	if ($.state.removeAllDummyItemWaitTime > 0) $.state.removeAllDummyItemWaitTime -= deltaTime;
 	if ($.state.removeAllDummyItem && $.state.removeAllDummyItemWaitTime <= 0) {
@@ -299,7 +439,10 @@ const OnMergeComplete = () => {
 		let spawnRotation = turuhashiSpawnPosition.getGlobalRotation();
 		const usedItem = new WorldItemTemplateId(finishingProductItem.itemName);
 		let followingItem = $.createItem(usedItem, spawnPosition, spawnRotation);
-		followingItem.send("FreezePosition", true);
+
+		//followingItem.send("FreezePosition", true);
+		(0,_modules_CacheModule_js__WEBPACK_IMPORTED_MODULE_0__.AddSendMessageCache)(followingItem, "FreezePosition", true);
+
 		$.state.spawnDummyItemComplete = followingItem;
 		$.state.finishingProductItem = finishingProductItem;
 	} else {
@@ -474,6 +617,8 @@ const RomanNum = (num) => {
 			return "Ⅴ";
 	}
 };
+
+})();
 
 /******/ })()
 ;
