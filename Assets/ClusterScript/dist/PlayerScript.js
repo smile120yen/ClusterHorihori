@@ -566,11 +566,14 @@ const updateInventoryView = () => {
 				}
 
 				if (durationRatio > 0.6) {
-					unityProp.color = [0, 1, 0.2, 1];
+					//unityProp.color = [0, 1, 0.2, 1];
+					unityProp.color = new Color(0, 1, 0.2, 1);
 				} else if (durationRatio > 0.3) {
-					unityProp.color = [1, 0.8, 0.2, 1];
+					//unityProp.color = [1, 0.8, 0.2, 1];
+					unityProp.color = new Color(1, 0.8, 0.2, 1);
 				} else {
-					unityProp.color = [1, 0.2, 0.2, 1];
+					//unityProp.color = [1, 0.2, 0.2, 1];
+					unityProp.color = new Color(1, 0.2, 0.2, 1);
 				}
 
 				unityProp.fillAmount = durationRatio;
@@ -780,38 +783,6 @@ const AddItem = (arg) => {
 
 	return true;
 };
-
-_.onStart(() => {
-	savedData = _.getPlayerStorageData();
-	_.log("rawData:" + JSON.stringify(savedData));
-
-	/*
-	if (savedData.encodeBase64) {
-		savedData = decodeBase64(binaryToHex(savedData.data));
-		_.log("decodedデータ:" + JSON.stringify(savedData));
-	}
-	*/
-
-	if (savedData && savedData.isCompressed) {
-		const decompressedData = (0,_modules_SavedataCompressor_js__WEBPACK_IMPORTED_MODULE_1__.decompressJSON)(savedData);
-		const decompressSize = _.computeSendableSize(JSON.stringify(decompressedData));
-		_.log("解凍データ:" + decompressSize + "," + JSON.stringify(decompressedData));
-		//_.log("getSaveData:" + JSON.stringify(savedData));
-		savedData = decompressedData;
-	}
-
-	if (!savedData) {
-		ResetSavedData();
-	}
-
-	if (!savedData.mineExp) savedData.mineExp = 0;
-	if (!savedData.mineLv) savedData.mineLv = 1;
-	if (!savedData.money) savedData.money = 0;
-
-	updateInventory();
-
-	AddSendToCache(lockonMarkerGameStart, "Lockon", null);
-});
 
 _.onReceive(
 	(messageType, arg, sender) => {
@@ -1475,6 +1446,38 @@ const AddSendToCache = (targetHandle, message, arg) => {
 	sendToCache.push({ targetHandle, message: message, arg: arg });
 	enableCache = true;
 };
+
+//_.onStart(() => {
+savedData = _.getPlayerStorageData();
+_.log("rawData:" + JSON.stringify(savedData));
+
+/*
+		if (savedData.encodeBase64) {
+			savedData = decodeBase64(binaryToHex(savedData.data));
+			_.log("decodedデータ:" + JSON.stringify(savedData));
+		}
+		*/
+
+if (savedData && savedData.isCompressed) {
+	const decompressedData = (0,_modules_SavedataCompressor_js__WEBPACK_IMPORTED_MODULE_1__.decompressJSON)(savedData);
+	const decompressSize = _.computeSendableSize(JSON.stringify(decompressedData));
+	_.log("解凍データ:" + decompressSize + "," + JSON.stringify(decompressedData));
+	//_.log("getSaveData:" + JSON.stringify(savedData));
+	savedData = decompressedData;
+}
+
+if (!savedData) {
+	ResetSavedData();
+}
+
+if (!savedData.mineExp) savedData.mineExp = 0;
+if (!savedData.mineLv) savedData.mineLv = 1;
+if (!savedData.money) savedData.money = 0;
+
+updateInventory();
+
+AddSendToCache(lockonMarkerGameStart, "Lockon", null);
+//});
 
 })();
 

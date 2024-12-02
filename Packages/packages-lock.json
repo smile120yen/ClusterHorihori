@@ -190,7 +190,7 @@
       "url": "https://packages.unity.com"
     },
     "mu.cluster.cluster-creator-kit": {
-      "version": "2.25.0",
+      "version": "2.29.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {

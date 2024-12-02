@@ -126,11 +126,14 @@ const UpdateView = () => {
 			}
 
 			if (durationRatio > 0.6) {
-				unityProp.color = [0, 1, 0.2, 1];
+				//unityProp.color = [0, 1, 0.2, 1];
+				unityProp.color = new Color(0, 1, 0.2, 1);
 			} else if (durationRatio > 0.3) {
-				unityProp.color = [1, 0.8, 0.2, 1];
+				//unityProp.color = [1, 0.8, 0.2, 1];
+				unityProp.color = new Color(1, 0.8, 0.2, 1);
 			} else {
-				unityProp.color = [1, 0.2, 0.2, 1];
+				//unityProp.color = [1, 0.2, 0.2, 1];
+				unityProp.color = new Color(1, 0.2, 0.2, 1);
 			}
 
 			unityProp.fillAmount = durationRatio;

@@ -374,7 +374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0020302786, y: 0}
+  m_AnchoredPosition: {x: -0.003914454, y: 0}
   m_SizeDelta: {x: -0.000004853122, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &39480493
@@ -3827,7 +3827,7 @@ MonoBehaviour:
   humanoidAnimations:
   - id: Swing
     animation: {fileID: -4738338977195520429, guid: 184eb7e372f4c60488bf3e8d47b665ca, type: 3}
-    humanoidAnimation: {fileID: 11400000, guid: 646c1956ab9472b4db2a3b43550c66ef, type: 2}
+    humanoidAnimation: {fileID: 11400000, guid: 97367ac4646114d45a95ff0d35de3e6f, type: 2}
 --- !u!114 &289441658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8562,8 +8562,8 @@ RectTransform:
   m_Father: {fileID: 1695073691}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12864,8 +12864,8 @@ RectTransform:
   m_Father: {fileID: 1695073691}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20463,7 +20463,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u60C5\u5831\n2024/11/04 v1.0.5\n\u30BB\u30FC\u30D6\u30C7\u30FC\u30BF\u5BB9\u91CF\u304C\u4E0A\u9650\u3092\u8D85\u3048\u305F\u5834\u5408\u306B\u305D\u308C\u4EE5\u4E0A\u30A2\u30A4\u30C6\u30E0\u3092\u62FE\u3048\u306A\u304F\u306A\u308B\u554F\u984C\u3092\u7DE9\u548C\n\u30BB\u30FC\u30D6\u30C7\u30FC\u30BF\u3092\u5727\u7E2E\u3059\u308B\u3088\u3046\u306B\uFF08\u5F15\u304D\u7D9A\u304D\u6539\u5584\u4E2D\u3067\u3059\uFF09\n\u5B8C\u5168\u65B0\u898F\u30BB\u30FC\u30D6\u30C7\u30FC\u30BF\u3092\u4F5C\u6210\u3057\u305F\u5834\u5408\u306B\u884C\u52D5\u4E0D\u80FD\u306B\u306A\u308B\u554F\u984C\u3092\u4FEE\u6B63\n\n2024/11/03
+  m_Text: "\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u60C5\u5831\n2024/11/05 v1.0.6\nClusterScript\u306E\u4ED5\u69D8\u5909\u66F4\u306B\u5BFE\u5FDC\u3057\u307E\u3057\u305F\n\n2024/11/04
+    v1.0.5\n\u30BB\u30FC\u30D6\u30C7\u30FC\u30BF\u5BB9\u91CF\u304C\u4E0A\u9650\u3092\u8D85\u3048\u305F\u5834\u5408\u306B\u305D\u308C\u4EE5\u4E0A\u30A2\u30A4\u30C6\u30E0\u3092\u62FE\u3048\u306A\u304F\u306A\u308B\u554F\u984C\u3092\u7DE9\u548C\n\u30BB\u30FC\u30D6\u30C7\u30FC\u30BF\u3092\u5727\u7E2E\u3059\u308B\u3088\u3046\u306B\uFF08\u5F15\u304D\u7D9A\u304D\u6539\u5584\u4E2D\u3067\u3059\uFF09\n\u5B8C\u5168\u65B0\u898F\u30BB\u30FC\u30D6\u30C7\u30FC\u30BF\u3092\u4F5C\u6210\u3057\u305F\u5834\u5408\u306B\u884C\u52D5\u4E0D\u80FD\u306B\u306A\u308B\u554F\u984C\u3092\u4FEE\u6B63\n\n2024/11/03
     v1.0.4\n\u30EF\u30FC\u30EB\u30C9\u3092\u5EFA\u3066\u3063\u3071\u306A\u3057\u306B\u3057\u3066\u3044\u308B\u3068\u6F14\u51FA\u7528\u30A2\u30A4\u30C6\u30E0\u304C\u524A\u9664\u3055\u308C\u305A\u306B\u8CAF\u307E\u3063\u3066\u3044\u3063\u3066\u3057\u307E\u3046\u554F\u984C\u3092\u4FEE\u6B63\n\n2024/11/02
     v1.0.3\n\u30C4\u30EB\u30CF\u30B7\u5408\u6210\u30DE\u30B7\u30FC\u30F3\u306B\u53D6\u308A\u51FA\u3059\u30DC\u30BF\u30F3\u3092\u8FFD\u52A0\n\n2024/10/27
     v1.0.2\n\u9271\u77F3\u7834\u58CA\u6F14\u51FA\u3092\u3055\u3089\u306B\u7C21\u7D20\u5316\u3000\u753B\u9762\u30A8\u30D5\u30A7\u30AF\u30C8\u3092\u7C21\u7D20\u5316\n\n2024/10/26
@@ -23110,6 +23111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a698e43adc1460aa8b0dbfa312d8512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scope: 0
 --- !u!1001 &1695698867
 PrefabInstance:
   m_ObjectHideFlags: 0

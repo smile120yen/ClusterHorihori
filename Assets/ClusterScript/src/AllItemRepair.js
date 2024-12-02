@@ -4,12 +4,14 @@ const canvas = $.subNode("FukidashiCanvas");
 const defaultTalkText = "ツルハシ修理……無料だよ";
 const talkCooltimeMax = 1;
 
-$.state.talkCooltime = talkCooltimeMax;
-$.state.isTalkStart = false;
-fukidashiText.unityProp.text = defaultTalkText;
+$.onStart(() => {
+	$.state.talkCooltime = talkCooltimeMax;
+	$.state.isTalkStart = false;
+	fukidashiText.unityProp.text = defaultTalkText;
 
-canvas.setEnabled(false);
-$.state.enableCanvas = false;
+	canvas.setEnabled(false);
+	$.state.enableCanvas = false;
+});
 
 $.onInteract((player) => {
 	pickupSound.play();
