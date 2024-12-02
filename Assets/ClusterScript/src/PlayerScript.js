@@ -1,4 +1,8 @@
 import { allItemList } from "./modules/allItemList.js";
+//import { LZString } from "./modules/lz-string.js";
+//import LZString from "https://cdn.jsdelivr.net/npm/lz-string@1.4.4/lz-string.min.js";
+//import LZString from "lz-string";
+import { dictionary, compressJSON, decompressJSON, encodeBase64, decodeBase64, jsonToBinary, binaryToHex } from "./modules/SavedataCompressor.js";
 
 let motionTime = 0;
 let isPlayingMotion = false;
@@ -42,8 +46,22 @@ const BonusSalaryRatioUI = _.playerLocalObject("BonusSalaryRatio").getUnityCompo
 const lockonMarkerGameStart = _.worldItemReference("LockonMarkerGameStart");
 
 const updateInventory = () => {
-	savedData.inventoryData = savedData.inventoryData.filter((item) => !item || allItemList.includes(item.itemName));
-	savedData.stockItemData = savedData.stockItemData.filter((item) => !item || allItemList.includes(item.itemName));
+	//savedData.inventoryData = savedData.inventoryData.filter((item) => !item || allItemList.includes(item.itemName));
+	//savedData.stockItemData = savedData.stockItemData.filter((item) => !item || allItemList.includes(item.itemName));
+
+	savedData.inventoryData = savedData.inventoryData.map((item) => {
+		if (!item || allItemList.includes(item.itemName)) {
+			return item; // 条件を満たす場合はそのまま返す
+		}
+		return undefined; // 条件を満たさない場合はundefinedを返す
+	});
+
+	savedData.stockItemData = savedData.stockItemData.map((item) => {
+		if (!item || allItemList.includes(item.itemName)) {
+			return item; // 条件を満たす場合はそのまま返す
+		}
+		return undefined; // 条件を満たさない場合はundefinedを返す
+	});
 
 	if (savedData && followItem) {
 		let targetSpeed = 1;
@@ -369,7 +387,23 @@ const AddItem = (arg) => {
 
 _.onStart(() => {
 	savedData = _.getPlayerStorageData();
-	_.log("getSaveData:" + JSON.stringify(savedData));
+	_.log("rawData:" + JSON.stringify(savedData));
+
+	/*
+	if (savedData.encodeBase64) {
+		savedData = decodeBase64(binaryToHex(savedData.data));
+		_.log("decodedデータ:" + JSON.stringify(savedData));
+	}
+	*/
+
+	if (savedData && savedData.isCompressed) {
+		const decompressedData = decompressJSON(savedData);
+		const decompressSize = _.computeSendableSize(JSON.stringify(decompressedData));
+		_.log("解凍データ:" + decompressSize + "," + JSON.stringify(decompressedData));
+		//_.log("getSaveData:" + JSON.stringify(savedData));
+		savedData = decompressedData;
+	}
+
 	if (!savedData) {
 		ResetSavedData();
 	}
@@ -815,7 +849,48 @@ _.onFrame((deltaTime) => {
 	if (saveTime <= 0 && isNeedSave && followItem) {
 		if (savedData) {
 			_.log("savedData:" + JSON.stringify(savedData));
-			_.setPlayerStorageData(savedData);
+
+			/*
+			if (!savedData.isReplaced) {
+				replaceUUIDsWithNanoid(savedData);
+				savedData.isReplaced = true;
+			}
+			*/
+
+			savedData.isCompressed = true;
+
+			const compressedData = compressJSON(savedData);
+			const compressSize = _.computeSendableSize(JSON.stringify(compressedData));
+			_.log("圧縮データ:" + compressSize + "," + JSON.stringify(compressedData));
+
+			/*
+			const encodeData = {};
+			encodeData.data = encodeBase64(jsonToBinary(JSON.stringify(compressedData)));
+			encodeData.encodeBase64 = true;
+			const encodeDataSize = _.computeSendableSize(JSON.stringify(encodeData));
+			_.log("エンコードデータ:" + encodeDataSize + "," + JSON.stringify(encodeData));
+			*/
+
+			//savedData = decompressedData;
+			try {
+				_.setPlayerStorageData(compressedData);
+			} catch {}
+
+			/*
+			const jsonString = JSON.stringify(savedData);
+			// LZ-Stringで圧縮
+			const compressJson = LZString.compressToUTF16(jsonString);
+			const compressSize = _.computeSendableSize(compressJson);
+
+			_.log("圧縮後:" + compressSize + "," + compressJson);
+
+			const decompressJson = LZString.decompressFromUTF16(compressJson);
+			const decompressSize = _.computeSendableSize(decompressJson);
+			// 解凍された文字列をJSONに変換
+
+			_.log("解凍後:" + decompressSize + "," + decompressJson);
+			*/
+			//_.setPlayerStorageData(savedData);
 		}
 		saveTime = 5.0;
 		isNeedSave = false;

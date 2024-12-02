@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@clustervr/cluster-script-types": "^1.2.3",
+    "lz-string": "^1.5.0",
+    "nanoid": "^5.0.8",
     "prettier": "^3.3.3"
   },
   "devDependencies": {

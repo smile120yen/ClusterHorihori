@@ -114,9 +114,7 @@ export const initListeners = (itemSettings) => {
 		if (luck < newRarity) newRarity = luck;
 
 		if (isDroped) {
-			let spawnPosition = $.getPosition()
-				.clone()
-				.add(new Vector3(0, 0.7, 0));
+			let spawnPosition = $.getPosition().clone().add(new Vector3(0, 0.7, 0));
 			let followingItem = $.createItem(dropKousekiItem, spawnPosition, $.getRotation());
 
 			AddSendMessageCache(followingItem, "setStatus", {

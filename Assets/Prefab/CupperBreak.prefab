@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458837421975935185}
   - component: {fileID: 458837421975935184}
+  - component: {fileID: 4611738337831729651}
   m_Layer: 0
   m_Name: CupperBreak
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MonoBehaviour:
     value: 0
   itemName: 
   size: {x: 0, y: 0, z: 0}
+--- !u!114 &4611738337831729651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458837421975935186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61061896c654489a41575fc291bf4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceCodeAsset: {fileID: 5022602860645237092, guid: 0c45e4afe78209244a044e6260e52021, type: 3}
+  sourceCode: 
 --- !u!1001 &458837421560056182
 PrefabInstance:
   m_ObjectHideFlags: 0
